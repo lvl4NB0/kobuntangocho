@@ -1,0 +1,171 @@
+#設計（留意点）
+〇index.html
+複数のhtmlの情報を記述し、jsでspa方式で切り替える
+〇jsonについて
+words.jsonには関連語も含めて、related_words.jsonには対応関係を書いておき、
+jsでword.jsonのmapを作成後、関連語はrelated_word.jsonの対応関係を参照し、words.jsonのidを取得し関連語を取得
+
+#json
+##word.json
+収録語
+{
+    "word": "単語名",
+    "Part_of_speech": "品詞",
+    "Conjugation": "活用の種類",
+    "meaning": [
+        "no" : <int> "text" : "意味1",
+        "no" : <int> "text" : "意味2",
+    ],
+    "example_origin": ["例文(原文)1", "例文(原文)2"],
+    "example_translation": ["例文(訳)1", "例文(訳)2"],
+    "tips": "注意事項(単語帳では単語の左にある)",
+    "helps": "例文についての補足説明、なければfalseを指定、また、インデックスは例文と同じにする",
+    "related_words": "関連語句を配列で直書き、なければ空の配列"
+}
+関連語
+{
+    "word": "単語名",
+    "Part_of_speech": "品詞",
+    "meaning": [
+        "no" : <int> "text" : "意味1",
+        "no" : <int> "text" : "意味2",
+    ],
+    "example_origin": ["", ""],
+    "example_translation": ["", ""],
+    "tips": ""
+  }
+
+words[0]：動詞
+words[-1]：関連語
+
+split("・")で意味の表記ゆれを吸収するので絶対に間違いなく中点は全角にすること。
+
+##related_words.json
+{
+    "<id>" : ["関連語1","関連語2"]
+}
+
+関連語句を配列で直書き、なければ空の配列
+
+#js
+//正規化
+function normalize(str) {
+  return str
+    .toLowerCase()
+    .normalize("NFKC")      // 全角・半角統一
+    .replace(/[（）()]/g, "") // 括弧除去
+    .replace(/[・,、]/g, " ") // 区切り統一
+    .replace(/\s+/g, " ")   // 連続空白削除
+    .trim();
+}
+function kataToHira(str) {
+  return str.replace(/[\u30a1-\u30f6]/g, ch =>
+    String.fromCharCode(ch.charCodeAt(0) - 0x60)
+  );
+}
+function normalizeJP(str) {
+  return normalize(kataToHira(str));
+}
+
+
+//中点削除
+function splitMeaning(text) {
+  return text.split("・").map(s => s.trim());
+}
+
+//かっこ内削除
+function removeOptional(text) {
+  return text.replace(/（.*?）/g, "");
+  //正規表現のひとくちメモ
+  //.→すべての文字、*→直前の要素が0回以上繰り返される、?→最初に見つかった)で止まる
+  //replace(/[（(].*?[）)]/g, "")←こっちのがいいかも
+}
+
+//判定（サンプル）
+const ors = splitMeaning(removeOptional(meaningText));
+
+if (ors.some(m => normalizedInput === m)) {
+  // ◎
+}
+else if (ors.some(m => normalizedInput.includes(m))) {
+  // ○
+}
+else if (ors.some(m => m.includes(normalizedInput))) {
+  // △（短く書きすぎ）
+}
+else {
+  // ×
+}
+
+//複数
+html
+<div id="answer-area"></div>
+
+<template id="answer-template">
+  <div class="answer-row">
+    <label class="meaning-no"></label>
+    <input type="text" class="answer-input" />
+  </div>
+</template>
+
+//解答欄作成
+function renderAnswerInputs(meanings) {
+  const area = document.getElementById("answer-area");
+  area.innerHTML = "";
+
+  const tpl = document.getElementById("answer-template");
+
+  meanings.forEach(m => {
+    const node = tpl.content.cloneNode(true);
+
+    node.querySelector(".meaning-no").textContent =
+      `${m.no}.`;
+
+    node.querySelector(".answer-input").dataset.meaningNo = m.no;
+
+    area.appendChild(node);
+  });
+}
+
+//回答判定
+function judgeAll(input, meanings) {
+  const inputN = normalizeJP(input);
+
+  return meanings.map(m => {
+    const ors = removeOptional(m.text)
+      .split("・")
+      .map(s => normalize(s));
+
+    const level =
+      ors.some(o => inputN === o) ? "perfect" :
+      ors.some(o => inputN.includes(o)) ? "ok" :
+      ors.some(m => m.includes(normalizedInput)) ? "bad" :
+      "ng";
+
+    return { no: m.no, level };
+  });
+}
+
+function collectAnswers() {
+  return [...document.querySelectorAll(".answer-input")]
+    .map(input => input.value)
+    .filter(v => v.trim() !== "");
+}
+
+const userInputs = collectAnswers();
+const isCorrect = userInputs.some(input =>
+  isCorrectAnswer(input, data.meaning)
+);
+
+
+
+例文穴埋めはこんなんを使う
+function extract_blank(sentence) {
+  const match = sentence.match(/"(.*?)"/);
+  if (!match) return null;
+
+  return {
+    answer: match[1],
+    question: sentence.replace(/".*?"/, "____")
+  };
+}
