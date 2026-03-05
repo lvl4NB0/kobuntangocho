@@ -1,20 +1,38 @@
-let words = [];
-let currentIndex = 0;
-let sentenceIndex = 0;
-let ansQue = [];
-let isHighlighted = true;
-let history = [];
-let limWord = 314;
-
-//Todo:関数名変更、mvc分離、進捗描画をどうにかする、解答描画をどうにかする、そもそも製作進行
+//後で大文字にする
+const phaseList = Object.freeze({
+  initialize : "初期化処理",
+  question : "回答中",
+  answerCheck : "答え合わせの処理中",
+  wait : "次の問題への入力待機中",
+  reset : "完了",
+  nextQuestion : "次の出題範囲"
+})
+const appState = { 
+  words : [],
+  isHighlighted : true,
+  history : [],
+  phase : phaseList.initialize,
+  range : [], //もう使ってないけどcommittedRangeじゃ物足りないときに使うための予約
+  committedRange : [], //!!!型は必ず一次元配列
+}
+//#DEBUG
+appState.committedRange = [
+  {min : 2, max : 2},
+  {min : 3, max : 3}
+];
 
 fetch("./words.json")
   .then(res => res.json())
   .then(data => {
-    words = data;
-    showQuestion(isHighlighted);
-    initQuestion();
+    appState.words = data;
+    majorHandler();
   });
+  
+function parseRange(min,max){
+    if(!min || !max) return [null, null];
+    return [appState.words[min-1], appState.words[max-1]];
+}
+
 function addEventListenerByEvent(target, event, func, secondEvent, secondFunc ,thirdEvent, thirdFunc){
   const targetEl = document.getElementById(target);
   targetEl.addEventListener(event,func);
@@ -25,60 +43,155 @@ function extractBlank(s) {
   const match = s.match(/"(.*?)"/);
   if (!match) return null;
 
-  return {
-    answer: match[1],
-    question: s.replace(/".*?"/, "____")
-  };
+  return [match[1],s.replace(/".*?"/, "____")];
 }
-function showQuestion(isHighlighted) {
-  const s = words[currentIndex].example_origin[sentenceIndex];
-  const s2 = words[currentIndex].example_translation[sentenceIndex];
-  console.log(s,s2)
-  ansQue = extractBlank(s2);
-  console.log(ansQue);
-  q = ansQue.question;
-  if(isHighlighted) document.getElementById("question").textContent = s;
-  else document.getElementById("question").textContent = s.replace(/"/g,"");
-  document.getElementById("translation").textContent = q;
+let optionBuilder = {
+    shuffle : false,
+    includeRelation : false,
+    fourOption : false,
+    typing : false,
+    fillFourOption : false,
+    fillTyping : true,
+    fillHighlight : true,
+    KobunGendaibun : false
 }
-
-function initQuestion(){
-    document.getElementById("progress-bar").style.width = `${(currentIndex/limWord)*100}%`
-    document.getElementById("progress-bar-num").textContent = `${currentIndex}/${limWord+1}`;
+function showQuestion(question,hintSentence){
+  document.getElementById("translation").textContent = question;
+  document.getElementById("question").textContent = appState.isHighlighted ? hintSentence : hintSentence.replace(/"/g,"");
+}
+function switchHighlight(){
+  appState.isHighlighted = !appState.isHighlighted;
+  document.getElementById("question").textContent = appState.isHighlighted ? quizState.hintSentence : quizState.hintSentence.replace(/"/g,"");
+}
+function showQuestionProgress(numOfQuestion,currentIndex){
+    //UI表示用にインクリメント
+    numOfQuestion++;
+    currentIndex++;
+    document.getElementById("progress-bar").style.width = `${(currentIndex/numOfQuestion)*100}%`
+    document.getElementById("progress-bar-num").textContent = `${currentIndex-1}/${numOfQuestion}`;
     document.getElementById("result").textContent = "";
 }
-function restoreHistory(input,correct){
-  history[currentIndex] = {usrInput : input, correct : correct};
-  console.log(history);
-}
-//setInterval(initQuestion,10)
-let clicked = true;
-function answerCheck(){
-  clicked = !clicked;
-  const input = document.getElementById("answer-typing").value;
-  const correct = ansQue.answer;
 
-  if (input === correct) {
-    document.getElementById("result").textContent = "正解！";
-  } else {
-    document.getElementById("result").textContent =
-      `不正解。正解：${correct}`;
-  }
-  if(clicked){
-    if (currentIndex <= limWord) currentIndex++;
-    restoreHistory(input,correct);
-    initQuestion();
-    showQuestion();
-  }
+function restoreHistory(input,correct,question,hint){
+  appState.history.push({userInput : input, correct : correct, question : question, hintSentence : hint});
+  console.log(`restored user history : `,appState.history);
+}
+
+const answerButtonMessage = {
+  [phaseList.question] : "答え合わせ",
+  [phaseList.wait] : "次の問題へ"
+}
+function showResult(s){
+  document.getElementById("result").textContent = s;
+}
+function ChangeAnswerButtonText(){
+  console.log(answerButtonMessage[appState.phase])
+  document.getElementById("check").textContent = answerButtonMessage[appState.phase];
+}
+
+function answerCheck(input,answer){
+  let s;
+  if(input === answer) {
+      s = "正解！";
+    } else {
+      s = `不正解。正解：${answer}`;
+    }
+  return s;
+}
+function nextQuestion(){
+    const [original,translated] = [quizState.originalMap[quizState.currentIndex],quizState.translationMap[quizState.currentIndex]];
+    const questionSentence = quizState.mode ? original : translated;
+    const hintSentence = !quizState.mode ? original : translated;
+    [quizState.answer,quizState.question] = extractBlank(questionSentence);
+    showQuestion(quizState.question,hintSentence);
+    quizState.questionSentence = questionSentence;
+    quizState.hintSentence = hintSentence;
 }
 addEventListenerByEvent("quiz-history","click",() => {
+  //ここは後で書き換える
   const overlay = document.getElementById("quiz-history-overlay")
   overlay.classList.toggle("hidden");
-  overlay.textContent = history;
+  overlay.textContent = appState.history;
 })
-addEventListenerByEvent("check","click",answerCheck)
-function toggleIsHighlight(){
-  isHighlighted = !isHighlighted;
-  showQuestion(isHighlighted);
+addEventListenerByEvent("quiz-highlight","click",switchHighlight)
+addEventListenerByEvent("check","click",majorHandler);
+
+const quizState = {
+  mode : optionBuilder.KobunGendaibun,
+  originalMap : [],
+  translationMap : [],
+  currentIndex : 0,
+  answer : "",
+  question : "",
+  questionSentence :"",
+  hintSentence : "",
+  numOfQuestion : 0,
 }
-addEventListenerByEvent("quiz-highlight","click",toggleIsHighlight)
+function quizListBuilder(){
+  let originSentenceMap = [];
+  let translatedSentenceMap = [];
+  appState.committedRange.forEach( aRange => {
+    for(let i = aRange.min - 1; i < aRange.max; i++){
+      for(const sentence of appState.words[i].example_origin){
+        originSentenceMap.push(sentence);
+        console.log(sentence)
+      }
+      for(const sentence of appState.words[i].example_translation){
+        translatedSentenceMap.push(sentence);
+      }
+    }
+  });
+  const sum = originSentenceMap.length;
+  return [sum,originSentenceMap,translatedSentenceMap];
+}
+function getCaller() {
+  const error = new Error();
+  const stack = error.stack || '';
+  const stackLines = stack.split('\n');
+  const callerIndex = stackLines.findIndex(line => line.includes('getCaller')) + 2;
+  if (stackLines[callerIndex]) {
+    return stackLines[callerIndex].trim();
+  }
+  return 'Unknown';
+}
+
+const answerBox = document.getElementById("answer-typing");
+function majorHandler(){
+  switch(appState.phase){
+    case phaseList.initialize :
+      quizState.mode = optionBuilder.KobunGendaibun;
+      [quizState.numOfQuestion,quizState.originalMap,quizState.translationMap] = quizListBuilder();
+      quizState.currentIndex = 0;
+      nextQuestion();
+      appState.phase = phaseList.question;
+      showQuestionProgress(quizState.numOfQuestion,quizState.currentIndex);
+      break;
+    case phaseList.wait :  
+      quizState.currentIndex++;
+      nextQuestion();
+      appState.phase = phaseList.question;
+      ChangeAnswerButtonText();
+      showResult("");
+      answerBox.disabled = false;
+      answerBox.value = "";
+      showQuestionProgress(quizState.numOfQuestion,quizState.currentIndex);
+      break;
+    case phaseList.question :
+      const input = answerBox.value;
+      appState.phase = phaseList.answerCheck;
+      const s = answerCheck(input,quizState.answer);
+      showResult(s);
+      appState.phase = phaseList.wait;
+      ChangeAnswerButtonText();
+      answerBox.disabled = true;
+      restoreHistory(
+        input,
+        quizState.answer,
+        quizState.questionSentence,
+        quizState.hintSentence
+      );
+      break;
+    default:
+      console.error("Unknown phase", appState.phase);
+  }
+}
