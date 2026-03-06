@@ -66,7 +66,6 @@ body{
     width : 0%;
     background-color : rgb(75, 155, 155);
     border-radius: 0.75vh 0.75vh 0.75vh 0.75vh;
-    
 }
 .progress-bar-border{
     height : 1em;
@@ -84,7 +83,7 @@ body{
 }
 .progress-bar-num-background{
     width: 8%;
-    height: 2%;
+    height: auto;
     position: absolute;
     background-color: rgb(180, 60, 60);
     border-radius: 2vh 2vh 2vh 2vh;
@@ -120,7 +119,7 @@ body{
     flex-direction: column;
     gap: 1vh;
     margin: auto;
-    margin-top: 10vh;
+    margin-top: 0;
 }
 .question-text{
     font-size: 4em;
