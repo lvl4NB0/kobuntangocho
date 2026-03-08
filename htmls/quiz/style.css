@@ -8,10 +8,6 @@ body{
     font-size: 60%;  
     font-family: zen-maru-gothic-regular, "Zen Maru Gothic", sans-serif; 
 }
-    
-.hidden {
-  display: none;
-}
 .containers{
     display: flex;
     flex-direction: column;
@@ -141,6 +137,17 @@ body{
     height: max(5vh,3.1em);
     font-size: 3em;
 }
+.four-option-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1vh;
+    gap: 10px;
+    width: 100%;
+    height: auto;
+}
+.four-option{
+    font-size: 6em;
+}
 .overlay{
     position: fixed;
     top:0;
@@ -163,4 +170,8 @@ body{
 .column{
     display: flex;
     flex-direction: column;
+}
+    
+.hidden {
+  display: none;
 }
