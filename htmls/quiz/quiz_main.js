@@ -1,4 +1,4 @@
-//TODO : jsonの例文の構成を変える(exampleオブジェクトの中に現代語訳と原文を入れる)、出題ロジックを作る、シャッフル機能を実装する
+//TODO : jsonの例文の構成を変える(exampleオブジェクトの中に現代語訳と原文を入れる)、出題ロジックを作る、シャッフル機能を実装する、あとコミットしなおすのめんどくさいからjsとcssの読み込み順変えるのも後でやる
 
 //後で大文字にする
 const phaseList = Object.freeze({
@@ -6,7 +6,7 @@ const phaseList = Object.freeze({
   question : "回答中",
   answerCheck : "答え合わせの処理中",
   wait : "次の問題への入力待機中",
-  reset : "完了",
+  finished : "完了",
   nextQuestion : "次の出題範囲"
 })
 const appState = { 
@@ -18,7 +18,7 @@ const appState = {
 }
 //#DEBUG
 appState.committedRange = [
-  {min : 1, max : 315}
+  {min : 1, max : 2}
 ];
 
 const DOM = Object.freeze({
@@ -96,7 +96,8 @@ function restoreHistory(input,correct,question,hint,isCorrect){
 
 const answerButtonMessage = {
   [phaseList.question] : "答え合わせ",
-  [phaseList.wait] : "次の問題へ"
+  [phaseList.wait] : "次の問題へ",
+  [phaseList.finished] : "終了"
 }
 function showResult(s){
   DOM.result.textContent = s;
@@ -108,17 +109,17 @@ function ChangeAnswerButtonText(){
 
 function normalizeForAnswer(s){
   return s
-    .replace(/[)）]/g, "")
-    .split(/・|\(|（/)
-    .filter(n => n.trim() !== "");
+    ?.replace(/[)）]/g, "")
+    ?.split(/・|\(|（/)
+    ?.filter(n => n.trim() !== "");
 }
 function answerCheck(input,correct){
   let s;
   const judge = normalizeForAnswer(correct);
   const normalizedInput = normalizeForAnswer(input);
-  if(judge.every(m => normalizedInput.includes(m))){
+  if(judge?.every(m => normalizedInput.includes(m))){
       return {sentence : "正解！", isCorrect : true};
-    }else if(judge.some(m => normalizedInput.includes(m))){
+    }else if(judge?.some(m => normalizedInput.includes(m))){
       return {sentence : "正解", isCorrect : true}
     }else{
       return {sentence : `不正解。正解：${correct}`, isCorrect : false};
@@ -204,18 +205,17 @@ const quizState = {
   questionSentence :"",
   hintSentence : "",
   numOfQuestion : 0,
+  type : ""
 }
 function quizListBuilder(){
   let originSentences = [];
   let translatedSentences = [];
   appState.committedRange.forEach( aRange => {
     for(let i = aRange.min - 1; i < aRange.max; i++){
-      for(const sentence of appState.words[i].example_origin){
-        originSentences.push(sentence);
-        console.log(sentence)
-      }
-      for(const sentence of appState.words[i].example_translation){
-        translatedSentences.push(sentence);
+      for(const examples of appState.words[i].example_sentences){
+        originSentences.push(examples.origin);
+        translatedSentences.push(examples.translation);
+        console.log(originSentences)
       }
     }
   });
@@ -248,28 +248,48 @@ function getType(){
   if(optionBuilder.typing) return QUIZ_TYPE.Typing;
   if(optionBuilder.fillFourOption) return QUIZ_TYPE.fillFourOption;
   if(optionBuilder.fillTyping) return QUIZ_TYPE.fillTyping;
+  return false;
+}
+function completeOptionBuilder(){
+  switch(quizState.type){
+  case QUIZ_TYPE.fourOption: 
+    optionBuilder.fourOption = false;
+    break;
+  case QUIZ_TYPE.Typing : 
+    optionBuilder.typing = false;
+    break;
+  case QUIZ_TYPE.fillFourOption : 
+    optionBuilder.fillFourOption = false;
+    break;
+  case QUIZ_TYPE.fillTyping : 
+    optionBuilder.fillTyping = false;
+    break;
+  default : 
+    return false;
+  }
 }
 
 function majorHandler(){
+  try{
   switch(appState.phase){
     case phaseList.initialize :
       quizState.mode = optionBuilder.KobunGendaibun;
-      const type = getType();
+      quizState.type = getType();
+      if(quizState.type === false) alert("finished process"); //showPage();
       [quizState.numOfQuestion,quizState.quizList.origin,quizState.quizList.translationMap] = quizListBuilder();
       quizState.currentIndex = 0;
-      nextQuestion(type);
+      nextQuestion(quizState.type);
       appState.phase = phaseList.question;
       showQuestionProgress(quizState.numOfQuestion,quizState.currentIndex);
       break;
     case phaseList.wait :  
-      quizState.currentIndex++;
-      nextQuestion(type);
-      appState.phase = phaseList.question;
-      ChangeAnswerButtonText();
-      showResult("");
-      DOM.answerBox.disabled = false;
-      DOM.answerBox.value = "";
-      showQuestionProgress(quizState.numOfQuestion,quizState.currentIndex);
+        appState.phase = phaseList.question;
+        nextQuestion(quizState.type);
+        ChangeAnswerButtonText();
+        showResult("");
+        DOM.answerBox.disabled = false;
+        DOM.answerBox.value = "";
+        showQuestionProgress(quizState.numOfQuestion,quizState.currentIndex);
       break;
     case phaseList.question :
       const input = DOM.answerBox.value;
@@ -286,8 +306,24 @@ function majorHandler(){
         quizState.hintSentence,
         isCorrect
       );
+      quizState.currentIndex++;
+      if(quizState.currentIndex + 1 > quizState.numOfQuestion){
+        appState.phase = phaseList.finished;
+        completeOptionBuilder();
+        ChangeAnswerButtonText();
+        alert("DEBUG")
+      }
+      break;
+    case phaseList.finished : 
+      appState.phase = phaseList.initialize;
+      majorHandler();
+      //showPage();
       break;
     default:
       console.error("Unknown phase", appState.phase);
+  }
+  }catch(e){
+    alert("エラーが発生しました。ページを再読み込みしてください。")
+    console.error(e);
   }
 }
