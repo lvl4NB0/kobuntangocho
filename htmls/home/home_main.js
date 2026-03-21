@@ -145,7 +145,7 @@ function errorCheckRange(){
     if(isNaN(min) || isNaN(max)) return [null, null];
     if(min > max) [min, max] = [max , min];
     if(min < 1) min = 1;
-    if(max > appState.words.length) max = appState.words.length;
+    if(max > 315) max = 315;
     return [min,max];
 }
 //正規化された入力から、該当する単語をjsonから取り出す関数
