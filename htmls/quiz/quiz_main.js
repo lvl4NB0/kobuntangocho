@@ -24,9 +24,9 @@ appState.committedRange = [
 let optionBuilder = {
     shuffle : false,
     includeRelation : false,
-    fourOption : false,
-    typing : false,
-    fillFourOption : false,
+    fourOption : true,
+    typing : true,
+    fillFourOption : true,
     fillTyping : true,
     fillHighlight : true,
     KobunGendaibun : false
@@ -61,6 +61,7 @@ const DOM = Object.freeze({
   result : document.getElementById("result"),
   check : document.getElementById("check"),
   overlay : document.getElementById("quiz-history-overlay"),
+  overlayInner : document.getElementById("quiz-history-overlay-inner"),
   answerBox : document.getElementById("answer-typing"),
   fourOption : document.getElementById("four-option"),
   option : [
@@ -72,7 +73,10 @@ const DOM = Object.freeze({
   opt1 : document.getElementById("opt1"),
   opt2 : document.getElementById("opt2"),
   opt3 : document.getElementById("opt3"),
-  opt4 : document.getElementById("opt4")
+  opt4 : document.getElementById("opt4"),
+  correctAnswersNum : document.getElementById("correct-answers-num"),
+  answersNum : document.getElementById("answers-num"),
+  consecutiveCorrectAnswersNum : document.getElementById("consecutive-correct-answers-num")
 })
 
 fetch("./words.json")
@@ -112,13 +116,14 @@ function showQuestionProgress(numOfQuestion,currentIndex){
     DOM.progressBarNum.textContent = `${currentIndex}/${numOfQuestion}`;
 }
 
-function restoreHistory(input,correct,question,hint,isCorrect){
+function restoreHistory(input,correct,question,hint,isCorrect,type){
   appState.history.push({
     userInput : input, 
     correct : correct, 
     question : question, 
     hintSentence : hint,
-    isCorrect : isCorrect
+    isCorrect : isCorrect,
+    type : type
   });
   console.log(`restored user history : `,appState.history);
 }
@@ -213,11 +218,70 @@ function initializeQuestionField(type){
       console.error("unexpected type");
   }
 }
+function renderHistory() {
+  DOM.overlayInner.innerHTML = "";
+  let n = 0; //正答数用
+  let ccan = 0; //連続正解数用
+  appState.history.forEach(item => {
+    const card = document.createElement("div");
+    card.classList.add("history-card");
+
+    const hint = document.createElement("div");
+    hint.classList.add("history-question");
+    hint.textContent = item.hintSentence;
+
+    const answer = document.createElement("div");
+    answer.classList.add("history-answer");
+    answer.textContent = `あなた: ${item.userInput}`;
+
+    const correct = document.createElement("div");
+    correct.classList.add("history-correct");
+    correct.textContent = `正解: ${item.correct}`;
+
+    const result = document.createElement("div");
+    result.classList.add("history-result");
+    result.textContent = item.isCorrect ? "正解" : "不正解";
+    result.classList.add(item.isCorrect ? "ok" : "ng");
+    if(item.isCorrect){
+      n++;
+      ccan++;
+    }else{
+      ccan = 0;
+    }
+
+    if(item.type === QUIZ_TYPE.fillTyping || item.type === QUIZ_TYPE.fillFourOption){
+      const question = document.createElement("div");
+      question.classList.add("history-question");
+      question.textContent = item.question;
+
+      card.append(hint, question, answer, correct, result);
+    }
+    else card.append(hint, answer, correct, result);
+
+    DOM.overlayInner.appendChild(card);
+  });
+  const length = appState.history ? appState.history.length : 0;
+  DOM.answersNum.textContent = length
+  DOM.correctAnswersNum.textContent = n;
+  DOM.consecutiveCorrectAnswersNum.textContent = ccan;
+
+}
+function overlayToggle(){
+  DOM.overlay.classList.toggle("overlay_on");
+  renderHistory();
+}
+document.addEventListener('DOMContentLoaded', () => {
+  addEventListenerByEvent("quiz-history","click",overlayToggle);
+  DOM.overlay.addEventListener("click",overlayToggle);
+  function stopbub(event){
+    event.stopPropagation();
+  }
+  DOM.overlayInner.addEventListener('click', stopbub, false);
+}, false);
+
 
 addEventListenerByEvent("quiz-history","click",() => {
   //ここは後で書き換える
-  DOM.overlay.classList.toggle("hidden");
-  DOM.overlay.textContent = appState.history;
 })
 addEventListenerByEvent("quiz-highlight","click",switchHighlight)
 addEventListenerByEvent("check","click",majorHandler);
@@ -376,10 +440,17 @@ function majorHandler(){
     case phaseList.wait :  
         appState.phase = phaseList.question;
         ChangeAnswerButtonText(appState.phase);
-        showResult("");
+        showQuestionProgress(quizState.numOfQuestion,quizState.currentIndex);
+        if(quizState.currentIndexInOneSet >= quizState.oneSet){
+          appState.phase = phaseList.nextQuestionRange;
+          console.log("DEBUG : " + `phase is ${appState.phase} currentIndexInOneSet(${quizState.currentIndexInOneSet + 1})>oneSet(${quizState.oneSet})` + getCaller())
+          majorHandler();
+          return;
+        }
         ControlAnswerButtonAtribute(false);
-        DOM.answerBox.value = "";
+        showResult("");
         nextQuestion(quizState.type);
+        DOM.answerBox.value = "";
       break;
     case phaseList.question :
       const input = DOM.answerBox.value;
@@ -393,19 +464,13 @@ function majorHandler(){
       restoreHistory(
         input,
         quizState.correct,
-        quizState.questionSentence,
+        quizState.question,
         quizState.hintSentence,
-        isCorrect
+        isCorrect,
+        quizState.type
       );
       quizState.currentIndex++;
       quizState.currentIndexInOneSet++;
-      showQuestionProgress(quizState.numOfQuestion,quizState.currentIndex);
-      if(quizState.currentIndexInOneSet >= quizState.oneSet){
-        appState.phase = phaseList.nextQuestionRange;
-        console.log("DEBUG : " + `phase is ${appState.phase} currentIndexInOneSet(${quizState.currentIndexInOneSet + 1})>oneSet(${quizState.oneSet})` + getCaller())
-        majorHandler();
-        return;
-      }
       break;
     case phaseList.answerCheck : 
       
@@ -419,11 +484,13 @@ function majorHandler(){
         console.log("DEBUG : " + `phase is ${appState.phase} currentIndex(${quizState.currentIndex + 1})>numOfquestion(${quizState.numOfQuestion})` + getCaller())
         return;
       }
-      nextQuestion(quizState.type);
+      showResult("");
       completeOptionBuilder();
+      ControlAnswerButtonAtribute(false);
       quizState.type = getType();
       console.log(quizState.type)
-      initializeQuestionField(quizState.type);nextQuestion(quizState.type);
+      nextQuestion(quizState.type);
+      initializeQuestionField(quizState.type);
       DOM.answerBox.value = "";
       appState.phase = phaseList.question;
       showQuestionProgress(quizState.numOfQuestion,quizState.currentIndex);

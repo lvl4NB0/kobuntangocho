@@ -19,7 +19,14 @@
                 </div>
             </div>
         <section id="quiz">
-            <div id="quiz-history-overlay" class="overlay hidden"></div>
+            <div id="quiz-history-overlay" class="overlay">
+                <div id="quiz-history-overlay-inner-message" class="overlay-inner-message">
+                    <div>正答数 / 問題数</div>
+                    <div style="font-size: 1.6em;"><span id="correct-answers-num">123</span> / <span id="answers-num">132</span></div>
+                    <div><span id="consecutive-correct-answers-num">12</span>問連続正解！</div>
+                </div>
+                <div id="quiz-history-overlay-inner" class="overlay-inner"></div>
+            </div>
             <div class="flex progress-bar-container">
                 <div class="progress-bar-border">
                     <div id="progress-bar" class="progress-bar"></div>
@@ -52,7 +59,7 @@
                 </div>
             </div>
         </section>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="quiz_style.css">
         <script src = "quiz_main.js"></script>
     </body>
 </html>
