@@ -7,7 +7,7 @@ const phaseList = Object.freeze({
   answerCheck : "答え合わせの処理中",
   wait : "次の問題への入力待機中",
   finished : "完了",
-  nextQuestion : "次の出題範囲"
+  nextQuestionRange : "次の出題範囲"
 })
 const appState = { 
   words : [],
@@ -16,10 +16,42 @@ const appState = {
   phase : phaseList.initialize,
   committedRange : [], //!!!型は必ず一次元配列
 }
+
 //#DEBUG
 appState.committedRange = [
-  {min : 1, max : 2}
+  {min : 1, max : 1}
 ];
+let optionBuilder = {
+    shuffle : false,
+    includeRelation : false,
+    fourOption : false,
+    typing : false,
+    fillFourOption : false,
+    fillTyping : true,
+    fillHighlight : true,
+    KobunGendaibun : false
+}
+
+const quizState = {
+  mode : optionBuilder.KobunGendaibun,
+  originalMap : [],
+  quizList : {
+    origin: [],
+    translation: []
+  },
+  translationMap : [],
+  currentIndex : 0,
+  currentIndexInOneSet : 0,
+  answer : "",
+  question : "",
+  correct  : "",
+  questionSentence :"",
+  hintSentence : "",
+  numOfQuestion : 0,
+  oneSet : 0,
+  type : "",
+  fourOption : []
+}
 
 const DOM = Object.freeze({
   translation : document.getElementById("translation"),
@@ -30,13 +62,24 @@ const DOM = Object.freeze({
   check : document.getElementById("check"),
   overlay : document.getElementById("quiz-history-overlay"),
   answerBox : document.getElementById("answer-typing"),
-  fourOption : document.getElementById("four-option")
+  fourOption : document.getElementById("four-option"),
+  option : [
+    document.getElementById("opt1"),
+    document.getElementById("opt2"),
+    document.getElementById("opt3"),
+    document.getElementById("opt4")
+  ],
+  opt1 : document.getElementById("opt1"),
+  opt2 : document.getElementById("opt2"),
+  opt3 : document.getElementById("opt3"),
+  opt4 : document.getElementById("opt4")
 })
 
 fetch("./words.json")
   .then(res => res.json())
   .then(data => {
     appState.words = data;
+    fourOptionBuilder();
     majorHandler();
   });
   
@@ -51,20 +94,10 @@ function addEventListenerByEvent(target, event, func, secondEvent, secondFunc ,t
   if(secondEvent) targetEl.addEventListener(secondEvent,secondFunc);
   if(thirdEvent) targetEl.addEventListener(thirdEvent,thirdFunc);
 }
-function extractBlank(s) {
-  const match = s.match(/"(.*?)"/);
-  if (!match) return "";
-  return [match[1],s.replace(/".*?"/, "_".repeat(match[1].length))];//[answer,quiestionSentence]
-}
-let optionBuilder = {
-    shuffle : false,
-    includeRelation : false,
-    fourOption : false,
-    typing : false,
-    fillFourOption : false,
-    fillTyping : true,
-    fillHighlight : true,
-    KobunGendaibun : false
+function extractBlank(s){
+    const match = s.match(/"(.*?)"/);
+    if (!match) return "";
+    return [match[1],s.replace(/".*?"/, "_".repeat(match[1].length))];//[answer,quiestionSentence]
 }
 function showQuestion(question,hintSentence){
   DOM.translation.textContent = question;
@@ -75,12 +108,8 @@ function switchHighlight(){
   DOM.question.textContent = appState.isHighlighted ? quizState.hintSentence : quizState.hintSentence.replace(/"/g,"");
 }
 function showQuestionProgress(numOfQuestion,currentIndex){
-    //UI表示用にインクリメント
-    numOfQuestion++;
-    currentIndex++;
-    DOM.progressBar.style.width = `${((currentIndex-1)/numOfQuestion)*100}%`
+    DOM.progressBar.style.width = `${(currentIndex/numOfQuestion)*100}%`
     DOM.progressBarNum.textContent = `${currentIndex}/${numOfQuestion}`;
-    DOM.result.textContent = "";
 }
 
 function restoreHistory(input,correct,question,hint,isCorrect){
@@ -100,11 +129,12 @@ const answerButtonMessage = {
   [phaseList.finished] : "終了"
 }
 function showResult(s){
+  if(s === undefined) s = "ERROR"
   DOM.result.textContent = s;
 }
-function ChangeAnswerButtonText(){
-  console.log(answerButtonMessage[appState.phase])
-  DOM.check.textContent = answerButtonMessage[appState.phase];
+function ChangeAnswerButtonText(condition){
+  console.log(answerButtonMessage[condition])
+  DOM.check.textContent = answerButtonMessage[condition];
 }
 
 function normalizeForAnswer(s){
@@ -114,7 +144,6 @@ function normalizeForAnswer(s){
     ?.filter(n => n.trim() !== "");
 }
 function answerCheck(input,correct){
-  let s;
   const judge = normalizeForAnswer(correct);
   const normalizedInput = normalizeForAnswer(input);
   if(judge?.every(m => normalizedInput.includes(m))){
@@ -126,25 +155,27 @@ function answerCheck(input,correct){
     }
 }
 function GenerateExampleSentence(){
-    const [original,translated] = [quizState.quizList.origin[quizState.currentIndex],quizState.quizList.translationMap[quizState.currentIndex]];
+    const [original,translated] = [quizState.quizList.origin[quizState.currentIndexInOneSet],quizState.quizList.translationMap[quizState.currentIndexInOneSet]];
     const questionSentence = quizState.mode ? original : translated;
     const hintSentence = !quizState.mode ? original : translated;
     [quizState.correct,quizState.question] = extractBlank(questionSentence);
+    console.log(`correct : ${quizState.correct}`)
     showQuestion(quizState.question,hintSentence);
     quizState.questionSentence = questionSentence;
     quizState.hintSentence = hintSentence;
 }
 function nextQuestion(type){
+  GenerateExampleSentence();
   switch(type){
     case QUIZ_TYPE.fourOption:
+      applyFourOptionText();
       break;
     case QUIZ_TYPE.Typing:
       break;
     case QUIZ_TYPE.fillFourOption:
-      GenerateExampleSentence();
+      applyFourOptionText();
       break;
     case QUIZ_TYPE.fillTyping:
-      GenerateExampleSentence();
       break;
     default:
       console.error("unexpected type");
@@ -191,22 +222,35 @@ addEventListenerByEvent("quiz-history","click",() => {
 addEventListenerByEvent("quiz-highlight","click",switchHighlight)
 addEventListenerByEvent("check","click",majorHandler);
 
-const quizState = {
-  mode : optionBuilder.KobunGendaibun,
-  originalMap : [],
-  quizList : {
-    origin: [],
-    translation: []
-  },
-  translationMap : [],
-  currentIndex : 0,
-  answer : "",
-  question : "",
-  questionSentence :"",
-  hintSentence : "",
-  numOfQuestion : 0,
-  type : ""
+const FourOptionID = {
+  option1 : "opt1",
+  option2 : "opt2",
+  option3 : "opt3",
+  option4 : "opt4",
+  option5 : "optIDK"
 }
+
+function selectFourOption(text,id){
+  if(id === FourOptionID.option5) DOM.answerBox.value = "";
+  else{
+    try{
+      DOM.answerBox.value = text;
+    }
+    catch(e){
+      alert("エラーが発生しました。ページを再読み込みしてください。")
+      console.error(e)
+    }
+  }
+  majorHandler();
+}
+
+const parent = document.getElementById('four-option');
+parent.addEventListener('click', (e) => {
+    const button = e.target.closest('.four-option');
+    if (!button) return;
+    console.log(button.id);
+    selectFourOption(button.textContent,button.id);
+});
 function quizListBuilder(){
   let originSentences = [];
   let translatedSentences = [];
@@ -225,9 +269,36 @@ function quizListBuilder(){
   if(optionBuilder.fillFourOption) n++;
   if(optionBuilder.fillTyping) n++;
   const sum = originSentences.length * n;
-  return [sum,originSentences,translatedSentences];
+  return [sum,originSentences.length,originSentences,translatedSentences];
 }
-function getCaller() {
+function fourOptionBuilder(){
+  for(let i = 0; i < appState.words.length; i++){
+    appState.words[i].meaning.forEach( obj => {
+      quizState.fourOption.push(...normalizeForAnswer(obj.text));
+    })
+  }
+  console.log(quizState.fourOption);
+}
+function shuffle(array) {
+  const result = [...array];
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  
+  return result;
+}
+function generateChoices(){
+  const pool = quizState.fourOption.filter(m => !m.includes(quizState.correct));
+  const dummies = shuffle(pool).slice(0, 3);
+  const choices = shuffle([quizState.correct, ...dummies]);
+
+  return {
+    choices,
+    correctIndex: choices.indexOf(quizState.correct)
+  };
+}
+function getCaller(){
   const error = new Error();
   const stack = error.stack || '';
   const stackLines = stack.split('\n');
@@ -268,37 +339,57 @@ function completeOptionBuilder(){
     return false;
   }
 }
+function ControlAnswerButtonAtribute(bool){
+  if(quizState.type === QUIZ_TYPE.fillFourOption || quizState.type === QUIZ_TYPE.fourOption){
+    if(!bool) DOM.check.classList.add("hidden");
+    else DOM.check.classList.remove("hidden");
+    DOM.fourOption.disabled = bool;
+  }
+  else if(quizState.type === QUIZ_TYPE.Typing || quizState.type === QUIZ_TYPE.fillTyping){
+    DOM.answerBox.disabled = bool;
+    if(!bool) DOM.answerBox.value = "";
+  }
+}
+function applyFourOptionText(){
+  const {choices,_} = generateChoices();
+  for(let i = 0; i < 4; i++){
+    DOM.option[i].textContent = choices[i]
+  }
+}
 
 function majorHandler(){
+  console.log(quizState.currentIndex)
   try{
   switch(appState.phase){
     case phaseList.initialize :
+      quizState.currentIndex = 0;
       quizState.mode = optionBuilder.KobunGendaibun;
       quizState.type = getType();
-      if(quizState.type === false) alert("finished process"); //showPage();
-      [quizState.numOfQuestion,quizState.quizList.origin,quizState.quizList.translationMap] = quizListBuilder();
-      quizState.currentIndex = 0;
+      console.log(quizState.type)
+      initializeQuestionField(quizState.type);
+      [quizState.numOfQuestion,quizState.oneSet,quizState.quizList.origin,quizState.quizList.translationMap] = quizListBuilder();
       nextQuestion(quizState.type);
       appState.phase = phaseList.question;
       showQuestionProgress(quizState.numOfQuestion,quizState.currentIndex);
+      showResult("");
       break;
     case phaseList.wait :  
         appState.phase = phaseList.question;
-        nextQuestion(quizState.type);
-        ChangeAnswerButtonText();
+        ChangeAnswerButtonText(appState.phase);
         showResult("");
-        DOM.answerBox.disabled = false;
+        ControlAnswerButtonAtribute(false);
         DOM.answerBox.value = "";
-        showQuestionProgress(quizState.numOfQuestion,quizState.currentIndex);
+        nextQuestion(quizState.type);
       break;
     case phaseList.question :
       const input = DOM.answerBox.value;
       appState.phase = phaseList.answerCheck;
-      const {s , isCorrect} = answerCheck(input,quizState.correct);
-      showResult(s);
+      const {sentence , isCorrect} = answerCheck(input,quizState.correct);
+      console.log(`s : ${sentence}`)
+      showResult(sentence);
       appState.phase = phaseList.wait;
-      ChangeAnswerButtonText();
-      DOM.answerBox.disabled = true;
+      ChangeAnswerButtonText(appState.phase);
+      ControlAnswerButtonAtribute(true);
       restoreHistory(
         input,
         quizState.correct,
@@ -307,17 +398,38 @@ function majorHandler(){
         isCorrect
       );
       quizState.currentIndex++;
-      if(quizState.currentIndex + 1 > quizState.numOfQuestion){
-        appState.phase = phaseList.finished;
-        completeOptionBuilder();
-        ChangeAnswerButtonText();
-        alert("DEBUG")
+      quizState.currentIndexInOneSet++;
+      showQuestionProgress(quizState.numOfQuestion,quizState.currentIndex);
+      if(quizState.currentIndexInOneSet >= quizState.oneSet){
+        appState.phase = phaseList.nextQuestionRange;
+        console.log("DEBUG : " + `phase is ${appState.phase} currentIndexInOneSet(${quizState.currentIndexInOneSet + 1})>oneSet(${quizState.oneSet})` + getCaller())
+        majorHandler();
+        return;
       }
       break;
-    case phaseList.finished : 
-      appState.phase = phaseList.initialize;
-      majorHandler();
-      //showPage();
+    case phaseList.answerCheck : 
+      
+      break;
+    case phaseList.nextQuestionRange : 
+      quizState.currentIndexInOneSet = 0;
+      if(quizState.currentIndex >= quizState.numOfQuestion){
+        appState.phase = phaseList.finished;
+        ChangeAnswerButtonText(appState.phase);
+        showQuestionProgress(quizState.currentIndex,quizState.numOfQuestion);
+        console.log("DEBUG : " + `phase is ${appState.phase} currentIndex(${quizState.currentIndex + 1})>numOfquestion(${quizState.numOfQuestion})` + getCaller())
+        return;
+      }
+      nextQuestion(quizState.type);
+      completeOptionBuilder();
+      quizState.type = getType();
+      console.log(quizState.type)
+      initializeQuestionField(quizState.type);nextQuestion(quizState.type);
+      DOM.answerBox.value = "";
+      appState.phase = phaseList.question;
+      showQuestionProgress(quizState.numOfQuestion,quizState.currentIndex);
+      break;
+    case phaseList.finished :
+      alert("finished process"); //showPage();
       break;
     default:
       console.error("Unknown phase", appState.phase);

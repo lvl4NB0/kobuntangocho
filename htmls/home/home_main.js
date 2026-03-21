@@ -89,6 +89,9 @@ fetch("./words.json")
   .then(res => res.json())
   .then(data => {
     appState.words = data;
+  }).catch((e) =>  {
+    alert("単語データが読み込めませんでした。ページを更新してください。")
+    console.error(e);
   });
 //単語データのマッピング
 //未実装（jsonが完成したら作る）
