@@ -1,7 +1,4 @@
-/*TODO : 
-    SPA方式にマージ
-    JSDocを書く（気が向いたら順次）
-*/
+//TODO : タイピング問題でも正しくできるように四択の選択肢や答えを意味全てで一つにする
 
 function main(){
     /**
@@ -211,6 +208,7 @@ function main(){
             if(isNaN(min) || isNaN(max)) return [null, null];
             if(min > max) [min, max] = [max , min];
             if(min < 1) min = 1;
+            if(min > 315) min = 315
             if(max > 315) max = 315;
             return [min,max];
         }
@@ -377,7 +375,8 @@ function main(){
             cbTyping : document.getElementById("cb-typing"),
             cbFillFourOption : document.getElementById("cb-fill-four-option"),
             cbFillTyping : document.getElementById("cb-fill-typing"),
-            cbFillHighlight : document.getElementById("cb-fill-highlight")
+            cbFillHighlight : document.getElementById("cb-fill-highlight"),
+            cbKobunToGendaibun : document.getElementById("cb-gendaigo-to-kogo")
         }
 
         //オプションの値をまとめて取得し返却する関数
@@ -385,7 +384,8 @@ function main(){
         function createOptionBuilder(isFlashcard){
             let optionBuilder = {
                 shuffle : Boolean(cbElements.cbShuffle.checked),
-                includeRelation : Boolean(cbElements.cbIncludeRelation.checked)
+                includeRelation : Boolean(cbElements.cbIncludeRelation.checked),
+                GendaigoKogo : Boolean(cbElements.cbKobunToGendaibun.checked)
             }
             if(isFlashcard){
                 optionBuilder.exceptKnown = Boolean(cbElements.cbExceptKnown.checked);
@@ -495,16 +495,17 @@ function main(){
             fillFourOption : true,
             fillTyping : true,
             fillHighlight : true,
-            KobunGendaibun : false
+            GendaigoKogo : false
         }*/
 
         const quizState = {
-        mode : appState.optionBuilder.KobunGendaibun,
+        mode : appState.optionBuilder.GendaigoKogo,
         originalMap : [],
         quizList : {
             origin: [],
             translation: []
         },
+        words : [],
         translationMap : [],
         currentIndex : 0,
         currentIndexInOneSet : 0,
@@ -514,18 +515,23 @@ function main(){
         questionSentence :"",
         hintSentence : "",
         numOfQuestion : 0,
-        oneSet : 0,
+        oneSet : {
+            numOfexamples : 0,
+            numOfWords : 0
+        },
         type : "",
-        fourOption : []
+        fourOption : [],
+        fourOptionNoNormalized : []
         }
         function extractBlank(s){
             const match = s.match(/"(.*?)"/);
             if (!match) return "";
             return [match[1],s.replace(/".*?"/, "_".repeat(match[1].length))];//[answer,quiestionSentence]
         }
-        function showQuestion(question,hintSentence){
+        function showQuestion(question,hintSentence,fontSize = "auto"){
         DOM.translation.textContent = question;
         DOM.question.textContent = appState.isHighlighted ? hintSentence : hintSentence.replace(/"/g,"");
+        DOM.question.style.fontSize = fontSize;
         }
         
         function showQuestionProgress(numOfQuestion,currentIndex){
@@ -577,27 +583,40 @@ function main(){
             }
         }
         function GenerateExampleSentence(){
-            const [original,translated] = [quizState.quizList.origin[quizState.currentIndexInOneSet],quizState.quizList.translationMap[quizState.currentIndexInOneSet]];
+            const [original,translated] = [quizState.quizList.origin[quizState.currentIndexInOneSet],quizState.quizList.translation[quizState.currentIndexInOneSet]];
             const questionSentence = quizState.mode ? original : translated;
             const hintSentence = !quizState.mode ? original : translated;
             [quizState.correct,quizState.question] = extractBlank(questionSentence);
-            console.log(`correct : ${quizState.correct}`)
+            console.log(`correct : ${quizState.correct}, mode : ${quizState.mode}, :: ${questionSentence},${hintSentence}`)
             showQuestion(quizState.question,hintSentence);
             quizState.questionSentence = questionSentence;
             quizState.hintSentence = hintSentence;
         }
+        function generateWordQuestion(){
+            const thisWord = quizState.words[quizState.currentIndexInOneSet]
+            quizState.question = thisWord.word;
+            quizState.questionSentence = quizState.question;
+            quizState.hintSentence = quizState.question
+            const mean = thisWord.meaning;
+            const idx = Math.floor(Math.random() * mean.length)
+            quizState.correct = mean[idx].text;
+            showQuestion(quizState.hintSentence,quizState.question,"7em");
+        }
         function nextQuestion(type){
-            GenerateExampleSentence();
             switch(type){
                 case QUIZ_TYPE.fourOption:
-                applyFourOptionText();
+                    generateWordQuestion();
+                    applyFourOptionText(true);
                 break;
                 case QUIZ_TYPE.Typing:
+                    generateWordQuestion();
                 break;
                 case QUIZ_TYPE.fillFourOption:
-                applyFourOptionText();
+                    applyFourOptionText();
+                    GenerateExampleSentence();
                 break;
                 case QUIZ_TYPE.fillTyping:
+                    GenerateExampleSentence();
                 break;
                 default:
                 console.error("unexpected type");
@@ -639,9 +658,15 @@ function main(){
             DOM.overlayInner.innerHTML = "";
             let n = 0; //正答数用
             let ccan = 0; //連続正解数用
+            let id = 1; //カード番号
             appState.history.forEach(item => {
                 const card = document.createElement("div");
                 card.classList.add("history-card");
+
+                const number = document.createElement("div");
+                number.classList.add("H");
+                number.textContent = `${id}問目：`;
+                id++;
 
                 const hint = document.createElement("div");
                 hint.classList.add("history-question");
@@ -671,9 +696,9 @@ function main(){
                     question.classList.add("history-question");
                     question.textContent = item.question;
 
-                    card.append(hint, question, answer, correct, result);
+                    card.append(number, hint, question, answer, correct, result);
                 }
-                else card.append(hint, answer, correct, result);
+                else card.append(number, hint, answer, correct, result);
 
                 DOM.overlayInner.appendChild(card);
             });
@@ -716,32 +741,45 @@ function main(){
         function quizListBuilder(){
             let originSentences = [];
             let translatedSentences = [];
+            let originWords = []
+            let numOfWords = 0
             appState.committedRange.forEach( aRange => {
                 for(let i = aRange.min - 1; i < aRange.max; i++){
-                for(const examples of appState.words[i].example_sentences){
-                    originSentences.push(examples.origin);
-                    translatedSentences.push(examples.translation);
-                    console.log(originSentences)
-                }
+                    const word = appState.words[i]
+                    numOfWords++;
+                    originWords.push(word);
+                    for(const examples of word.example_sentences){
+                        originSentences.push(examples.origin);
+                        translatedSentences.push(examples.translation);
+                        console.log(originSentences)
+                    }
                 }
             });
+            let m = 0
             let n = 0;
-            if(appState.optionBuilder.fourOption) n++;
-            if(appState.optionBuilder.typing) n++;
+            if(appState.optionBuilder.fourOption) m++;
+            if(appState.optionBuilder.typing) m++;
             if(appState.optionBuilder.fillFourOption) n++;
             if(appState.optionBuilder.fillTyping) n++;
-            const sum = originSentences.length * n;
-            return [sum,originSentences.length,originSentences,translatedSentences];
+            const sum = originSentences.length * n + numOfWords * m;
+            if(appState.optionBuilder.shuffle){
+                originSentences = shuffle(originSentences)
+                translatedSentences = shuffle(translatedSentences)
+            }
+            return [sum,[originSentences.length,numOfWords],originSentences,translatedSentences,originWords];
         }
         function fourOptionBuilder(){
             for(let i = 0; i < appState.words.length; i++){
                 appState.words[i].meaning.forEach( obj => {
                 quizState.fourOption.push(...normalizeForAnswer(obj.text));
                 })
+                quizState.fourOptionNoNormalized.push(appState.words[i].meaning.every(m => m.text));
+                console.log(quizState.fourOptionNoNormalized);
             }
             console.log(quizState.fourOption);
         }
-        function shuffle(array) {
+        function shuffle(array){
+            //fisher-yates
             const result = [...array];
             for (let i = result.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -750,8 +788,8 @@ function main(){
         
         return result;
         }
-        function generateChoices(){
-        const pool = quizState.fourOption.filter(m => !m.includes(quizState.correct));
+        function generateChoices(isNormalized){
+        const pool = isNormalized ? quizState.fourOptionNoNormalized.filter(m => !m.includes(quizState.correct)) : quizState.fourOption.filter(m => !m.includes(quizState.correct));
         const dummies = shuffle(pool).slice(0, 3);
         const choices = shuffle([quizState.correct, ...dummies]);
 
@@ -812,8 +850,8 @@ function main(){
             if(!bool) DOM.answerBox.value = "";
         }
         }
-        function applyFourOptionText(){
-            const {choices,_} = generateChoices();
+        function applyFourOptionText(isNormalized = false){
+            const {choices,_} = generateChoices(isNormalized);
             for(let i = 0; i < 4; i++){
                 DOM.option[i].textContent = choices[i]
             }
@@ -827,11 +865,11 @@ function main(){
                 quizState.currentIndex = 0;
                 appState.history = [];
                 DOM.answerBox.value = "";
-                quizState.mode = appState.optionBuilder.KobunGendaibun;
+                quizState.mode = appState.optionBuilder.GendaigoKogo;
                 quizState.type = getType();
                 console.log(quizState.type)
                 initializeQuestionField(quizState.type);
-                [quizState.numOfQuestion,quizState.oneSet,quizState.quizList.origin,quizState.quizList.translationMap] = quizListBuilder();
+                [quizState.numOfQuestion,[quizState.oneSet.numOfexamples,quizState.oneSet.numOfWords],quizState.quizList.origin,quizState.quizList.translation,quizState.words] = quizListBuilder();
                 nextQuestion(quizState.type);
                 appState.phase = phaseList.question;
                 showQuestionProgress(quizState.numOfQuestion,quizState.currentIndex);
@@ -865,9 +903,10 @@ function main(){
                 );
                 quizState.currentIndex++;
                 quizState.currentIndexInOneSet++;
-                if(quizState.currentIndexInOneSet >= quizState.oneSet){
+                const oneSet = quizState.type === QUIZ_TYPE.Typing || quizState.type === QUIZ_TYPE.fourOption ? quizState.oneSet.numOfWords : quizState.oneSet.numOfexamples
+                if(quizState.currentIndexInOneSet >= oneSet){
                 appState.phase = phaseList.nextQuestionRange;
-                console.log("DEBUG : " + `phase is ${appState.phase} currentIndexInOneSet(${quizState.currentIndexInOneSet + 1})>oneSet(${quizState.oneSet})` + getCaller())
+                console.log("DEBUG : " + `phase is ${appState.phase} currentIndexInOneSet(${quizState.currentIndexInOneSet + 1})>oneSet(${oneSet})` + getCaller())
                 majorHandler();
                 return;
                 }
