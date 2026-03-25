@@ -1,6 +1,6 @@
 //TODO : タイピング問題でも正しくできるように四択の選択肢や答えを意味全てで一つにする
 
-function main(){
+//function main(){
     /**
      * @typedef {Object} Range : 
      * @property @param {number} min 
@@ -22,6 +22,7 @@ function main(){
     })
     const appState={
         words : [],
+        wordIndex : [],
         range : [], //もう使ってないけどcommittedRangeじゃ物足りないときに使うための予約
         committedRange : [], //!!!型は必ず一次元配列
         //本来はDB(またはキャッシュ)からユーザーの進捗を取得する
@@ -215,7 +216,10 @@ function main(){
         //正規化された入力から、該当する単語をjsonから取り出す関数
         function parseRange(min,max){
             if(!min || !max) return [null, null];
-            return [appState.words[min-1], appState.words[max-1]];
+            const minWord = appState.wordIndex.get(min)
+            const maxWord = appState.wordIndex.get(max)
+            if(!minWord || !maxWord) return [null, null];
+            return [minWord.word, maxWord.word];
         }
         //出題範囲の初めと終わりの単語を表示する場所を空にする関数
         function resetWordBox(){
@@ -229,8 +233,8 @@ function main(){
         }
         //出題範囲の初めと終わりの単語を表示する関数
         function changeRangeWordsUI(minWord,maxWord,idx,ranges){
-            inputRangeElements.startWord.append(minWord ? minWord.word : "範囲指定エラー",idx < ranges.length ? "," : "");
-            inputRangeElements.endWord.append(maxWord ? maxWord.word : "範囲指定エラー" ,idx < ranges.length ? "," : "");
+            inputRangeElements.startWord.append(minWord ? minWord : "範囲指定エラー",idx < ranges.length ? "," : "");
+            inputRangeElements.endWord.append(maxWord ? maxWord : "範囲指定エラー" ,idx < ranges.length ? "," : "");
         }
         //出題範囲の入力フォームの背景色を変更する関数
         function changeInputBackgroundColor(c){
@@ -274,6 +278,7 @@ function main(){
                 const min = v.min;
                 const max = v.max;
                 const [minWord, maxWord] = parseRange(min,max);
+                console.log(minWord,maxWord)
                 changeRangeWordsUI(minWord, maxWord, idx, ranges);
                 idx++;
             }
@@ -512,6 +517,7 @@ function main(){
         answer : "",
         question : "",
         correct  : "",
+        correctWordID : 0,
         questionSentence :"",
         hintSentence : "",
         numOfQuestion : 0,
@@ -528,7 +534,7 @@ function main(){
             if (!match) return "";
             return [match[1],s.replace(/".*?"/, "_".repeat(match[1].length))];//[answer,quiestionSentence]
         }
-        function showQuestion(question,hintSentence,fontSize = "auto"){
+        function showQuestion(question,hintSentence,fontSize = "4em"){
         DOM.translation.textContent = question;
         DOM.question.textContent = appState.isHighlighted ? hintSentence : hintSentence.replace(/"/g,"");
         DOM.question.style.fontSize = fontSize;
@@ -600,6 +606,8 @@ function main(){
             const mean = thisWord.meaning;
             const idx = Math.floor(Math.random() * mean.length)
             quizState.correct = mean[idx].text;
+            quizState.correctWordID = thisWord.id;
+            console.log(quizState.correctWordID)
             showQuestion(quizState.hintSentence,quizState.question,"7em");
         }
         function nextQuestion(type){
@@ -612,8 +620,8 @@ function main(){
                     generateWordQuestion();
                 break;
                 case QUIZ_TYPE.fillFourOption:
-                    applyFourOptionText();
                     GenerateExampleSentence();
+                    applyFourOptionText();
                 break;
                 case QUIZ_TYPE.fillTyping:
                     GenerateExampleSentence();
@@ -768,14 +776,20 @@ function main(){
             }
             return [sum,[originSentences.length,numOfWords],originSentences,translatedSentences,originWords];
         }
-        function fourOptionBuilder(){
-            for(let i = 0; i < appState.words.length; i++){
-                appState.words[i].meaning.forEach( obj => {
-                quizState.fourOption.push(...normalizeForAnswer(obj.text));
-                })
-                quizState.fourOptionNoNormalized.push(appState.words[i].meaning.every(m => m.text));
-                console.log(quizState.fourOptionNoNormalized);
-            }
+        function poolBuilder(){
+            appState.wordIndex = new Map(
+                appState.words.map(w => [w.id, w])
+            );
+            console.log(appState.wordIndex)
+            quizState.fourOption.push(
+                ...appState.words.flatMap(w => 
+                w.meaning.flatMap(m => normalizeForAnswer(m.text))
+            ));
+            quizState.fourOptionNoNormalized.push(
+                ...appState.words.flatMap(w => 
+                w.meaning.flatMap(m => m.text)
+            ));
+            console.log(quizState.fourOptionNoNormalized);
             console.log(quizState.fourOption);
         }
         function shuffle(array){
@@ -789,10 +803,14 @@ function main(){
         return result;
         }
         function generateChoices(isNormalized){
-        const pool = isNormalized ? quizState.fourOptionNoNormalized.filter(m => !m.includes(quizState.correct)) : quizState.fourOption.filter(m => !m.includes(quizState.correct));
+        const pool = isNormalized 
+            ? () => {
+                arr.filter(m => m.key !== quizState.correctWordID && m.value !== quizState.correct)
+            } 
+            : quizState.fourOption.filter(m => !m.includes(quizState.correct));
+        console.log(pool+getCaller())
         const dummies = shuffle(pool).slice(0, 3);
         const choices = shuffle([quizState.correct, ...dummies]);
-
         return {
             choices,
             correctIndex: choices.indexOf(quizState.correct)
@@ -949,6 +967,7 @@ function main(){
         }catch(e){
             alert("エラーが発生しました。ページを再読み込みしてください。")
             console.error(e);
+            //tryの範囲がでかすぎるからそのうち細分化してエラーコードをDBに送信できるようにした方がデバッグしやすいかも？ (2026/3/25)
         }
         }
         
@@ -963,7 +982,7 @@ function main(){
             appState.words = data;
             appState.NUM_OF_Words = appState.words.length
             console.log(appState.NUM_OF_Words)
-            fourOptionBuilder();
+            poolBuilder();
             showPage(PAGES_ID.HOME);
         }).catch((e) =>  {
             alert("単語データが読み込めませんでした。ページを更新してください。")
@@ -1027,6 +1046,6 @@ function main(){
     }
     addEventListenerByEvent("quiz-highlight","click",switchHighlight)
     addEventListenerByEvent("check","click",majorHandler);
-}
+//}
 
-main();
+//main();
