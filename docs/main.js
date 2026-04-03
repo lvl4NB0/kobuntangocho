@@ -753,10 +753,12 @@
             let originWords = []
             let numOfWords = 0
             appState.committedRange.forEach( aRange => {
-                for(let i = aRange.min - 1; i < aRange.max; i++){
-                    const word = appState.words[i]
+                for(let i = aRange.min; i <= aRange.max; i++){
+                    const word = appState.words[i+1];
                     numOfWords++;
                     originWords.push(word);
+                    console.log(word)
+                    console.log(i)
                     for(const examples of word.example_sentences){
                         originSentences.push(examples.origin);
                         translatedSentences.push(examples.translation);
