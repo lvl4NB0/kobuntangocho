@@ -9294,28 +9294,17 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
-    "reading": "",
+    "id" : 326,
+    "word": "一の人",
+    "reading": "いちのひと",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "摂政・関白"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "\"一の人\"の御有様はさらなり、徒人も、舎人など賜はる際は、ゆゆしと見ゆ。(徒然・一段)",
+        "translation" : "\"摂政・関白\"のご様子は言うまでもなく、徒人(=ここでは摂政関白以外の貴族)も、舎人(=警護の役人) などを (朝廷から)いただく身分のものは、すばらしいと思われる。",
         "help" : ""
       }
     ],
@@ -9323,7 +9312,44 @@
     "related_words": []
   },
   {
-    "id" : 330,
+    "id" : 327,
+    "word": "いとしもなし・いとしもあらず",
+    "reading": "いとしもなし・いとしもあらず",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "たいしたこともない"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "\"いとしもあらぬ\"御心ざしなれど、（源氏・若葉下）",
+        "translation" : "\"たいしたこともない\"(妻への)愛情であるが、",
+        "help" : ""
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 328,
+    "word": "言はむ方なし・言ふばかりなし・言ふはかりなし",
+    "reading": "いはむかたなし・いふばかりなし・いふはかりなし",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : ""}, 
+      {"no" : 2 , "text" : ""}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "\"言はむ方なく\"むくつけげなるもの来て、（竹取・蓬莱の玉の枝）",
+        "translation" : "\"言いようもなく\"恐ろしそうなものが来て、",
+        "help" : ""
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 329,
     "word": "いふかひなし",
     "reading": "",
     "Conjugation": "行段",
@@ -9342,7 +9368,7 @@
     "related_words": []
   },
   {
-    "id" : 331,
+    "id" : 330,
     "word": "～(と)いふもおろかなり[世の常なり]・～(と)いへばおろかなり・～などもおろかなり・～とはおろかなり・～(と)いふもなかなかなり・～（と）いふもなべてなり",
     "reading": "",
     "Conjugation": "行段",
@@ -9360,7 +9386,7 @@
     "related_words": []
   },
   {
-    "id" : 332,
+    "id" : 331,
     "word": "言ふも更なり・いへばさらなり・さらにもあらず・さらにもいはず",
     "reading": "いふもさらなり・いへばさらなり・さらにもあらず・さらにもいはず",
     "Conjugation": "行段",
@@ -9383,7 +9409,7 @@
     "related_words": []
   },
   {
-    "id" : 333,
+    "id" : 332,
     "word": "色に出づ",
     "reading": "",
     "Conjugation": "行段",
@@ -9401,7 +9427,7 @@
     "related_words": []
   },
   {
-    "id" : 334,
+    "id" : 333,
     "word": "寝を寝",
     "reading": "",
     "Conjugation": "行段",
@@ -9419,7 +9445,7 @@
     "related_words": []
   },
   {
-    "id" : 335,
+    "id" : 334,
     "word": "えならず・えもいはず",
     "reading": "えならず・えもいはず",
     "Conjugation": "行段",
@@ -9437,7 +9463,7 @@
     "related_words": []
   },
   {
-    "id" : 336,
+    "id" : 335,
     "word": "音に聞く",
     "reading": "",
     "Conjugation": "行段",
@@ -9455,7 +9481,7 @@
     "related_words": []
   },
   {
-    "id" : 337,
+    "id" : 336,
     "word": "数ならず・数にもあらず",
     "reading": "",
     "Conjugation": "行段",
@@ -9473,28 +9499,17 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 337,
+    "word": "くるしからず",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "不都合ではない・差し支えない"}
     ],
     "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "基人ならば\"苦しかるまじ\"。入れ申せ」（平家・巻七）",
+        "translation" : "「その人であるならば （＝平忠度殿ならば）、\"差し支えないだろう\"。お入れせよ」",
         "help" : ""
       }
     ],
@@ -9502,28 +9517,17 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 338,
+    "word": "けしきばかり・かごとばかり・さまばかり",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "ほんの少し・形ばかり"}
     ],
     "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : " （光源氏が）一をれ （＝一部分）\"気色ばかり\"舞ひたまへるに、似るへきものなく見ゆ。（源氏・花宴）",
+        "translation" : "（光源氏が）一部分を\"ほんの少し\"舞いなさったが、似るはずのものもなく（＝たとえようもなくすばらしく）見える。",
         "help" : ""
       }
     ],
@@ -9531,28 +9535,23 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 339,
+    "word": "見参に入る",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "（貴人に）お目にかかる"}, 
+      {"no" : 2 , "text" : "（貴人に）お目にかける"}
     ],
     "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "（三位中将に）今一度\"見参に入り\"、昔語りをも申して、（平家・巻十）",
+        "translation" : "（三位中将に）もう一度\"お目にかかり\"、昔語り（＝思い出話）をも申し上げて、",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "（敦盛の首を）九郎御曹子の\"見参に入れ\"たりければ、（平家·卷九）",
+        "translation" : "（敦盛の首を）九郎御曹子（＝義経）の\"お目にかけ\"たところ、",
         "help" : ""
       }
     ],
@@ -9560,28 +9559,24 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 340,
+    "word": "こころあり・なさけあり",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "情趣を解する・風流心がある"}, 
+      {"no" : 2 , "text" : "道理を解する・分別がある"}, 
+      {"no" : 3 , "text" : "思いやりがある"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "\"なさけある\"人にて、瓶に花をさせり。(伊勢・一〇一段)",
+        "translation" : "\"風流心がある\"人で、瓶に花を挿していた。",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "\"心あら\"ん人はうたて愚かなりとぞ見るべき。（徒然・三段）",
+        "translation" : "\"分別がある\"人はいやで愚かだと見るだろう。",
         "help" : ""
       }
     ],
@@ -9589,28 +9584,23 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 341,
+    "word": "心置く",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "心を留める・気にかける"}, 
+      {"no" : 2 , "text" : "気がねする・遠慮する"}
     ],
     "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "「（私のことを）ひがひがしく聞こえなす人ありとも、ゆめ\"心おき\"たまふな」（源氏・若葉下）",
+        "translation" : "「（私のことを）ひねくれて （＝ゆがめて） 申し上げる人がいても、決して\"気にかけ\"なさるな」",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "まことのよるべと頼みきこえむには必ず\"心置かれ\"ぬべし。（源氏・葵）",
+        "translation" : "本当のよりどころだとあてにし申し上げているような人には自然と必ず\"気がねし\"てしまうにちがいない。",
         "help" : ""
       }
     ],
@@ -9618,28 +9608,18 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 342,
+    "word": "心の闇",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "心の迷い"}, 
+      {"no" : 2 , "text" : "分別を失った親心・思い乱れる親心"}
     ],
     "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "（紫の上のもとに姫君を養女に出すことを決心した明石の君が）よそのものに思ひやらむほどの\"心の闇\"、（光源氏は）推し量り給ふにいと心苦しければ、（源氏・薄雲）",
+        "translation" : "（紫の上のもとに姫君を養女に出すことを決心した明石の君が姫君のことを）よそのものと（＝他人の子として）思い遣る（＝遠くから案じる）ようなときの\"思い乱れる親心\"を、（光源氏は）推し量りなさると実に気の毒なので、",
         "help" : ""
       }
     ],
@@ -9647,28 +9627,23 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 343,
+    "word": "こころ（を）やる",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "気晴らしをする・心を慰める"}, 
+      {"no" : 2 , "text" : "得意になる・満足する"}
     ],
     "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "かう心憂きことと、思ひなぐさめがてら、\"心もやら\"むと思ひて、津の国の方へぞいきける。（平中・三五段）",
+        "translation" : "（平中は）このようにつらいことと、（その）思いを慰めがてら、 \"気晴らしをし\"ようと思って、摂津の国の方へ行った。",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "\"心をやり\"て遊ぶと見ゆれど、(紫式部)",
+        "translation" : "\"満足し\"て遊んでいると見えるが、",
         "help" : ""
       }
     ],
@@ -9676,18 +9651,18 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 344,
+    "word": "こころゆく",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "満足する・納得する"}, 
+      {"no" : 2 , "text" : "気が晴れる"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "あなめでたと、聞く人の\"心ゆき\"て、（源氏・明石）",
+        "translation" : "ああすばらしいと、聞く人が\"満足し\"て、",
         "help" : ""
       },
       {
@@ -9705,28 +9680,36 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 345,
+    "word": "させる",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "たいした（～ない）"}
     ],
     "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "させる能もおはせねば、（宇治・巻三・六話）",
+        "translation" : "\"たいした\"才能もおありでは\"ない\"ので、",
         "help" : ""
-      },
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 346,
+    "word": "さはれ・さばれ",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "どうとでもなれ・ええ、ままよ"}, 
+      {"no" : 2 , "text" : "それはそうだが・しかし"}
+    ],
+    "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "\"さはれ\"、このついでに死なばや。（源氏・柏木）",
+        "translation" : "\"どうとでもなれ\"、この機会に死にたい。",
         "help" : ""
       }
     ],
@@ -17941,8 +17924,8 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 630,
+    "word": "630",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [

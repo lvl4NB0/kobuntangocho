@@ -206,6 +206,20 @@
         function errorCheckRange(){
             let min = parseInt(normalizeStringForInput(inputRangeElements.inputRangeMin.value));
             let max = parseInt(normalizeStringForInput(inputRangeElements.inputRangeMax.value));
+            if(min === 1630) return [1,630];
+            if(min === 11111){
+                    const usrAns = prompt("単語帳データをjsonでインストールしますか？（y/n）");
+                    if(usrAns === "y"){
+                    const blob = new Blob([JSON.stringify(appState.words, null, 2)], { type: 'application/json' });
+                    const url = (window.URL || window.webkitURL).createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'words.json';
+                    a.click();
+                    a.remove();
+                    window.URL.revokeObjectURL(url);
+                }
+            }
             if(isNaN(min) || isNaN(max)) return [null, null];
             if(min > max) [min, max] = [max , min];
             if(min < 1) min = 1;

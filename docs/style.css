@@ -177,7 +177,7 @@ body{
 }
 .input{
     width: 3vh;
-    height: 3vh;
+    height: 3.5vh;
 }
 .input:checked {
     accent-color: rgb(75, 155, 155);
