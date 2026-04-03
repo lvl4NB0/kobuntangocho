@@ -8415,18 +8415,23 @@
     ],
     "example_sentences" : [
       {
-        "origin" : "《帝の最愛の女性である桐壺の更衣が病に倒れ、療養のため宮中を退出することになった。意識もうすれがちな更衣を前にして帝は、》よろづのことを泣く泣く契りのたわはすれど、（桐壺の更衣は）御いらへもえ聞こえ給はず。（源氏・桐壺）",
-        "translation" : "（帝があらん限りのことを涙ながらにお約束）",
+        "origin" : "《帝の最愛の女性である桐壺の更衣が病に倒れ、療養のため宮中を退出することになった。意識もうすれがちな更衣を前にして帝は、》よろづのことを泣く泣く契りのたわまはすれど、（桐壺の更衣は）御いらへもえ\"聞こえ\"給はず。（源氏・桐壺）",
+        "translation" : "（帝が）あらん限りのことを涙ながらにお約束なさるけれども、（桐壺の更衣は）ご返事も\"申し上げ\"なさることができない。",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "「いかなりしことぞ」と（御息所）が問はせ給ひつれば、（わたしは）ありのままに\"申し上げ\"て",
+        "translation" : "「どうしたことなのか」と（御息所が）お尋ねになったので、（わたしは）ありのままに\"申し上げ\"たのだが、",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "竹の中より（かぐや姫を）見つけ聞こえたりしかど、（竹取・かぐや姫の昇天）",
+        "translation" : "竹の中から（かぐや姫を）見つけ\"申し上げ\"たのだが、",
+        "help" : ""
+      },
+      {
+        "origin" : "（中宮様に）ありつる事を語り聞こえさすれば、（枕・返る年の二月二十五日に）",
+        "translation" : "（中宮様に）さきほどのことを（わたしが）\"お[話し]申し上げる\"と、",
         "help" : ""
       }
     ],
@@ -9101,28 +9106,115 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
-    "reading": "",
+    "id" : 316,
+    "word": "飽かず",
+    "reading": "あかず",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "満足しない・もの足りない"}, 
+      {"no" : 2 , "text" : "飽きることがない・名残惜しい"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "(更衣を)女御とだに言はせずなりぬるが\"あかず\"口惜しうおぼさるれば。（源氏・桐壺）",
+        "translation" : "(更衣を)女御とさえ言わせなくなった(＝呼ばせずじまいになった)のが\"もの足りなく\"残念に思われるので、",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "愛敬ありて、言葉多からぬこそ、\"飽かず\"向かはまほしけれ。（徒然・一段）",
+        "translation" : "優しさがあって、口散の多くない人とこそ、\"飽きることなく\"(＝いつまでも) 対面したい。",
         "help" : ""
-      },
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 317,
+    "word": "あからめもせず",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "よそ見もしない"}
+    ],
+    "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "花の本にはねぢ寄り立ち寄り、\"あからめもせず\"まもりて、(徒然・一三七段)",
+        "translation" : "桜の花のもとには体をねじるようにして立ち寄り(＝割り込み)、 \"よそ見もしないで\"(=脇目もふらずに) 見つめて、",
+        "help" : ""
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 318,
+    "word": "あなかま",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "ああ、うるさい・静かに"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "\"あなかま\"、人に聞かすな。(更級) ",
+        "translation" : "\"静かに\"、人に聞かせるな。",
+        "help" : ""
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 319,
+    "word": "あらぬ",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "別の"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "あらぬものにいひなしてやみぬるつとめて、(枕・うへにさぶらふ御ねこは)",
+        "translation" : "\"別の\"ものと言ってそのままになってしまったその早朝、",
+        "help" : ""
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 320,
+    "word": "ありありて",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "生き続けて"}, 
+      {"no" : 2 , "text" : "結局"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "\"ありありて\"かく遥かなる国になりにたり。(更級) ",
+        "translation" : "\"結局\"このように(都から)違い国(の国司)になってしまった。",
+        "help" : ""
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 321,
+    "word": "ありし",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "以前の・あの"}, 
+      {"no" : 2 , "text" : "生前の"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "わが\"ありし\"かたちにもあらず、（大和・一五五段）",
+        "translation" : "自分の\"以前の\"容貌でもなく、",
         "help" : ""
       }
     ],
@@ -9131,162 +9223,16 @@
   },
   {
     "id" : 0,
-    "word": "",
+    "word": "ありつる",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "先程の・例の"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "\"ありつる\"所に帰りて、（蜻蛉・上巻）",
+        "translation" : "\"先程の\"場所に帰って、",
         "help" : ""
       },
       {
