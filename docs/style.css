@@ -242,6 +242,7 @@ body{
 }
 .range-input{
     width: 30%;
+    font-size: 32px;
 }
 .range-label{
     font-size: max(1.8vh, 20px);
@@ -338,7 +339,7 @@ body{
 .question-obj{
     width: 70vw;
     height: max(5vh,3.1em);
-    font-size: 3em;
+    font-size: 4em;
 }
 .question-submit{
     width: 50vw;
