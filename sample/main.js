@@ -527,12 +527,13 @@
         },
         type : "",
         fourOption : [],
-        fourOptionNoNormalized : []
+        fourOptionNoNormalized : [],
+        quizMeaningPool : []
         }
         function extractBlank(s){
             const match = s.match(/"(.*?)"/);
             if (!match) return "";
-            return [match[1],s.replace(/".*?"/, "_".repeat(match[1].length))];//[answer,quiestionSentence]
+            return [match[1],s.replace(/".*?"/, "____"/*.repeat(match[1].length)*/)];//[answer,quiestionSentence]
         }
         function showQuestion(question,hintSentence,fontSize = "4em"){
         DOM.translation.textContent = question;
@@ -785,12 +786,17 @@
                 ...appState.words.flatMap(w => 
                 w.meaning.flatMap(m => normalizeForAnswer(m.text))
             ));
-            quizState.fourOptionNoNormalized.push(
-                ...appState.words.flatMap(w => 
-                w.meaning.flatMap(m => m.text)
-            ));
-            console.log(quizState.fourOptionNoNormalized);
-            console.log(quizState.fourOption);
+            quizState.quizMeaningPool = appState.words.flatMap(word =>
+                word.meaning.flatMap(m =>
+                    normalizeForAnswer(m.text).map(text => ({
+                        wordId: word.id,
+                        word: word.word,
+                        reading: word.reading,
+                        meaningNo: m.no,
+                        text: text
+                    }))
+                )
+            );
         }
         function shuffle(array){
             //fisher-yates
@@ -803,12 +809,28 @@
         return result;
         }
         function generateChoices(isNormalized){
+        const seen = new Set();
         const pool = isNormalized 
-            ? () => {
-                arr.filter(m => m.key !== quizState.correctWordID && m.value !== quizState.correct)
-            } 
-            : quizState.fourOption.filter(m => !m.includes(quizState.correct));
-        console.log(pool+getCaller())
+            ? quizState.quizMeaningPool
+                .filter(m => {
+                    if (
+                    m.wordId === quizState.correctWordID || // 正解IDは除外
+                    m.text === quizState.correct ||         // 正解テキストは除外
+                    seen.has(m.text)                        // すでに出たものは除外
+                    ) {
+                    return false;
+                    }
+                    seen.add(m.text); // 初めて出たテキストを記録
+                    return true;
+                })
+                .map(m => m.text)
+            : quizState.fourOption
+                .filter(m => !m.includes(quizState.correct));
+
+        const correctNormalized = normalizeForAnswer(quizState.correct);
+        quizState.correct = correctNormalized?.[Math.floor(Math.random() * correctNormalized.length)] ?? null;
+        console.log(pool)
+        console.log(quizState.correct)
         const dummies = shuffle(pool).slice(0, 3);
         const choices = shuffle([quizState.correct, ...dummies]);
         return {
