@@ -8439,28 +8439,23 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 293,
+    "word": "申す",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "申し上げる（「言ふ」の謙譲語）"}, 
+      {"no" : 2 , "text" : "（お）～申し上げる（謙譲の補助動詞）"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "参るまじくは、そのやうを\"申せ\"。（平家・巻一）",
+        "translation" : "参上しないつもりならば、その理由を\"申し上げよ\"。",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "あはれにうれしくも会ひ\"申し\"たるかな。（大鏡・序）",
+        "translation" : "感慨深くうれしいことにも（あなたに）\"お\"会い\"申し上げ\"たことよ。",
         "help" : ""
       }
     ],
@@ -8469,12 +8464,11 @@
   },
   {
     "id" : 0,
-    "word": "",
+    "word": "奏す",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "（帝・上皇・法皇に）申し上げる（「言ふ」の謙譲語）"}
     ],
     "example_sentences" : [
       {
@@ -9335,8 +9329,7 @@
     "reading": "いはむかたなし・いふばかりなし・いふはかりなし",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "言いようもない"}
     ],
     "example_sentences" : [
       {
@@ -9814,8 +9807,8 @@
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "言うまでもないことで・もちろん"}, 
+      {"no" : 2 , "text" : "ともかくとして・一応もっともだが"}
     ],
     "example_sentences" : [
       {
@@ -10106,7 +10099,7 @@
   },
   {
     "id" : 367,
-    "word": "～のかり",
+    "word": "～のがり",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
@@ -10206,7 +10199,7 @@
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : "～（する）とすぐに・～（する）やいなや"}, 
+      {"no" : 1 , "text" : "～[する]とすぐに・～[する]やいなや"}, 
       {"no" : 2 , "text" : "～ので"}, 
       {"no" : 3 , "text" : "～につれて・～に従って"}
     ],
@@ -10273,7 +10266,7 @@
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : "～（する）とすぐに"}
+      {"no" : 1 , "text" : "～[する]とすぐに"}
     ],
     "example_sentences" : [
       {
