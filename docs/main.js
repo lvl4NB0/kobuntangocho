@@ -1128,6 +1128,7 @@
     }
     addEventListenerByEvent("quiz-highlight","click",switchHighlight)
     addEventListenerByEvent("check","click",majorHandler);
+    addEventListenerByEvent("answer-typing","change",majorHandler);
 //}
 
 //main();
