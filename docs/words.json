@@ -8357,64 +8357,6 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
     "id" : 290,
     "word": "宣ふ・宣はす",
     "reading": "のたまふ・のたまはす",

@@ -753,8 +753,8 @@
             let originWords = []
             let numOfWords = 0
             appState.committedRange.forEach( aRange => {
-                for(let i = aRange.min; i <= aRange.max; i++){
-                    const word = appState.words[i+1];
+                for(let i = aRange.min - 1; i < aRange.max; i++){
+                    const word = appState.words[i]
                     numOfWords++;
                     originWords.push(word);
                     console.log(word)
@@ -915,6 +915,8 @@
                 quizState.type = getType();
                 console.log(quizState.type)
                 initializeQuestionField(quizState.type);
+                ControlAnswerButtonAtribute(false);
+                ChangeAnswerButtonText(phaseList.question);
                 [quizState.numOfQuestion,[quizState.oneSet.numOfexamples,quizState.oneSet.numOfWords],quizState.quizList.origin,quizState.quizList.translation,quizState.words] = quizListBuilder();
                 nextQuestion(quizState.type);
                 appState.phase = phaseList.question;
