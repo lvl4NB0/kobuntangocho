@@ -606,7 +606,7 @@
             quizState.hintSentence = quizState.question
             const mean = thisWord.meaning;
             const idx = Math.floor(Math.random() * mean.length)
-            quizState.correct = mean[idx].text;
+            quizState.correct = quizState.type === QUIZ_TYPE.fourOption ? mean[idx].text : mean.map(m => m.text).join("・");
             quizState.correctWordID = thisWord.id;
             console.log(quizState.correctWordID)
             showQuestion(quizState.hintSentence,quizState.question,"7em");
@@ -909,6 +909,7 @@
         switch(appState.phase){
             case phaseList.initialize :
                 quizState.currentIndex = 0;
+                quizState.currentIndexInOneSet = 0;
                 appState.history = [];
                 DOM.answerBox.value = "";
                 quizState.mode = appState.optionBuilder.GendaigoKogo;
