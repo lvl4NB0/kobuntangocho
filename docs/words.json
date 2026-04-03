@@ -9241,27 +9241,16 @@
   },
   {
     "id" : 323,
-    "word": "",
+    "word": "あれかにもあらず・われかにもあらず・あれかひとか・われかひとか",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "呆然としている"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "\"あれかにもあらず\"、現とも覚えで、（更級）",
+        "translation" : "\"呆然として\"、現実とも思われないで、",
         "help" : ""
       }
     ],
@@ -9269,28 +9258,17 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 324,
+    "word": "いかがはせむ・せむかたなし",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "どうしようもない"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "いとにくくはらだたしけれども、\"いかがはせむ\"。(枕・大進生昌が家に)",
+        "translation" : "とても憎らしく腹立たしいが、\"どうしようもない\"。",
         "help" : ""
       }
     ],
@@ -9298,28 +9276,17 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 325,
+    "word": "いさ〜知らず",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "さあ、～分からない"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "\"いさ\"、我は\"知らず\"。(宇治・巻八・四話)",
+        "translation" : "\"さあ\"、わたしは\"分からない\"。",
         "help" : ""
       }
     ],

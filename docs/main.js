@@ -528,12 +528,16 @@
             type : "",
             fourOptionForFill : [],
             fourOptionNoNormalized : [],
-            quizMeaningPool : []
+            quizMeaningPool : [],
+            fourOptionForFillRegacyLang : []
         }
         function extractBlank(s){
-            const match = s.match(/"(.*?)"/);
+            const match = s.match(/"(.*?)"/g);
+            console.log(match)
             if (!match) return "";
-            return [match[1],s.replace(/".*?"/, "____"/*.repeat(match[1].length)*/)];//[answer,quiestionSentence]
+            const correct = match.join("/").replace(/"/g,"");
+            console.log(correct)
+            return [correct,s.replace(/".*?"/, "____"/*.repeat(match[1].length)*/)];//[answer,quiestionSentence]
         }
         function showQuestion(question,hintSentence,fontSize = "4em"){
         DOM.translation.textContent = question;
@@ -589,7 +593,7 @@
             return {sentence : `不正解。正解：${correct}`, isCorrect : false};
             }
         }
-        function GenerateExampleSentence(){
+        function generateExampleSentence(){
             const [original,translated] = [quizState.quizList.origin[quizState.currentIndexInOneSet],quizState.quizList.translation[quizState.currentIndexInOneSet]];
             const questionSentence = quizState.mode ? original : translated;
             const hintSentence = !quizState.mode ? original : translated;
@@ -609,6 +613,7 @@
             quizState.correct = quizState.type === QUIZ_TYPE.fourOption ? mean[idx].text : mean.map(m => m.text).join("・");
             quizState.correctWordID = thisWord.id;
             console.log(quizState.correctWordID)
+            if(quizState.mode) [quizState.correct,quizState.question] = [quizState.question,quizState.correct]
             showQuestion(quizState.hintSentence,quizState.question,"7em");
         }
         function nextQuestion(type){
@@ -621,11 +626,11 @@
                     generateWordQuestion();
                 break;
                 case QUIZ_TYPE.fillFourOption:
-                    GenerateExampleSentence();
+                    generateExampleSentence();
                     applyFourOptionText();
                 break;
                 case QUIZ_TYPE.fillTyping:
-                    GenerateExampleSentence();
+                    generateExampleSentence();
                 break;
                 default:
                 console.error("unexpected type");
@@ -776,6 +781,7 @@
             if(appState.optionBuilder.shuffle){
                 originSentences = shuffle(originSentences)
                 translatedSentences = shuffle(translatedSentences)
+                originWords = shuffle(originWords)
             }
             return [sum,[originSentences.length,numOfWords],originSentences,translatedSentences,originWords];
         }
@@ -787,8 +793,15 @@
             quizState.fourOptionForFill.push(
                 ...appState.words.flatMap(w => 
                 w.example_sentences.flatMap(e => {
-                    const match = e.translation?.match(/"(.*?)"/);
-                    return match && match[1] !== undefined ? match[1] : null;
+                    const [match,_] = extractBlank(e.translation);
+                    return match ? match : null;
+                }).filter(s => s !== null)
+            ));
+            quizState.fourOptionForFillRegacyLang.push(
+                ...appState.words.flatMap(w => 
+                w.example_sentences.flatMap(e => {
+                    const [match,_] = extractBlank(e.origin);
+                    return match ? match : null;
                 }).filter(s => s !== null)
             ));
             console.log(quizState.fourOptionForFill)
@@ -816,22 +829,40 @@
         }
         function generateChoices(isNormalized){
         const seen = new Set();
-        const pool = isNormalized 
-            ? quizState.quizMeaningPool
-                .filter(m => {
-                    if (
-                    m.wordId === quizState.correctWordID || // 正解IDは除外
-                    m.text === quizState.correct ||         // 正解テキストは除外
-                    seen.has(m.text)                        // すでに出たものは除外
-                    ) {
-                    return false;
-                    }
-                    seen.add(m.text); // 初めて出たテキストを記録
-                    return true;
-                })
-                .map(m => m.text)
-            : quizState.fourOptionForFill
-                .filter(m => !m.includes(quizState.correct));
+        let pool
+        if(quizState.mode) 
+            pool = isNormalized 
+                ? quizState.quizMeaningPool
+                    .filter(m => {
+                        if (
+                        m.wordId === quizState.correctWordID || // 正解IDは除外
+                        m.word === quizState.correct ||         // 正解テキストは除外
+                        seen.has(m.word)                        // すでに出たものは除外
+                        ) {
+                        return false;
+                        }
+                        seen.add(m.word); // 初めて出たテキストを記録
+                        return true;
+                    })
+                    .map(m => m.word)
+                : quizState.fourOptionForFillRegacyLang
+                    .filter(m => !m.includes(quizState.correct));
+        else pool = isNormalized 
+                ? quizState.quizMeaningPool
+                    .filter(m => {
+                        if (
+                        m.wordId === quizState.correctWordID || // 正解IDは除外
+                        m.text === quizState.correct ||         // 正解テキストは除外
+                        seen.has(m.text)                        // すでに出たものは除外
+                        ) {
+                        return false;
+                        }
+                        seen.add(m.text); // 初めて出たテキストを記録
+                        return true;
+                    })
+                    .map(m => m.text)
+                : quizState.fourOptionForFill
+                    .filter(m => !m.includes(quizState.correct));
 
         const correctNormalized = normalizeForAnswer(quizState.correct);
         quizState.correct = correctNormalized?.[Math.floor(Math.random() * correctNormalized.length)] ?? null;
@@ -918,7 +949,13 @@
                 initializeQuestionField(quizState.type);
                 ControlAnswerButtonAtribute(false);
                 ChangeAnswerButtonText(phaseList.question);
-                [quizState.numOfQuestion,[quizState.oneSet.numOfexamples,quizState.oneSet.numOfWords],quizState.quizList.origin,quizState.quizList.translation,quizState.words] = quizListBuilder();
+                [
+                    quizState.numOfQuestion,
+                    [quizState.oneSet.numOfexamples,quizState.oneSet.numOfWords],
+                    quizState.quizList.origin,
+                    quizState.quizList.translation,
+                    quizState.words
+                ] = quizListBuilder();
                 nextQuestion(quizState.type);
                 appState.phase = phaseList.question;
                 showQuestionProgress(quizState.numOfQuestion,quizState.currentIndex);
