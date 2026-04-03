@@ -551,7 +551,7 @@
             if (!match) return "";
             const correct = match.join("/").replace(/"/g,"");
             console.log(correct)
-            return [correct,s.replace(/".*?"/, "____"/*.repeat(match[1].length)*/)];//[answer,quiestionSentence]
+            return [correct,s.replace(/".*?"/g, "____"/*.repeat(match[1].length)*/)];//[answer,quiestionSentence]
         }
         function showQuestion(question,hintSentence,fontSize = "4em"){
         DOM.translation.textContent = question;
