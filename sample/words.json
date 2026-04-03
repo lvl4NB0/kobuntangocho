@@ -8415,28 +8415,22 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
-    "reading": "",
+    "id" : 290,
+    "word": "宣ふ・宣はす",
+    "reading": "のたまふ・のたまはす",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "おっしゃる"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "薩摩守馬よりおり自ら高らかに\"のたまひ\"けるは、（平家・巻七）",
+        "translation" : "薩摩守（平忠度）が馬から下り自ら声高らかに\"おっしゃっ\"た",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "などかうしも、あながちに\"のたまはす\"らむ。（源氏・紅葉賀）",
+        "translation" : "（源氏の君は）どうしてこうも、無理に\"おっしゃる\"だろうか。",
         "help" : ""
       }
     ],
@@ -8444,28 +8438,24 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
-    "reading": "",
+    "id" : 291,
+    "word": "仰す",
+    "reading": "おほす",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "命じる"}, 
+      {"no" : 2 , "text" : "ご命令になる（「命ず」の尊敬語）"},
+      {"no" : 3 , "text" : "おっしゃる（「言ふ」の尊敬語）"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "「今さけぶものは何ものぞ。きつと見て参れ」と\"仰せ\"ければ、（平家・巻六）",
+        "translation" : "「今叫ぶものは何だ。すぐに見て参れ」と\"ご命令になっ\"たので、",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "「少納言よ、香炉峰の雪いかならむ」と\"仰せ\"らるれば、（枕・雪のいと高う降りたるを）",
+        "translation" : "「清少納言よ、香炉峰の雪はどんなであろう」と（中宮様が）\"おっしゃる\"ので、",
         "help" : ""
       }
     ],
@@ -8473,13 +8463,13 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
-    "reading": "",
+    "id" : 292,
+    "word": "聞こゆ・聞こえさす",
+    "reading": "きこゆ・きこえさす",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "申し上げる（「言ふ」の謙譲語）"}, 
+      {"no" : 2 , "text" : "（お）～申し上げる（謙譲の補助動詞）"}
     ],
     "example_sentences" : [
       {

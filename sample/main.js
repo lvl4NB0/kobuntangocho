@@ -504,31 +504,31 @@
         }*/
 
         const quizState = {
-        mode : appState.optionBuilder.GendaigoKogo,
-        originalMap : [],
-        quizList : {
-            origin: [],
-            translation: []
-        },
-        words : [],
-        translationMap : [],
-        currentIndex : 0,
-        currentIndexInOneSet : 0,
-        answer : "",
-        question : "",
-        correct  : "",
-        correctWordID : 0,
-        questionSentence :"",
-        hintSentence : "",
-        numOfQuestion : 0,
-        oneSet : {
-            numOfexamples : 0,
-            numOfWords : 0
-        },
-        type : "",
-        fourOption : [],
-        fourOptionNoNormalized : [],
-        quizMeaningPool : []
+            mode : appState.optionBuilder.GendaigoKogo,
+            originalMap : [],
+            quizList : {
+                origin: [],
+                translation: []
+            },
+            words : [],
+            translationMap : [],
+            currentIndex : 0,
+            currentIndexInOneSet : 0,
+            answer : "",
+            question : "",
+            correct  : "",
+            correctWordID : 0,
+            questionSentence :"",
+            hintSentence : "",
+            numOfQuestion : 0,
+            oneSet : {
+                numOfexamples : 0,
+                numOfWords : 0
+            },
+            type : "",
+            fourOptionForFill : [],
+            fourOptionNoNormalized : [],
+            quizMeaningPool : []
         }
         function extractBlank(s){
             const match = s.match(/"(.*?)"/);
@@ -782,10 +782,14 @@
                 appState.words.map(w => [w.id, w])
             );
             console.log(appState.wordIndex)
-            quizState.fourOption.push(
+            quizState.fourOptionForFill.push(
                 ...appState.words.flatMap(w => 
-                w.meaning.flatMap(m => normalizeForAnswer(m.text))
+                w.example_sentences.flatMap(e => {
+                    const match = e.translation?.match(/"(.*?)"/);
+                    return match && match[1] !== undefined ? match[1] : null;
+                }).filter(s => s !== null)
             ));
+            console.log(quizState.fourOptionForFill)
             quizState.quizMeaningPool = appState.words.flatMap(word =>
                 word.meaning.flatMap(m =>
                     normalizeForAnswer(m.text).map(text => ({
@@ -824,7 +828,7 @@
                     return true;
                 })
                 .map(m => m.text)
-            : quizState.fourOption
+            : quizState.fourOptionForFill
                 .filter(m => !m.includes(quizState.correct));
 
         const correctNormalized = normalizeForAnswer(quizState.correct);
