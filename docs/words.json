@@ -8411,7 +8411,7 @@
     "Conjugation": "行段",
     "meaning": [
       {"no" : 1 , "text" : "申し上げる（「言ふ」の謙譲語）"}, 
-      {"no" : 2 , "text" : "[お]～申し上げる（謙譲の補助動詞）"}
+      {"no" : 2 , "text" : "（お）～申し上げる（謙譲の補助動詞）"}
     ],
     "example_sentences" : [
       {
@@ -9234,23 +9234,13 @@
         "origin" : "\"ありつる\"所に帰りて、（蜻蛉・上巻）",
         "translation" : "\"先程の\"場所に帰って、",
         "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
       }
     ],
     "tips": "",
     "related_words": []
   },
   {
-    "id" : 0,
+    "id" : 323,
     "word": "",
     "reading": "",
     "Conjugation": "行段",
@@ -9366,28 +9356,18 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 330,
+    "word": "いふかひなし",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "言ってもかいがない"}, 
+      {"no" : 2 , "text" : "つまらない・取るに足りない"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "男の童を物怖ぢせず、\"いふかひなき\"を召し寄せて、（堤中納言・虫めづる姫君）",
+        "translation" : "男の子で何も怖がらず、\"取るに足らない\"（＝卑しい）者を（姫君は）呼び寄せなさって、",
         "help" : ""
       }
     ],
@@ -9395,28 +9375,17 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 331,
+    "word": "～(と)いふもおろかなり[世の常なり]・～(と)いへばおろかなり・～などもおろかなり・～とはおろかなり・～(と)いふもなかなかなり・～（と）いふもなべてなり",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "（～という言葉では）言い尽くせない"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "いと心細し\"と言へばおろかなり\"。（源氏・明石）",
+        "translation" : "とても心細い\"という言葉では言い尽くせない\"。",
         "help" : ""
       }
     ],
@@ -9424,28 +9393,22 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
-    "reading": "",
+    "id" : 332,
+    "word": "言ふも更なり・いへばさらなり・さらにもあらず・さらにもいはず",
+    "reading": "いふもさらなり・いへばさらなり・さらにもあらず・さらにもいはず",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "言うまでもない"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "軸表紙箱のさまなどいへば\"さらなり\"かし。（源氏・鈴虫）",
+        "translation" : "軸や表紙や箱の（立派な）様子など\"言うまでもない\"よ。",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "妻子どもは\"さらにもいはず\"、（大和・一六八段）",
+        "translation" : "妻子たちは\"言うまでもなく\"、",
         "help" : ""
       }
     ],
@@ -9453,28 +9416,89 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 333,
+    "word": "色に出づ",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "(こらえきれず)表情に出る"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "忍ぶれど\"色に出で\"にけりわが恋は物や思ふと人の間ふまで（拾遺・六二二）",
+        "translation" : "人目を忍んでいたけれども、\"表情に出\"てしまったなあ、私の恋は。「もの思いをしているのか」と人が尋ねるほど。",
         "help" : ""
-      },
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 334,
+    "word": "寝を寝",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "寝る"}
+    ],
+    "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "恐ろしくて\"寝も寝\"られず。（更級）",
+        "translation" : "恐ろしくて\"寝る\"こともできない。",
         "help" : ""
-      },
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 335,
+    "word": "えならず・えもいはず",
+    "reading": "えならず・えもいはず",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "言いようもなくすばらしい"}
+    ],
+    "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "珍しく、\"えならぬ\"調度ども並べおき、（徒然・十段）",
+        "translation" : "珍しく、\"言いようもなくすばらしい\"調度品を並べ置いて、",
+        "help" : ""
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 336,
+    "word": "音に聞く",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "噂に聞く"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "\"音には聞け\"ども、いまだ見ぬ物なり。(竹取・火鼠の皮衣)",
+        "translation" : "\"噂には聞く\"が、まだ見たことがない物である。",
+        "help" : ""
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 337,
+    "word": "数ならず・数にもあらず",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "ものの数ではない・取るに足りない"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "\"数ならぬ\"身はえ聞き候はず。（徒然・一〇七段）",
+        "translation" : "\"取るに足りない\"身では聞くことができません",
         "help" : ""
       }
     ],
