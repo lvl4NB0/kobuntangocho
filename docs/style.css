@@ -343,6 +343,7 @@ body{
     font-size: 4em;
 }
 .question-submit{
+    margin-top: 2vh;
     width: 50vw;
     height: max(5vh,3.1em);
     font-size: 3em;
