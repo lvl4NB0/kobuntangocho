@@ -520,6 +520,7 @@
         const quizState = {
             mode : appState.optionBuilder.GendaigoKogo,
             includeRelation : appState.optionBuilder.includeRelation,
+            shuffle : appState.optionBuilder.shuffle,
             originalMap : [],
             quizList : {
                 origin: [],
@@ -773,7 +774,10 @@
              * 
              */
             function addThisList(i){
-                const word = appState.wordIndex.get(i)
+                let wordIndex = appState.wordIndex;
+                if(quizState.shuffle) wordIndex = new Map(shuffle([...appState.wordIndex.entries()]));
+                console.log(wordIndex)
+                const word = wordIndex.get(i)
                 console.log(word ? word : null)
                 numOfWords++;
                 originWords.push(word);
@@ -798,7 +802,7 @@
                 for(let i = aRange.min; i <= aRange.max; i++){
                     const relatedWords =  addThisList(i);
 
-                    //IDは別だが元は同じ単語（品詞などで使い方が変わる単語）のための処理、関連語でないので存在していれば無条件で追加する
+                    //IDは別だが元は同じ単語（活用などで意味が変わる単語）のための処理、関連語でないので存在していれば無条件で追加する
                     //ID = (元単語のID * 1000) + 1
                     const seccondRelatedWords = appState.wordIndex.get(i*buffer + 1) ? addThisList(i*1000 + 1) : null;
 
@@ -823,11 +827,6 @@
             if(appState.optionBuilder.fillFourOption) n++;
             if(appState.optionBuilder.fillTyping) n++;
             const sum = originSentences.length * n + numOfWords * m;
-            if(appState.optionBuilder.shuffle){
-                originSentences = shuffle(originSentences)
-                translatedSentences = shuffle(translatedSentences)
-                originWords = shuffle(originWords)
-            }
             return [sum,[originSentences.length,numOfWords],originSentences,translatedSentences,originWords];
         }
         function poolBuilder(){
