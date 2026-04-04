@@ -787,7 +787,7 @@
             let originWords = []
             let numOfWords = 0
 
-            const buffer = 1000
+            const buffer = 10000;
             let wordIndex;
             if(quizState.shuffle) {
                 appState.committedRange = shuffle(appState.committedRange);
@@ -800,8 +800,8 @@
                     const relatedWords =  addThisList(i,wordIndex);
 
                     //IDは別だが元は同じ単語（活用などで意味が変わる単語）のための処理、関連語でないので存在していれば無条件で追加する
-                    //ID = (元単語のID * 1000) + 1
-                    const seccondRelatedWords = wordIndex.get(i*buffer + 1) ? addThisList(i*1000 + 1) : null;
+                    //ID = (元単語のID * 10000) + 1
+                    const seccondRelatedWords = wordIndex.get(i*buffer + 1) ? addThisList(i*buffer + 1) : null;
 
                     if(quizState.includeRelation){
                         if(relatedWords){
@@ -830,6 +830,8 @@
                 console.log(shuffledPair)
                 originSentences = shuffledPair.map(m => m.org);
                 translatedSentences = shuffledPair.map(m => m.tral);
+                originWords = shuffle(originWords);
+                console.log(originWords)
             }
             console.log(originSentences)
             console.log(translatedSentences)
