@@ -269,7 +269,6 @@
                 inputRangeElements.inputRangeMin.value = min;
                 inputRangeElements.inputRangeMax.value = max;
             }
-            console.log(min, max)
         }
         //出題範囲の入力がどこから行われたかについての示す変数
         const RANGE_SOURCE = Object.freeze({
@@ -292,7 +291,6 @@
                 const min = v.min;
                 const max = v.max;
                 const [minWord, maxWord] = parseRange(min,max);
-                console.log(minWord,maxWord)
                 changeRangeWordsUI(minWord, maxWord, idx, ranges);
                 idx++;
             }
@@ -549,10 +547,8 @@
         }
         function extractBlank(s){
             const match = s.match(/"(.*?)"/g);
-            console.log(match)
             if (!match) return "";
             const correct = match.join("/").replace(/"/g,"");
-            console.log(correct)
             return [correct,s.replace(/".*?"/g, "____"/*.repeat(match[1].length)*/)];//[answer,quiestionSentence]
         }
         function showQuestion(question,hintSentence,fontSize = "4em"){
@@ -588,7 +584,6 @@
         DOM.result.textContent = s;
         }
         function ChangeAnswerButtonText(condition){
-        console.log(answerButtonMessage[condition])
         DOM.check.textContent = answerButtonMessage[condition];
         }
 
@@ -628,7 +623,6 @@
             const idx = Math.floor(Math.random() * mean.length)
             quizState.correct = quizState.type === QUIZ_TYPE.fourOption ? mean[idx].text : mean.map(m => m.text).join("・");
             quizState.correctWordID = thisWord.id;
-            console.log(quizState.correctWordID)
             if(quizState.mode) [quizState.correct,quizState.question] = [quizState.question,quizState.correct]
             showQuestion(quizState.hintSentence,quizState.question,"7em");
         }
@@ -765,7 +759,6 @@
         parent.addEventListener('click', (e) => {
             const button = e.target.closest('.four-option');
             if (!button) return;
-            console.log(button.id);
             selectFourOption(button.textContent,button.id);
         });
         function quizListBuilder(){
@@ -773,9 +766,7 @@
              * @param {number} i (単語id)
              * 
              */
-            function addThisList(i){
-                let wordIndex = appState.wordIndex;
-                if(quizState.shuffle) wordIndex = new Map(shuffle([...appState.wordIndex.entries()]));
+            function addThisList(i, wordIndex = appState.wordIndex){
                 console.log(wordIndex)
                 const word = wordIndex.get(i)
                 console.log(word ? word : null)
@@ -787,7 +778,6 @@
                     try{
                         originSentences.push(examples.origin);
                         translatedSentences.push(examples.translation);
-                        console.log(originSentences)
                     }catch(e){console.warn("エラーをスキップ:", e);}
                 }
                 return word.related_words ? word.related_words : null;
@@ -798,13 +788,20 @@
             let numOfWords = 0
 
             const buffer = 1000
+            let wordIndex;
+            if(quizState.shuffle) {
+                appState.committedRange = shuffle(appState.committedRange);
+                const shuffledWordIndex = shuffle(Array.from(appState.wordIndex.entries()));
+                wordIndex = new Map(shuffledWordIndex);
+                console.error(wordIndex);
+            }else{wordIndex = appState.wordIndex}
             appState.committedRange.forEach( aRange => {
                 for(let i = aRange.min; i <= aRange.max; i++){
-                    const relatedWords =  addThisList(i);
+                    const relatedWords =  addThisList(i,wordIndex);
 
                     //IDは別だが元は同じ単語（活用などで意味が変わる単語）のための処理、関連語でないので存在していれば無条件で追加する
                     //ID = (元単語のID * 1000) + 1
-                    const seccondRelatedWords = appState.wordIndex.get(i*buffer + 1) ? addThisList(i*1000 + 1) : null;
+                    const seccondRelatedWords = wordIndex.get(i*buffer + 1) ? addThisList(i*1000 + 1) : null;
 
                     if(quizState.includeRelation){
                         if(relatedWords){
@@ -827,6 +824,15 @@
             if(appState.optionBuilder.fillFourOption) n++;
             if(appState.optionBuilder.fillTyping) n++;
             const sum = originSentences.length * n + numOfWords * m;
+            console.clear()
+            if(quizState.shuffle) {
+                const shuffledPair = shuffle(originSentences.map((v, i) => ({ org: v, tral: translatedSentences[i] })));
+                console.log(shuffledPair)
+                originSentences = shuffledPair.map(m => m.org);
+                translatedSentences = shuffledPair.map(m => m.tral);
+            }
+            console.log(originSentences)
+            console.log(translatedSentences)
             return [sum,[originSentences.length,numOfWords],originSentences,translatedSentences,originWords];
         }
         function poolBuilder(){
@@ -910,8 +916,6 @@
 
         const correctNormalized = normalizeForAnswer(quizState.correct);
         quizState.correct = correctNormalized?.[Math.floor(Math.random() * correctNormalized.length)] ?? null;
-        console.log(pool)
-        console.log(quizState.correct)
         const dummies = shuffle(pool).slice(0, 3);
         const choices = shuffle([quizState.correct, ...dummies]);
         return {
@@ -989,6 +993,7 @@
                 DOM.answerBox.value = "";
                 quizState.mode = appState.optionBuilder.GendaigoKogo;
                 quizState.includeRelation = appState.optionBuilder.includeRelation;
+                quizState.shuffle = appState.optionBuilder.shuffle;
                 quizState.type = getType();
                 console.log(quizState.type)
                 initializeQuestionField(quizState.type);
@@ -1019,7 +1024,6 @@
                 const input = DOM.answerBox.value;
                 appState.phase = phaseList.answerCheck;
                 const {sentence , isCorrect} = answerCheck(input,quizState.correct);
-                console.log(`s : ${sentence}`)
                 showResult(sentence);
                 appState.phase = phaseList.wait;
                 ChangeAnswerButtonText(appState.phase);
@@ -1093,8 +1097,7 @@
         .then(res => res.json())
         .then(data => {
             appState.words = data;
-            appState.NUM_OF_Words = appState.words.length
-            console.log(appState.NUM_OF_Words)
+            appState.NUM_OF_Words = appState.words.length;
             poolBuilder();
             showPage(PAGES_ID.HOME);
         }).catch((e) =>  {
@@ -1105,7 +1108,6 @@
     //ヘッダーのホームボタンをクリックしたときの処理（要素の位置はbodyかも）
     addEventListenerByEvent("homebutton","click", () => {
         showPage(PAGES_ID.HOME);
-        console.log("clicked")
     })
 
     //出題範囲の入力に対応するイベントリスナー
