@@ -519,6 +519,7 @@
 
         const quizState = {
             mode : appState.optionBuilder.GendaigoKogo,
+            includeRelation : appState.optionBuilder.includeRelation,
             originalMap : [],
             quizList : {
                 origin: [],
@@ -767,21 +768,51 @@
             selectFourOption(button.textContent,button.id);
         });
         function quizListBuilder(){
+            /**
+             * @param {number} i (単語id)
+             * 
+             */
+            function addThisList(i){
+                const word = appState.wordIndex.get(i)
+                console.log(word ? word : null)
+                numOfWords++;
+                originWords.push(word);
+                console.log(word)
+                console.log(i)
+                for(const examples of word.example_sentences){
+                    try{
+                        originSentences.push(examples.origin);
+                        translatedSentences.push(examples.translation);
+                        console.log(originSentences)
+                    }catch(e){console.warn("エラーをスキップ:", e);}
+                }
+                return word.related_words ? word.related_words : null;
+            }
             let originSentences = [];
             let translatedSentences = [];
             let originWords = []
             let numOfWords = 0
+
+            const buffer = 1000
             appState.committedRange.forEach( aRange => {
-                for(let i = aRange.min - 1; i < aRange.max; i++){
-                    const word = appState.words[i]
-                    numOfWords++;
-                    originWords.push(word);
-                    console.log(word)
-                    console.log(i)
-                    for(const examples of word.example_sentences){
-                        originSentences.push(examples.origin);
-                        translatedSentences.push(examples.translation);
-                        console.log(originSentences)
+                for(let i = aRange.min; i <= aRange.max; i++){
+                    const relatedWords =  addThisList(i);
+
+                    //IDは別だが元は同じ単語（品詞などで使い方が変わる単語）のための処理、関連語でないので存在していれば無条件で追加する
+                    //ID = (元単語のID * 1000) + 1
+                    const seccondRelatedWords = appState.wordIndex.get(i*buffer + 1) ? addThisList(i*1000 + 1) : null;
+
+                    if(quizState.includeRelation){
+                        if(relatedWords){
+                            for(wordID of relatedWords){
+                                addThisList(wordID);
+                            }
+                        }
+                        if(seccondRelatedWords){
+                            for(wordID of seccondRelatedWords){
+                                addThisList(wordID);
+                            }
+                        }
                     }
                 }
             });
@@ -958,6 +989,7 @@
                 appState.history = [];
                 DOM.answerBox.value = "";
                 quizState.mode = appState.optionBuilder.GendaigoKogo;
+                quizState.includeRelation = appState.optionBuilder.includeRelation;
                 quizState.type = getType();
                 console.log(quizState.type)
                 initializeQuestionField(quizState.type);

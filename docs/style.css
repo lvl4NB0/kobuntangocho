@@ -245,6 +245,7 @@ body{
     font-size: 32px;
 }
 .range-label{
+    width: 90%;
     font-size: max(1.8vh, 20px);
     color: #333;
     user-select: none;

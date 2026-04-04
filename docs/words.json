@@ -94,7 +94,7 @@
       }
     ],
     "tips": "垣根の間（＝すき間）から（女性の家をのぞいて）見るという意です",
-    "related_words": [315]
+    "related_words": []
   },
   {
     "id" : 5,
@@ -118,7 +118,7 @@
       }
     ],
     "tips": "動詞「呼ぶ」の未然形に反復・継続を表す助動詞の「ふ」がついてできたもので、「呼び続ける」の意です。男性が女性を呼び続け、「言い寄る・求婚する」の意になります。",
-    "related_words": [316]
+    "related_words": []
   },
   {
     "id" : 6,
@@ -147,7 +147,7 @@
       }
     ],
     "tips": "",
-    "related_words": [317,318]
+    "related_words": []
   },
   {
     "id" : 7,
@@ -8463,7 +8463,7 @@
     "related_words": []
   },
   {
-    "id" : 0,
+    "id" : 294,
     "word": "奏す",
     "reading": "",
     "Conjugation": "行段",
@@ -8481,7 +8481,7 @@
     "related_words": []
   },
   {
-    "id" : 0,
+    "id" : 295,
     "word": "啓す",
     "reading": "",
     "Conjugation": "行段",
@@ -8504,7 +8504,7 @@
     "related_words": []
   },
   {
-    "id" : 0,
+    "id" : 296,
     "word": "承る",
     "reading": "",
     "Conjugation": "行段",
@@ -8522,28 +8522,23 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 297,
+    "word": "給ふ[四段活用]・給ぶ（たぶ）",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "お与えになる・下さる（「与ふ」の尊敬語）"}, 
+      {"no" : 2 , "text" : "～なさる・お～になる"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "大御酒\"給ひ\"、様\"給はむ\"とて、遣はさざりけり。（伊勢・三段）",
+        "translation" : "（親王は）お酒を\"下さり\"、ほうびを\"お与えになろ\"うとして、",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "人目も今はつつみ\"給はず\"泣き\"給ふ\"。（竹取・天の羽衣）",
+        "translation" : "（かぐや姫は）人目も今は気がね\"なさら\"ないで泣き\"なさる\"。",
         "help" : ""
       }
     ],
@@ -8551,28 +8546,17 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 297001,
+    "word": "給ふ[下二段活用]・給ぶ（たうぶ）",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "～（ており）ます"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "内々に、思ひ\"給ふる\"さまを奏し給へ。（源氏・桐壺）",
+        "translation" : "内々に、（わたしの）思っ\"ております\"ことを帝に申し上げてください。",
         "help" : ""
       }
     ],
@@ -8580,28 +8564,17 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 298,
+    "word": "給はす・賜はす",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "お与えになる・下さる （「与ふ」の尊敬語）"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "（帝は）中納言に琵琶、兵衛督に箏の琴、宰相中将和琴、源中将横笛、中務宮の少将笙の笛などたまはす。（狭衣・巻一）",
+        "translation" : "（帝は）権中納言に琵琶を、兵衛の督に箏の琴を、宰相中将に和琴を、源中将に横笛を、中務の宮の少将に笙の笛を（お与えになる）。",
         "help" : ""
       }
     ],
@@ -8609,28 +8582,23 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 299,
+    "word": "賜はる・給はる",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "いただ（「受く」「もらふ」の謙譲語）"}, 
+      {"no" : 2 , "text" : "お与えになる・下さる（「与ふ」の尊敬語[鎌倉時代以降の用法]）"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "親王たち上達部連ねて、（帝から）禄ども品々に\"賜はり\"給ふ。（源氏・桐壺）",
+        "translation" : "親王たちや上級貴族は立ち並んで、（帝から）ほうびなどを身分に 応じて\"いただき\"なさる。",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "（源頼朝は）備前の児島を佐々木に賜はりける。（平家・巻十）",
+        "translation" : "（源頼朝は）備前の児島を佐々木に（ほうびとして）\"お与えになっ\"た。",
         "help" : ""
       }
     ],
@@ -8638,28 +8606,36 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 300,
+    "word": "召す",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "（人を側に）お呼びになる（「呼ぶ」の尊敬語）"}, 
+      {"no" : 2 , "text" : "（物を側に）お取り寄せになる（「取り寄す」の尊敬語）"}, 
+      {"no" : 3 , "text" : "お召しになる（「着る」の尊敬語）"}, 
+      {"no" : 4 , "text" : "お乗りになる（「乗る」の尊敬語）"}, 
+      {"no" : 5 , "text" : "召し上がる（「食ふ」「飲む」の尊敬語）"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "（宮は）右近の尉なる人を\"召し\"て、「忍びて物へゆかむ」とのたまはすれば、（和泉式部）",
+        "translation" : "（帥の宮は）右近の尉である人を\"お呼びになっ\"て、「ひそかに例の所へ行こう」とおっしゃるので、",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "（柏木は）紙燭\"召し\"て、御返り見給へば、（源氏・柏木）",
+        "translation" : "（柏木は）紙燭（＝照明用具）を\"お取り寄せになっ\"て、（女三宮からの）ご返事を御覧になると、",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "青色の御唐衣、蝶をいろいろに織りたりし\"召し\"たりし、いふかひなくめでたく、（建礼門院）",
+        "translation" : "萌葱色の唐衣（に）、蝶をさまざまに織り出したのを\"お召しになっ\"ていたのは、言いようもなくすばらしく、",
+        "help" : ""
+      },
+      {
+        "origin" : "御輿に\"召し\"て、福原へ入らせおはします。（平家・巻四）",
+        "translation" : "（高倉上皇は）輿に\"お乗りになっ\"て、福原へお入りになる。",
         "help" : ""
       }
     ],
@@ -8667,28 +8643,22 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 301,
+    "word": "思す・思し召す・思はす",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "お思いになる（「思ふ」の尊敬語）"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "ほど経るままに、せむ方なう悲しう\"おぼさ\"るるに、（源氏・桐壺）",
+        "translation" : "時がたつにつれて、どうしようもなく悲しく\"お思いになる\"が、",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "院も聞こし召しつけていかに\"思し召さ\"むと、（源氏・若葉下）",
+        "translation" : "院も聞きつけなさってどのように\"お思いになる\"だろうかと、",
         "help" : ""
       }
     ],
@@ -8696,28 +8666,18 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 302,
+    "word": "大殿籠る・御殿籠る",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
+      {"no" : 1 , "text" : "おやすみになる（「寝」「寝ぬ」の尊敬語）"}, 
       {"no" : 2 , "text" : ""}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "夜いたく更けて、御前にも\"大殿ごもり\"、人々みな寝ぬるのち、（枕・心にくき物）",
+        "translation" : "夜もたいそう更けて、中宮も（おやすみになり）、女房たちもみな寝てしまったあとで、",
         "help" : ""
       }
     ],
@@ -9709,7 +9669,7 @@
     "related_words": []
   },
   {
-    "id" : 349,
+    "id" : 348001,
     "word": "避らぬ",
     "reading": "",
     "Conjugation": "行段",
@@ -17576,8 +17536,8 @@
     "related_words": []
   },
   {
-    "id" : 630,
-    "word": "630",
+    "id" : 0,
+    "word": "",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [

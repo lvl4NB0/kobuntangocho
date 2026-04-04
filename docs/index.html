@@ -31,16 +31,16 @@
                 </div>
                 <ul class="error-msgs" id="error-msgs"></ul>
                 <div class="preferences">
-                    <label for="range-min , range-max" class="range-label">出題範囲(1~5[一章動詞(一部)],290~291[敬語動詞(一部)],316~380[慣用句])</label>
+                    <label for="range-min , range-max" class="range-label">出題範囲<br>(1~5,290~291,316~380)</label>
                     <div class="range">
                         <input type="number" required autocomplete="off" min="1" max="630" class="range-input input" id="range-min" />
                         <span class="range-label" style="font-size: 2vh;"> ~ </span>
                         <input type="number" required autocomplete="off" min="1" max="630" class="range-input input" id="range-max" />
                     </div>
                     <div class="range preview-range">
-                        <div id="start-word"></div>
+                        <div id="start-word" style="width: 48%; margin-left: 1px;"></div>
                         <span class="range-label" style="font-size: 2vh; position: absolute; left: 50%; transform: translateX(-50%);"> ~ </span>
-                        <div id="end-word"></div>
+                        <div id="end-word" style="width: -48%; margin-right: 0px;"></div>
                     </div>
                     <details class="select">
                         <summary>章と品詞で範囲を指定する（該当範囲の単語が未実装なので使えません）</summary>
@@ -71,9 +71,8 @@
                             <label for="cb-shuffle" class="label">出題順をシャッフル</label>
                         </div>
                         <div class="flex" style="margin: auto; margin-top: 0.5vh;">
-                            <!--あとでcheckedをつける-->
-                            <input type="checkbox" id="cb-include-relation" class="input" disabled />
-                            <label for="cb-shuffle" class="label">関連語を出題する(未実装)</label>
+                            <input type="checkbox" id="cb-include-relation" class="input" checked />
+                            <label for="cb-shuffle" class="label">関連語を出題する</label>
                         </div>
                         <div class="flex" style="margin: auto; margin-top: 0.5vh;">
                             <input type="checkbox" id="cb-gendaigo-to-kogo" class="input" />
