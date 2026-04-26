@@ -56,7 +56,10 @@
         opt4 : document.getElementById("opt4"),
         correctAnswersNum : document.getElementById("correct-answers-num"),
         answersNum : document.getElementById("answers-num"),
-        consecutiveCorrectAnswersNum : document.getElementById("consecutive-correct-answers-num")
+        consecutiveCorrectAnswersNum : document.getElementById("consecutive-correct-answers-num"),
+        hider : document.getElementById("hider"),
+        isHighlighted : document.getElementById("quiz-highlight"),
+        hideOption : document.getElementById("quiz-hide-option")
     })
     
     const PAGES_ID = {
@@ -393,7 +396,8 @@
             cbFillFourOption : document.getElementById("cb-fill-four-option"),
             cbFillTyping : document.getElementById("cb-fill-typing"),
             cbFillHighlight : document.getElementById("cb-fill-highlight"),
-            cbKobunToGendaibun : document.getElementById("cb-gendaigo-to-kogo")
+            cbKobunToGendaibun : document.getElementById("cb-gendaigo-to-kogo"),
+            cbHideOption : document.getElementById("cb-hide-option")
         }
 
         //オプションの値をまとめて取得し返却する関数
@@ -413,6 +417,7 @@
                 optionBuilder.fillFourOption = Boolean(cbElements.cbFillFourOption.checked);
                 optionBuilder.fillTyping = Boolean(cbElements.cbFillTyping.checked);
                 optionBuilder.fillHighlight = Boolean(cbElements.cbFillHighlight.checked);
+                optionBuilder.hideOption = Boolean(cbElements.cbHideOption.checked);
             }
             return optionBuilder;
         }
@@ -519,6 +524,7 @@
             mode : appState.optionBuilder.GendaigoKogo,
             includeRelation : appState.optionBuilder.includeRelation,
             shuffle : appState.optionBuilder.shuffle,
+            hideOption : appState.optionBuilder.hideOption,
             originalMap : [],
             quizList : {
                 origin: [],
@@ -983,7 +989,17 @@
                 DOM.option[i].textContent = choices[i]
             }
         }
-
+        function switchHide(element, shouldHide){
+            if(shouldHide){
+                element.classList.remove("hidden");
+            } else {
+                element.classList.add("hidden");
+            }
+        }
+        function switchOpitonUI(){
+            switchHide(DOM.hideOption, (quizState.type === QUIZ_TYPE.fourOption || quizState.type === QUIZ_TYPE.fillFourOption));
+            switchHide(DOM.isHighlighted, (quizState.type === QUIZ_TYPE.fillFourOption || quizState.type === QUIZ_TYPE.fillTyping));
+        }
         function majorHandler(){
         console.log(quizState.currentIndex)
         try{
@@ -996,8 +1012,11 @@
                 quizState.mode = appState.optionBuilder.GendaigoKogo;
                 quizState.includeRelation = appState.optionBuilder.includeRelation;
                 quizState.shuffle = appState.optionBuilder.shuffle;
+                quizState.hideOption = appState.optionBuilder.hideOption;
+                switchHide(DOM.hider, quizState.hideOption);
                 quizState.type = getType();
                 console.log(quizState.type)
+                switchOpitonUI();
                 initializeQuestionField(quizState.type);
                 ControlAnswerButtonAtribute(false);
                 ChangeAnswerButtonText(phaseList.question);
@@ -1021,6 +1040,7 @@
                 showResult("");
                 nextQuestion(quizState.type);
                 DOM.answerBox.value = "";
+                switchHide(DOM.hider, quizState.hideOption);
                 break;
             case phaseList.question :
                 const input = DOM.answerBox.value;
@@ -1069,6 +1089,7 @@
                 quizState.type = getType();
                 console.log(quizState.type)
                 nextQuestion(quizState.type);
+                switchOpitonUI();
                 initializeQuestionField(quizState.type);
                 DOM.answerBox.value = "";
                 appState.phase = phaseList.question;
@@ -1135,15 +1156,17 @@
     });
     //設定周りのイベントリスナー（穴埋め問題用の設定のdisabled切り替え）    
     //クイズの形式のうち、穴埋め問題に関するオプションのいずれかが選択されたとき、穴埋め問題の解答を表示するかどうかのオプションを選択可能にする関数
-    function checkboxToggle(){
-        if(cbElements.cbFillFourOption.checked || cbElements.cbFillTyping.checked){
-            cbElements.cbFillHighlight.disabled = false;
+    function checkboxToggle(element, condition){
+        if(condition){
+            element.disabled = false;
         }else{
-            cbElements.cbFillHighlight.disabled = true;
+            element.disabled = true;
         }
     }
-    addEventListenerByEvent("cb-fill-typing", "change", checkboxToggle);
-    addEventListenerByEvent("cb-fill-four-option", "change", checkboxToggle);
+    addEventListenerByEvent("cb-fill-typing", "change", () => {checkboxToggle(cbElements.cbFillHighlight, (cbElements.cbFillFourOption.checked || cbElements.cbFillTyping.checked))});
+    addEventListenerByEvent("cb-fill-four-option", "change", () => {checkboxToggle(cbElements.cbFillHighlight, (cbElements.cbFillFourOption.checked || cbElements.cbFillTyping.checked))});
+    addEventListenerByEvent("cb-four-option", "change", () => {checkboxToggle(cbElements.cbHideOption, (cbElements.cbFourOption.checked || cbElements.cbFillFourOption.checked))});
+    addEventListenerByEvent("cb-fill-four-option", "change", () => {checkboxToggle(cbElements.cbHideOption, (cbElements.cbFourOption.checked || cbElements.cbFillFourOption.checked))});
 
     function overlayToggle(){
         DOM.overlay.classList.toggle("overlay_on");
@@ -1161,8 +1184,17 @@
         appState.isHighlighted = !appState.isHighlighted;
         DOM.question.textContent = appState.isHighlighted ? quizState.hintSentence : quizState.hintSentence.replace(/"/g,"");
     }
+    function switchHider(){
+        quizState.hideOption = !quizState.hideOption;
+        if(appState.phase === phaseList.wait){
+            majorHandler();
+        }
+        switchHide(DOM.hider, quizState.hideOption);
+    }
     addEventListenerByEvent("quiz-highlight","click",switchHighlight)
     addEventListenerByEvent("check","click",majorHandler);
+    addEventListenerByEvent("hider","click",() => {DOM.hider.classList.add("hidden");})
+    addEventListenerByEvent("quiz-hide-option","click",switchHider)
 //}
 
 //main();

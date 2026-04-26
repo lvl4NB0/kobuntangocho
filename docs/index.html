@@ -146,6 +146,10 @@
                                     <input type="checkbox" id="cb-fill-highlight" class="input" checked disabled />
                                     <label for="cb-fill-highlight" class="label">穴埋め問題で出題箇所を<br>ハイライトする</label>
                                 </div>
+                                <div class="flex" style="margin-top: 0.5vh; margin-left: 2vw;">
+                                    <input type="checkbox" id="cb-hide-option" class="input" />
+                                    <label for="cb-hide-option" class="label">最初は四択の選択肢を隠す</label>
+                                </div>
                             </div>
                         </div>
                         <button id="start-btn-quiz" class="start-btn">スタート</button>
@@ -172,7 +176,8 @@
             </div>
             <div class="column" >
                 <div class="quiz-UI-container">
-                    <button id="quiz-highlight" class="opt-btn">"</button>
+                    <button id="quiz-highlight" class="opt-btn">出題部分を<br>ハイライトする</button>
+                    <button id="quiz-hide-option" class="opt-btn">選択肢を<br>隠す</button>
                     <button id="quiz-history" class="hist-btn" style="margin-left: auto;">履歴を見る</button>
                 </div>
                 <div class="quiz-container" style="transform: scale(0.8);">
@@ -180,6 +185,7 @@
                     <div id="translation" class="question-text">sampleText-id="translation"</div>
                     <!--四択用-->
                     <div id="four-option" class="four-option-container hidden">
+                        <div id="hider"></div>
                         <button id="opt1" class="four-option">text</button>
                         <button id="opt2" class="four-option">text</button>
                         <button id="opt3" class="four-option">text</button>
