@@ -158,6 +158,9 @@
             ],
             c3all : [
                 {min : 290, max : 315}
+            ],
+            idiomall : [
+                {min : 316, max : 379}
             ]
         });
         //単語データのマッピング
@@ -359,7 +362,7 @@
                 changeInputBackgroundColor(c);
                 const selectInfo = getFromSelect();
                 const [sctValue] = selectInfo;
-                disableOption(sctValue === "c3");
+                disableOption(sctValue === "c3" || sctValue === "idiom");
                 ranges = rangeBuilderFromSelect(selectInfo);
             }
             else if(src === RANGE_SOURCE.INPUT){
