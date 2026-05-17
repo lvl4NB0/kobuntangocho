@@ -387,7 +387,7 @@ body{
 .overlay-inner{
     position: relative;
     width: 60%;
-    height: 70%;
+    height: 40%;
     margin: auto;
     padding:10px 60px;
     background-color:#FFF;
@@ -399,10 +399,10 @@ body{
 }
 .overlay-inner-message{
     margin: auto;
-    margin-top: 10%;
+    margin-top: 5%;
     margin-bottom: 5%;
     width: 60%;
-    height: 10%;
+    height: auto;
     background-color: #FFF;
     font-size: 3em;
     text-align: center;
