@@ -94,6 +94,19 @@
       }
     ],
     "tips": "垣根の間（＝すき間）から（女性の家をのぞいて）見るという意です",
+    "related_words": [4001]
+  },
+  {
+    "id" : 4001,
+    "word": "垣間見（かいまみ）",
+    "reading": "かいまみ",
+    "part_of_speech" : "名詞",
+    "Conjugation": "",
+    "meaning": [
+      {"no" : 1 , "text" : "のぞき見"}
+    ],
+    "example_sentences" : [],
+    "tips": "",
     "related_words": []
   },
   {
@@ -118,6 +131,20 @@
       }
     ],
     "tips": "動詞「呼ぶ」の未然形に反復・継続を表す助動詞の「ふ」がついてできたもので、「呼び続ける」の意です。男性が女性を呼び続け、「言い寄る・求婚する」の意になります。",
+    "related_words": [5001]
+  },
+  {
+    "id" : 5001,
+    "word": "口説く（くどく）",
+    "reading": "くどく",
+    "part_of_speech" : "動詞",
+    "Conjugation": "",
+    "meaning": [
+      {"no" : 1 , "text" : "繰り返し同じことを言う"},
+      {"no" : 2 , "text" : "意中を訴える・祈願する"}
+    ],
+    "example_sentences" : [],
+    "tips": "",
     "related_words": []
   },
   {
