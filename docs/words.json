@@ -962,6 +962,7 @@
     "id" : 25002,
     "word": "破る（やる）",
     "reading": "やる",
+    "part_of_speech" : "動詞",
     "Conjugation": "行段",
     "meaning": [
       {"no" : 1 , "text" : "破る"}
@@ -1051,7 +1052,7 @@
     "Conjugation": "行段",
     "meaning": [
       {"no" : 1 , "text" : "美しく映える・美しく輝く"}, 
-      {"no" : 2 , "text" : "香りがする"}
+      {"no" : 2 , "text" : "香りがする〔現代語と同じ〕"}
     ],
     "example_sentences" : [
       {
@@ -1121,7 +1122,8 @@
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : "準備・用意"}
+      {"no" : 1 , "text" : "準備・用意"},
+      {"no" : 2 , "text" : "ごちそう・もてなし"}
     ],
     "example_sentences" : [],
     "tips": "",
@@ -1678,7 +1680,7 @@
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : "似つかわしくない"}
+      {"no" : 1 , "text" : "似つかわしくない・ふさわしくない"}
     ],
     "example_sentences" : [],
     "tips": "",
