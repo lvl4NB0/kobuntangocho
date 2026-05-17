@@ -597,7 +597,7 @@
         }
 
         function normalizeForAnswer(s){
-        return quizState.type === QUIZ_TYPE.fourOption || quizState.type === QUIZ_TYPE.fillFourOption ? s?.replace(/[)）]/g, "")?.split(/・/)?.filter(n => n.trim() !== "") : s?.replace(/[)）～]/g, "")?.split(/・|\(|（|〔|〈|〉|〕/)?.filter(n => n.trim() !== "");
+        return quizState.type === QUIZ_TYPE.fourOption || quizState.type === QUIZ_TYPE.fillFourOption ? s?.split(/・/)?.filter(n => n.trim() !== "") : s?.replace(/[)）～]/g, "")?.split(/・|\(|（|〔|〈|〉|〕/)?.filter(n => n.trim() !== "");
         }
         function answerCheck(input,correct){
         const judge = normalizeForAnswer(correct);
