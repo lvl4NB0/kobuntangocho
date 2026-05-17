@@ -1206,8 +1206,7 @@
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "避ける"}
     ],
     "example_sentences" : [
       {
@@ -1225,7 +1224,7 @@
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : "（時節が）来る・（その時代に）なる"}, 
+      {"no" : 1 , "text" : "（時節が）来る・（その時に）なる"}, 
       {"no" : 2 , "text" : "立ち去る・過ぎ去る〔現代語と同じ〕"}
     ],
     "example_sentences" : [
@@ -1409,8 +1408,8 @@
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "困る・嘆く・つらく思う"}, 
+      {"no" : 2 , "text" : "〈動詞の連用形について〉～かねる・～することができない"}
     ],
     "example_sentences" : [
       {
