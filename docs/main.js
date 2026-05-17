@@ -601,15 +601,19 @@
         DOM.check.textContent = answerButtonMessage[condition];
         }
 
-        function normalizeForAnswer(s){
-        return quizState.type === QUIZ_TYPE.fourOption || quizState.type === QUIZ_TYPE.fillFourOption ? s?.split(/・/)?.filter(n => n.trim() !== "") : s?.replace(/[)）～]/g, "")?.split(/・|\(|（|〔|〈|〉|〕/)?.filter(n => n.trim() !== "");
+        function normalizeForAnswer(s, type=quizState.type){
+        return type === QUIZ_TYPE.fourOption || quizState.type === QUIZ_TYPE.fillFourOption ? s?.split(/・/)?.filter(n => n.trim() !== "") : s?.replace(/[)）～]/g, "")?.split(/・|\(|（|〔|〈|〉|〕/)?.filter(n => n.trim() !== "");
         }
+        function normalizeForCheck(s){
+        return s?.replace(/[(（～]/g, "")?.split(/・|\)|）|〔|〈|〉|〕/)?.filter(n => n.trim() !== "");
+        }
+        // ()内のみでも正解するバグがあるから後で修正すること。(risk2:2026-05-17)
         function answerCheck(input,correct){
-        const judge = normalizeForAnswer(correct);
-        const normalizedInput = normalizeForAnswer(input);
+        const judge = normalizeForCheck(correct);
+        const normalizedInput = normalizeForCheck(input);
         if(judge?.every(m => normalizedInput.includes(m))){
             return {sentence : "正解！", isCorrect : true};
-            }else if(judge?.some(m => normalizedInput.includes(m))){
+            }else if(judge?.some(m => normalizedInput.includes(m) || normalizeForAnswer(correct,QUIZ_TYPE.Typing)?.some(m => normalizedInput.includes(m)))){
             return {sentence : "正解", isCorrect : true}
             }else{
             return {sentence : `不正解。正解：${correct}`, isCorrect : false};
