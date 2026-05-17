@@ -814,7 +814,9 @@
                     //ID = (元単語のID * 10000) + 1
                     //ていうかID設計として、IDに意味のある情報を持たせるのは絶対よくない
                     //とはいえO(1)で取得するためには仕方なかったんだけど、もうちょっとマシな方法なかったんかと今更ながら思う
-                    const seccondRelatedWords = wordIndex.get(i*buffer + 1) ? addThisList(i*buffer + 1) : null;
+                    //バグ見つけたわ、見すと悩むの関連語で被ってるわ。今は時間がないからあとでbufferとid書き直す。(risk2:2026-05-17)
+                    // && i !=1の部分は臨時パッチ
+                    const seccondRelatedWords = wordIndex.get(i*buffer + 1) && i !=1 ? addThisList(i*buffer + 1) : null;
 
                     if(quizState.includeRelation){
                         if(relatedWords){
