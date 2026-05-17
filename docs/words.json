@@ -200,7 +200,7 @@
     "Conjugation": "行段",
     "meaning": [
       {"no" : 1 , "text" : "風流だ"},
-      {"no" : 1 , "text" : "好色だ"}
+      {"no" : 2 , "text" : "好色だ"}
     ],
     "example_sentences" : [
       {
@@ -743,7 +743,7 @@
       }
     ],
     "tips": "",
-    "related_words": []
+    "related_words": [22001,22002,22003]
   },
   {
     "id" : 220001,
@@ -760,6 +760,46 @@
         "help" : "「し」は過去の助動詞「き」の連体形で、連用形に接続します。"
       }
     ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 22001,
+    "word": "たのみ",
+    "reading": "たのみ",
+    "part_of_speech" : "名詞",
+    "Conjugation": "",
+    "meaning": [
+      {"no" : 1 , "text" : "あてにすること・期待"}
+    ],
+    "example_sentences" : [],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 22002,
+    "word": "たのめ",
+    "reading": "たのめ",
+    "part_of_speech" : "名詞",
+    "Conjugation": "",
+    "meaning": [
+      {"no" : 1 , "text" : "あてにさせること"}
+    ],
+    "example_sentences" : [],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 22003,
+    "word": "頼もし",
+    "reading": "たのもし",
+    "part_of_speech" : "形容詞",
+    "Conjugation": "",
+    "meaning": [
+      {"no" : 1 , "text" : "頼みになる"},
+      {"no" : 2 , "text" : "裕福だ・豊かだ"}
+    ],
+    "example_sentences" : [],
     "tips": "",
     "related_words": []
   },
