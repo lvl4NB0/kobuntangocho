@@ -9,45 +9,28 @@ jsでword.jsonのmapを作成後、関連語はrelated_word.jsonの対応関係�
 
 #json
 ##word.json
-収録語
 {
-    "word": "単語名",
-    "Part_of_speech": "品詞",
-    "Conjugation": "活用の種類",
-    "meaning": [
-        "no" : <int> "text" : "意味1",
-        "no" : <int> "text" : "意味2",
+    "id": <int>pure id[prid](3桁) related_words id[rwid](3桁) another part_of_speech id[apid](3桁)
+    "word": <int> "単語名",
+    "Part_of_speech": <string>"品詞",
+    "Conjugation": <string>"活用の種類",
+    "example_sentences" : [
+      {
+        "origin" : <string> "例文（原文）。\"(ダブルクォーテーション)で該当単語を囲うこと。",
+        "translation" : <string> "例文（現代語訳）。同様に該当単語に印をつけておく。",
+        "helps": <string | none> "例文についての補足説明、なければ空の文字列を指定"
+      },
+      {
+        ...(同様。また、example_sentencesの長さは可変長)
+      }
     ],
-    "example_origin": ["例文(原文)1", "例文(原文)2"],
-    "example_translation": ["例文(訳)1", "例文(訳)2"],
-    "tips": "注意事項(単語帳では単語の左にある)",
-    "helps": "例文についての補足説明、なければfalseを指定、また、インデックスは例文と同じにする",
-    "related_words": "関連語句を配列で直書き、なければ空の配列"
+    "tips": <string> "注意事項(単語帳では単語の左にある)",
+    "related_words": <array> "関連語句を配列でidを列挙、なければ空の配列"
 }
-関連語
-{
-    "word": "単語名",
-    "Part_of_speech": "品詞",
-    "meaning": [
-        "no" : <int> "text" : "意味1",
-        "no" : <int> "text" : "意味2",
-    ],
-    "example_origin": ["", ""],
-    "example_translation": ["", ""],
-    "tips": ""
-  }
-
-words[0]：動詞
-words[-1]：関連語
-
-split("・")で意味の表記ゆれを吸収するので絶対に間違いなく中点は全角にすること。
-
-##related_words.json
-{
-    "<id>" : ["関連語1","関連語2"]
-}
-
-関連語句を配列で直書き、なければ空の配列
+### idについて
+prid -> 単語帳で一意に振り分けられている単語番号
+rwid -> 関連語に振り分けられる1始まりの番号。1つめの関連語の場合は「xxx001」のように表す。(pridは関連元の語の番号をつけて、[prid][rwid]のように書く)
+apid -> 品詞違いの語に振り分けられる1始まりの番号。1つめの語の場合は「xxxxxx1」のように表す。(apidは関連語の番号をつけて、[prid][rwid][apid]のように書く)
 
 #js
 //正規化

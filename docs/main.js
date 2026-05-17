@@ -597,10 +597,7 @@
         }
 
         function normalizeForAnswer(s){
-        return s
-            ?.replace(/[)）]/g, "")
-            ?.split(/・|\(|（/)
-            ?.filter(n => n.trim() !== "");
+        return quizState.type === QUIZ_TYPE.fourOption || quizState.type === QUIZ_TYPE.fillFourOption ? s?.replace(/[)）]/g, "")?.split(/・/)?.filter(n => n.trim() !== "") : s?.replace(/[)）～]/g, "")?.split(/・|\(|（|〔|〈|〉|〕/)?.filter(n => n.trim() !== "");
         }
         function answerCheck(input,correct){
         const judge = normalizeForAnswer(correct);
@@ -783,13 +780,16 @@
                 originWords.push(word);
                 console.log(word)
                 console.log(i)
-                for(const examples of word.example_sentences){
-                    try{
-                        originSentences.push(examples.origin);
-                        translatedSentences.push(examples.translation);
-                    }catch(e){console.warn("エラーをスキップ:", e);}
-                }
-                return word.related_words ? word.related_words : null;
+                try{
+                    for(const examples of word.example_sentences){
+                            originSentences.push(examples.origin);
+                            translatedSentences.push(examples.translation);
+                    }
+                }catch(e){console.warn("エラーをスキップ:", e);}
+                //try{
+                    return word.related_words ? word.related_words : null;
+                //}
+                //catch(e){console.warn(`error : ${word} ;`,e)}    
             }
             let originSentences = [];
             let translatedSentences = [];
@@ -806,10 +806,14 @@
             }else{wordIndex = appState.wordIndex}
             appState.committedRange.forEach( aRange => {
                 for(let i = aRange.min; i <= aRange.max; i++){
+                    //addThisListの返り値は、関連語のIDの配列（存在しない場合はnull）で、関連語が存在する場合はさらにその関連語の例文も追加するために使う
+                    //この関数きもすぎるからリファクタリングしたい（risk:0, 2026-5-16）
                     const relatedWords =  addThisList(i,wordIndex);
 
                     //IDは別だが元は同じ単語（活用などで意味が変わる単語）のための処理、関連語でないので存在していれば無条件で追加する
                     //ID = (元単語のID * 10000) + 1
+                    //ていうかID設計として、IDに意味のある情報を持たせるのは絶対よくない
+                    //とはいえO(1)で取得するためには仕方なかったんだけど、もうちょっとマシな方法なかったんかと今更ながら思う
                     const seccondRelatedWords = wordIndex.get(i*buffer + 1) ? addThisList(i*buffer + 1) : null;
 
                     if(quizState.includeRelation){
@@ -833,7 +837,7 @@
             if(appState.optionBuilder.fillFourOption) n++;
             if(appState.optionBuilder.fillTyping) n++;
             const sum = originSentences.length * n + numOfWords * m;
-            console.clear()
+            //console.clear()
             if(quizState.shuffle) {
                 const shuffledPair = shuffle(originSentences.map((v, i) => ({ org: v, tral: translatedSentences[i] })));
                 console.log(shuffledPair)
@@ -1126,6 +1130,10 @@
             appState.NUM_OF_Words = appState.words.length;
             poolBuilder();
             showPage(PAGES_ID.HOME);
+            //第二学年一学期中間考査範囲を初期値とする
+            inputRangeElements.inputRangeMin.value = 1;
+            inputRangeElements.inputRangeMax.value = 53;
+            updateRange(RANGE_SOURCE.INPUT);
         }).catch((e) =>  {
             alert("単語データが読み込めませんでした。ページを更新してください。")
             console.error(e);
@@ -1201,3 +1209,5 @@
 //}
 
 //main();
+
+

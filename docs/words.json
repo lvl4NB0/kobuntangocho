@@ -81,7 +81,7 @@
   },
   {
     "id" : 4,
-    "word": "かいまみる（垣間見る）",
+    "word": "垣間見る（かいまみる）",
     "reading": "かいまみる",
     "Conjugation": "マ行上一段",
     "meaning": [{"no" : 1 , "text" : "のぞき見る"}],
@@ -98,7 +98,7 @@
   },
   {
     "id" : 5,
-    "word": "よばふ（呼ばふ）",
+    "word": "呼ばふ（よばふ）",
     "reading": "よばふ",
     "Conjugation": "ハ行四段",
     "meaning": [
@@ -122,7 +122,7 @@
   },
   {
     "id" : 6,
-    "word": "好く",
+    "word": "好く（すく）",
     "reading": "すく",
     "Conjugation": "カ行四段",
     "meaning": [
@@ -131,19 +131,54 @@
     ],
     "example_sentences" : [
       {
-        "origin" : "よき人は、人へにすける様にも見えず、（徒然・一三七段）",
+        "origin" : "よき人は、人へに\"すける\"様にも見えず、（徒然・一三七段）",
         "translation" : "身分が高く教養がある人は、ひたすら\"風流を好ん\"でいるようにも見えず",
+        "help" : "わざとらしくなく、さりげないのがいいようですね。"
+      }
+    ],
+    "tips": "",
+    "related_words": [6001,6002],
+    "caption" : "この単語以降未記入欄あり、関連語にはpos追加済み"
+  },
+  {
+    "id" : 6001,
+    "word": "好き（すき）",
+    "part_of_speech" : "名詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "風流の道に熱中すること"}, 
+      {"no" : 2 , "text" : "色好み・恋愛"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "むかし、\"すき\"者ども集まりて、歌よみけるに、（伊勢・異六段）",
+        "translation" : "昔、\"風流\"人たちが集まって、歌を詠んだが、",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "《光源氏の息子の夕霧は自分のことを棚に上げ説教する父を、》「かかる\"すき\"者はいでや」と見奉り給ふ。（源氏・横笛）",
+        "translation" : "「(父上もご自身の)このような\"色好み（恋愛）\"はさあどうだろうか」と思い申し上げなさる",
         "help" : ""
-      },
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 6002,
+    "word": "好き好きし（すきずきし）",
+    "part_of_speech" : "形容詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "風流だ"}
+    ],
+    "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
+        "origin" : "《光源氏は僧都に若紫の素性を聞こうとしている。》\"すきずきしき\"方にはあらで、まめやかに聞こゆるなり。(源氏・若紫）",
+        "translation" : "（姫君のことは）\"好色な\" 気持ちからではなく、まじめに申し上げるのである。",
+        "help" : "好色な気持ちからではないというのですが･･････、大ウソです!"
       }
     ],
     "tips": "",
@@ -151,27 +186,89 @@
   },
   {
     "id" : 7,
-    "word": "",
-    "reading": "",
+    "word": "渡る（わたる）",
+    "reading": "わたる",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "行く・来る・通る〔移動を表す〕"}, 
+      {"no" : 2 , "text" : "〈主に「わたらせ給ふ」の形で〉いらっしゃる〔存在、状態を表す〕"}, 
+      {"no" : 3 , "text" : "〈動詞の連用形について〉～続ける"}, 
+      {"no" : 4 , "text" : "〈動詞の連用形について〉一面に(～する)"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "むかし、男、後涼殿のはさまを\"渡り\"ければ、(伊勢・一〇〇段)",
+        "translation" : "昔、男が、後涼殿（と清涼殿）のすき間を\"通っ\"たところ、",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "高倉の宮の御子の宮たちのあまた\"わたらせ給ひ\"候ふなる。(平家・巻四)",
+        "translation" : "高倉の宮のお子様の宮たちが大勢\"いらっしゃる\"そうです。",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "女のえ得まじかりけるを、年を経てよばひ\"わたり\"けるを、(伊勢・六段",
+        "translation" : "女で手に入れられそうもなかった女 (=妻にしたくてもできなかった女)を、何年間も求婚し\"続け\"ていたが、",
+        "help" : "「わたらせ給ふ」は「おはします」(→P233\"313\") と同じ意味になります。"
+      },
+      {
+        "origin" : "夕霧立ち\"わたり\"て、(更級)",
+        "translation" : "夕霧が\"一面に\"立って、",
+        "help" : ""
+      }
+    ],
+    "tips": "",
+    "related_words": [7001],
+    "caption" : "→P233のようなものは\"\"で囲んでjs側でid読み取りとして使用して、フラッシュカードの時に使うこととする"
+  },
+  {
+    "id" : 7001,
+    "word": "わたす",
+    "part_of_speech" : "他動詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "移す"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "むらさき (紫の上を)二条の院に\"渡し\"奉り給ひつ。(源氏・若葉下)",
+        "translation" : "(紫の上を)二条院に\"移し\"申し上げなさった。",
+        "help" : "「渡る」は自動詞で「移動する」。「渡す」は他動詞で「（誰かを・何かを）移動させる」ということです。"
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 8,
+    "word": "歩く（ありく）",
+    "reading": "ありく",
+    "Conjugation": "カ行四段",
+    "meaning": [
+      {"no" : 1 , "text" : "歩き回る"}, 
+      {"no" : 2 , "text" : "〈動詞の連用形について〉～しまわる"}, 
+      {"no" : 3 , "text" : "〈動詞の連用形について〉～続ける"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "もし\"歩く\"べきことあれば、自ら歩む。（方丈）",
+        "translation" : "もし\"出歩か\"なければならないことがあると、自分（の足）で歩く。",
+        "help" : ""
+      },
+      {
+        "origin" : "蛍のとび\"ありき\"けるを、（大和・四〇段）",
+        "translation" : "蛍が飛び\"まわっ\"ていたのを、",
+        "help" : ""
+      },
+      {
+        "origin" : "後ろ見\"ありき\"給ふめる。（源氏・東屋）",
+        "translation" : "世話をし\"続け\"なさっているようだ。",
+        "help" : ""
+      },
+      {
+        "origin" : "山にこもりておこなはむ。（宇津保・忠こそ）",
+        "translation" : "山に籠もって〔仏道修行をしよう。",
         "help" : ""
       }
     ],
@@ -179,28 +276,100 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
+    "id" : 9,
+    "word": "行ふ（おこなふ）",
+    "reading": "おこなふ",
+    "Conjugation": "八行四段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "仏道修行をする・勤行する"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "山にこもりて\"おこなは\"む。（宇津保・忠こそ）",
+        "translation" : "山に籠もって\"仏道修行をし\"よう。",
         "help" : ""
-      },
+      }
+    ],
+    "tips": "",
+    "related_words": [9001]
+  },
+  {
+    "id" : 9001,
+    "word": "おこなひ",
+    "part_of_speech" : "名詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "仏道修行"}
+    ],
+    "example_sentences" : [],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 10,
+    "word": "悩む（なやむ）",
+    "reading": "なやむ",
+    "Conjugation": "マ行四段",
+    "meaning": [
+      {"no" : 1 , "text" : "病気になる・病気で苦しむ"}
+    ],
+    "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "身にやむごとなく思ふ人の\"なやむ\"を聞きて、（枕・うれしき物）",
+        "translation" : "自分にとって大事に思っている人が\"病気で苦しむ\"のを聞いて、",
         "help" : ""
-      },
+      }
+    ],
+    "tips": "",
+    "related_words": [10001,10002,10003]
+  },
+  {
+    "id" : 10001,
+    "word": "わづらふ",
+    "part_of_speech" : "動詞",
+    "reading": "わづらふ",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "苦しむ・～しかねる"}
+    ],
+    "example_sentences" : [],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 10002,
+    "word": "心地",
+    "part_of_speech"  : "名詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "病気・気分〔の悪さ〕"}
+    ],
+    "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "中納言、たちまちに御\"ここち\"も止みてめでたし。（落窪・巻三）",
+        "translation" : "中納言は、たちまちにご\"病気\"も治り、すばらしいことだ。",
+        "help" : "「心地」には「気分」だけでなく「病気」という意味もあるのです。"
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 10003,
+    "word": "いたはる",
+    "part_of_speech" : "動詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "病気で苦しむ"}, 
+      {"no" : 2 , "text" : "苦労する・骨を折る"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "同日ごろ\"いたはる\"ところ侍りて、（宇津保・国讓下）",
+        "translation" : "数日来\"病気で苦しむ\"ことがございまして、",
         "help" : ""
       }
     ],
@@ -208,28 +377,37 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
-    "reading": "",
+    "id" : 11,
+    "word": "怠る（おこたる）",
+    "reading": "おこたる",
+    "part_of_speech" : "名詞",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "病気が治る"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "《病気になった人のことを心配していたとき、》\"おこたり\"たる由、消息聞くも、いとうれし。（枕・うれしき物）",
+        "translation" : "\"病気が治っ\"たという知らせを聞くのも、とてもうれしい。",
         "help" : ""
-      },
+      }
+    ],
+    "tips": "",
+    "related_words": [11001]
+  },
+  {
+    "id" : 11001,
+    "word": "おこたり",
+    "part_of_speech" : "名詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "（過失の）おわび・謝罪"}
+    ],
+    "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "「\"おこたり\"申しにまうでたるなり」といひて（無名抄）",
+        "translation" : "「\"おわび\"を申し上げに参上したのです」と言って",
         "help" : ""
       }
     ],
@@ -237,28 +415,18 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 12,
+    "word": "後る・遅る（おくる）",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "先立たれる・死に後れる"}, 
+      {"no" : 2 , "text" : "後になる・残される・劣る"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "姫君は、十ばかりにて殿に\"おくれ\"給ひしほど、（源氏・若紫）",
+        "translation" : "亡くなった姫君は、十歳ぐらいで父君に\"先立たれ\"なさったとき、",
         "help" : ""
       }
     ],
@@ -266,28 +434,17 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 13,
+    "word": "眺む（ながむ）",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "もの思いに沈む・もの思いにふける・ もの思いしながらぼんやり見る"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "暮れがたき夏の日ぐらし\"ながむれ\"ば（伊勢・四五段）",
+        "translation" : "なかなか暮れない夏の（日に）一日中\"もの思いに沈んでいる\"と、",
         "help" : ""
       }
     ],
@@ -295,28 +452,17 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 130001,
+    "word": "詠む（ながむ）",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "（漢詩や和歌を）口ずさむ・（声に出して）歌う"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "「こぼれてにほふ花桜かな」と\"ながめ\"ければ、その声を院聞こしめさせたまひて、（今昔・二七卷二九話）",
+        "translation" : "（誰かが）「咲きこぼれて美しい桜の花よ」と\"口ずさん\"だので、 その声を院がお聞きになって、",
         "help" : ""
       }
     ],
@@ -324,28 +470,60 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
+    "id" : 14,
+    "word": "時めく（ときめく）",
+    "reading": "ときめく",
+    "Conjugation": "カ行四段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "寵愛を受ける・特別に愛される"}, 
+      {"no" : 2 , "text" : "（時流に乗って / 時宜を得て、）栄える・もてはやされる"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "いとやむごとなき際にはあらぬが、すぐれて\"ときめき\"給ふありけり。（源氏・桐壺）",
+        "translation" : "それほど高貴な身分ではない方で、際だって（帝の）\"寵愛を受け\"ていらっしゃる方があった。",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "世の中に\"ときめき\"給ふ雲客、桂より遊びて帰り給ふが、（著聞・和歌）",
+        "translation" : "世の中で\"（時流に乗って）栄え\"なさっている殿上人が、桂から遊んでお帰りになっていたが、",
+        "help" : ""
+      }
+    ],
+    "tips": "",
+    "related_words": [14001]
+  },
+  {
+    "id" : 14001,
+    "word": "ときめかす",
+    "part_of_speech" : "他動詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "寵愛する"}
+    ],
+    "example_sentences" : [],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 15,
+    "word": "かしづく",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "大切に育てる"}, 
+      {"no" : 2 , "text" : "大切に世話をする"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "親たち\"かしづき\"給ふことかぎりなし。（堤中納言・虫めづる姫君）",
+        "translation" : "親たちが（姫君を）\"大切に育て\"なさることこの上ない。",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "この少将をばよき響とて\"かしづき\"、（宇治・巻二・八話）",
+        "translation" : "この少将をよい婿として \"大切に世話をし\"、",
         "help" : ""
       }
     ],
@@ -353,28 +531,94 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
-    "reading": "",
+    "id" : 16,
+    "word": "愛づ（めづ）",
+    "reading": "めづ",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "愛する・好む・かわいがる"}, 
+      {"no" : 2 , "text" : "ほめる・たたえる・感嘆する"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "いかなる人、蝶\"めづる\"姫君につかまつらむ。（堤中納言・虫めづる姫君）",
+        "translation" : "どのような人が、蝶を\"愛する\"姫君にお仕えしているのだろう。",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "この歌に\"めで\"てあひにけり。（伊勢・九五段）",
+        "translation" : "（女は）この歌に\"感嘆し\"て（男に）逢ってしまった。",
+        "help" : ""
+      }
+    ],
+    "tips": "",
+    "related_words": [16001]
+  },
+  {
+    "id" : 16001,
+    "word": "めづらし",
+    "part_of_speech" : "形容詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "すばらしい"}
+    ],
+    "example_sentences" : [],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 17,
+    "word": "驚く（おどろく）",
+    "reading": "おどろく",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "目を覚ます・起きる"}, 
+      {"no" : 2 , "text" : "（はっと）気づく"}, 
+      {"no" : 3 , "text" : "驚く〔現代語と同じ〕"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "抱きて寝たるに、\"おどろき\"て児を見るになし。（今昔・十二巻・三四話）",
+        "translation" : "抱いて寝たのに、\"目を覚まし\"て子どもを見るといない。",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "秋来ぬと目にはさやかに見えねども風の音にぞ\"おどろか\"れぬる",
+        "translation" : "秋が来たと目にははっきりと見えないが、風の音に自然と\"気づい\"てしまった。",
+        "help" : "「おどろか」の下の「れ」は自発の助動詞「る」の連用形です。"
+      }
+    ],
+    "tips": "",
+    "related_words": [1701]
+  },
+  {
+    "id" : 1701,
+    "part_of_speech" : "他動詞",
+    "word": "おどろかす",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "起こす"}, 
+      {"no" : 2 , "text" : "（はっと）気づかせる"}
+    ],
+    "example_sentences" : [],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 18,
+    "word": "困ず（こうず）",
+    "reading": "こうず",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "疲れる"}, 
+      {"no" : 2 , "text" : "悩む・困る"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "このごろ物の色にあづかりて\"こうじ\"にけるにや、ゐるままにすなはちねぶり声なる、いとにくし。（枕・にくき物）",
+        "translation" : "（験者は）このごろ物の怪（の退治）にかかわって\"疲れ\"てしまったのであろうか、座るとすぐにそのまま眠り声である（=眠たそうな声になる）のは、実に気にくわない。",
         "help" : ""
       }
     ],
@@ -382,348 +626,30 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
-    "reading": "",
+    "id" : 19,
+    "word": "覚ゆ（おぼゆ）",
+    "reading": "おぼゆ",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "思われる"}, 
+      {"no" : 2 , "text" : "思い出す・思い出される"}, 
+      {"no" : 3 , "text" : "似る・似ている"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "世の中にまた類ある事とも\"おぼえ\"ず。（更級）",
+        "translation" : "世の中にまた類例があることとも\"思われ\"ない。",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "うちある調度も昔\"おぼえ\"て、（徒然・十段）",
+        "translation" : "ちょっと（置いて）ある調度も昔が\"思い出され\"て、",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
+        "origin" : "「国少しおぼえたるところあれば、子なめりと見給ふ。（源氏・若需）",
+        "translation" : "少し\"似\"ているところがあるので、(尼君の)子であろうと(光源氏は)ご覧になる。",
+        "help" : "光源氏が最愛の女性、若紫（=後の紫の上）に出会った場面です。"
       }
     ],
     "tips": "",
@@ -731,7 +657,7 @@
   },
   {
     "id" : 20,
-    "word": "聞こゆ",
+    "word": "聞こゆ（きこゆ）",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
@@ -760,28 +686,18 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 21,
+    "word": "まもる・まぼる（守る）",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "見つめる"}, 
+      {"no" : 2 , "text" : "監視する"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "《旬の宮は、養母の紫の上に死後の供養を頼まれて、》うちうなづきて、御顔を\"まもり\"て、涙の落つべかめれば立ちておはしぬ。（源氏・御法）",
+        "translation" : "（旬の宮は）うなずいて、（紫の上の）お顔を\"見つめ\"て、涙が落ちてきそうなので立って（部屋の外へ）いらっしゃった。",
         "help" : ""
       }
     ],
@@ -789,28 +705,17 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
+    "id" : 22,
+    "word": "頼む（たのむ）〔マ行四段〕",
+    "reading": "たのむ",
+    "Conjugation": "マ行四段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "あてにする・頼りにする・期待する"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "後の矢を\"たのみ\"て、初めの矢になほざりの心あり。（徒然・三段）",
+        "translation" : "あとの矢を\"あてにし\"て、最初の矢（を射るの）にいい加減な気持ちが起こる。",
         "help" : ""
       }
     ],
@@ -818,28 +723,79 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
+    "id" : 220001,
+    "word": "頼む（たのむ）〔マ行下二段〕",
+    "reading": "たのむ",
+    "Conjugation": "マ行下二段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "あてにさせる・頼りにさせる・ 期待させる"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "《継母だった人は梅の花が咲いたら作者のもとを訪れると約束してくれたのに来てくれない。》\"たのめ\"しをなほや待つべき（更級）",
+        "translation" : "（あなたがわたしに）\"あてにさせ\"たことをやはり待つべきでしょうか。",
+        "help" : "「し」は過去の助動詞「き」の連体形で、連用形に接続します。"
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 23,
+    "word": "被く（かづく）〔カ行四段〕",
+    "reading": "かづく",
+    "Conjugation": "カ行四段",
+    "meaning": [
+      {"no" : 1 , "text" : "かぶる"}, 
+      {"no" : 2 , "text" : "（貴人からほうびとして）いただく"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "《仁和寺の法師が酔って興に入ったあまり、》傍らなる足帰を取りて、頭に\"かづき\"たれば、（徒然・五三段）",
+        "translation" : "側にある（三本）足の賑（=食物を煮るのに用いる鉄や土製の容器）を取って、頭に\"かぶっ\"たところ、",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
+        "origin" : "禄に大桂\"かづき\"て、(大和・一三二段)",
+        "translation" : "ほうびとして大桂を\"いただい\"て、",
+        "help" : "ほうびはほとんどが衣服で、もらった人は左肩に掛けて退出します。"
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 230001,
+    "word": "被く（かづく）〔カ行下二段〕",
+    "reading": "かづく",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "かぶせる"}, 
+      {"no" : 2 , "text" : "（貴人がほうびとして）与える"}
+    ],
+    "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "（中納言は）御衣（おほんぞ）脱ぎて\"かづけ\"給うつ。（竹取・燕の子貝貝）",
+        "translation" : "(中納言は)お召し物を脱いで\"（ほうびとして）与え\"なさった。",
+        "help" : "「かづけ給うつ」の「給う」は、「給ひ」がウ音便になった形です。"
+      }
+    ],
+    "tips": "",
+    "related_words": [23001]
+  },
+  {
+    "id" : 23001,
+    "word": "潜く（かづく）",
+    "part_of_speech" : "動詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "潜る"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "《海はやはり実に恐ろしいと思うが、》まいて海女の\"かづき\"しに入るは憂きわざなり。（秋・うちとくまじき物）",
+        "translation" : "まして海女が\"潜り\"をしに（海に）入るのはつらいことである。",
         "help" : ""
       }
     ],
@@ -847,28 +803,49 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
-    "reading": "",
+    "id" : 24,
+    "word": "ののしる",
+    "reading": "ののしる",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "大声を出す・大声で騒ぐ"}, 
+      {"no" : 2 , "text" : "評判になる・噂になる"}, 
+      {"no" : 3 , "text" : "勢いが盛んである・羽振りをきかす"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "里びたる声したる犬どもの曲で来て\"ののしる\"も、いと恐ろしく、（源氏・浮舟）",
+        "translation" : "田舎びた声をした何匹かの犬が出て来て\"大声で騒ぐ\"のも、とても恐ろしく、",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
+        "origin" : "この世に\"ののしり\"たまふ光源氏、かかるついでに見たてまつりたまはんや。（源氏・若紫）",
+        "translation" : "この世で\"評判になっ\"ていらっしゃる光源氏を、この機会に拝見しなさいませんか。",
+        "help" : "「たてまつり」は謙譲の補助動詞、「たまは」は尊敬の補助動詞、「ん」は推量の助動詞「ん（=む）」の勧誘用法です。「見る」の謙譲表現は、「見申し上げる」より「拝見する」と訳すのがいいでしょう。"
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "左の大臣の北の方にて\"ののしり\"給ひける時、（大和・十二四段）",
+        "translation" : "左大臣の夫人として\"羽振りをきかせ\"ていらっしゃったときに、",
+        "help" : ""
+      }
+    ],
+    "tips": "",
+    "related_words": [24001]
+  },
+  {
+    "id" : 24001,
+    "word": "らうがはし",
+    "part_of_speech" : "形容詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "騒がしい"}, 
+      {"no" : 2 , "text" : "乱雑だ・乱れている"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "皆同じく笑ひののしる、いと\"らうがはし\"。（徒然・五六段）",
+        "translation" : "皆同じように笑い大声を出すのが、実に\"騒がしい\"。",
         "help" : ""
       }
     ],
@@ -876,28 +853,60 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
+    "id" : 25,
+    "word": "遣る（やる）",
+    "reading": "やる",
+    "Conjugation": "ラ行四段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "（人を）行かせる・（物を）送る"}, 
+      {"no" : 2 , "text" : "〈動詞＋「やらず」の形で〉～きれない・最後まで〔～し〕ない"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "人の許（がり）いふべき事ありて、文を\"やる\"とて、（徒然・三一段）",
+        "translation" : "（ある）人のもとへ言わなければならないことがあって、手紙を\"送る\"といって（=ときに）、",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "《老人は「大君のつらそうな様子を語る。》言ひも\"やらず\"泣くさま、ことわりなり。（源氏・総角）",
+        "translation" : "（老人が）言い\"きれず\"泣く様子は、もっともである。",
         "help" : ""
-      },
+      }
+    ],
+    "tips": "",
+    "related_words": [25001,25002]
+  },
+  {
+    "id" : 25001,
+    "word": "おこす",
+    "part_of_speech" : "動詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "よこす"}
+    ],
+    "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "かしこより人\"おこせ\"ば、これをやれ。（伊勢・九六段）",
+        "translation" : "あちらから（使いの）人を\"よこし\"たら、これをやってくれ。",
+        "help" : "「やる」と「おこす」は、「（こちらから向こうに）言ひやる」と「（向こうからこちらに）言ひおこす」、「（こちらから向こうを）見やる」と 「（向こうからこちらを）見おこす」のように、複合動詞においても反対語として使われます。"
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 25002,
+    "word": "破る（やる）",
+    "reading": "やる",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "破る"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "（こんな日記は）とまれかうまれ、とく\"破り\"てむ。（土佐・二月十六日）",
+        "translation" : "（こんな日記は）ともかく、早く\"破っ\"てしまおう。",
         "help" : ""
       }
     ],
@@ -905,28 +914,67 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 26,
+    "word": "答ふ（いらふ）",
+    "reading": "",
+    "Conjugation": "ハ行下二段",
+    "meaning": [
+      {"no" : 1 , "text" : "答える"}
+    ],
+    "example_sentences" : [],
+    "tips": "",
+    "related_words": [26001]
+  },
+  {
+    "id" : 26001,
+    "word": "いらへ・さしいらへ",
+    "part_of_speech" : "名詞",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "返事・返答"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
+        "origin" : "《稚児は自分の仕える僧たちが、ぼたもちを作ろうと言ったのを聞いて心待ちにしていたが、寝ないで待っているのもみっともないだろうと思い、寝たふりをしていた。やがてぼたもちはできあがり、稚児の期待どおり僧は声をかけてくれたが、》ただ一度に\"いらへ\"むも、待ちけるかともぞ思ふとて、（宇治・巻一・十二話）",
+        "translation" : "ただ一度で\"答える\"ようなのも、待っていたのかと思うと困ると考えて、",
+        "help" : "「もぞ～（連体形）」で「～すると困る」という意です。"
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 27,
+    "word": "明らむ（あきらむ）",
+    "reading": "",
+    "Conjugation": "マ行下二段",
+    "meaning": [
+      {"no" : 1 , "text" : "明らかにする・はっきりさせる"}
+    ],
+    "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "何事なりとも\"あきらめ\"申さん。（徒然・一三五段）",
+        "translation" : "何事であっても\"明らかにし\"て差し上げよう。",
         "help" : ""
-      },
+      }
+    ],
+    "tips": "",
+    "related_words": [27001]
+  },
+  {
+    "id" : 27001,
+    "word": "明かし（あかし）",
+    "part_of_speech" : "形容詞",
+    "reading": "あかし",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "明るい"}
+    ],
+    "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "火の\"あかき\"所へ出で来たりて、（宇治・巻十四・十一話）",
+        "translation" : "（入道は）灯火の\"明るい\"所へ出て来て、",
         "help" : ""
       }
     ],
@@ -934,28 +982,51 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
-    "reading": "",
+    "id" : 28,
+    "word": "匂ふ（にほふ）",
+    "reading": "にほふ",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "美しく映える・美しく輝く"}, 
+      {"no" : 2 , "text" : "香りがする"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
+        "origin" : "いにしへの奈良の都の八重桜けふ九重に\"にほひ\"ぬるかな（調花・二九）",
+        "translation" : "昔の（都である）奈良の都で咲いた八重桜が、今日この宮中で\"美しく咲い\"たなあ。",
+        "help" : "「にほふ」と同じく「かをる」にも[2]だけでなく[1]の意味もあります。訳すときは花なら「咲く」、夕焼けなら「映える」といったようにその状態をイメージして訳してください。"
+      }
+    ],
+    "tips": "",
+    "related_words": [28001]
+  },
+  {
+    "id" : 28001,
+    "word": "にほひ",
+    "part_of_speech" : "名詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "美しい色つや"},
+      {"no" : 2 , "text" : "香り"}
+    ],
+    "example_sentences" : [],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 29,
+    "word": "念ず（ねんず）",
+    "reading": "ねんず",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "我慢する"}, 
+      {"no" : 2 , "text" : "（心の中で）祈る〔現代語と同じ〕"}
+    ],
+    "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "《伏見稲荷に一念発起して参詣したときに、》 中の御社のほどの、わりなうくるしきを、\"念じ\"のぼるに、（枕・うらやましげなる物）",
+        "translation" : "中のお社のあたりが（急坂で）、どうしようもなく苦しいのを、\"我慢して\"登っていると、",
         "help" : ""
       }
     ],
@@ -963,28 +1034,62 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 30,
+    "word": "設く（まうく）",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "準備する・用意する"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "懐に\"設け\"たる、柄短き筆など、御車とどむる所にて奉れり。（源氏・澪標）",
+        "translation" : "（惟光は）懐に懐に\"用意し\"ていた、柄の短い筆などを、お車をとめる場所で（光源氏に）差し上げた。",
         "help" : ""
-      },
+      }
+    ],
+    "tips": "",
+    "related_words": [30001,30002,30003]
+  },
+  {
+    "id" : 30001,
+    "word": "まうけ",
+    "part_of_speech" : "名詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "準備・用意"}
+    ],
+    "example_sentences" : [],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 30002,
+    "word": "心まうけ",
+    "part_of_speech" : "名詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "心積もり〔心の用意〕"}
+    ],
+    "example_sentences" : [],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 30003,
+    "word": "まうけの君",
+    "part_of_speech" : "名詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "皇太子"}
+    ],
+    "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "（一の皇子は）疑ひなき\"まうけの君\"と、世にもてかしづききこゆれど、 （源氏・桐壺）",
+        "translation" : "(一の皇子は)疑いもない\"皇太子\"と（して）、世間でも大切にし申し上げるが、",
         "help" : ""
       }
     ],
@@ -992,28 +1097,24 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
-    "reading": "",
+    "id" : 31,
+    "word": "ゐる（居る）",
+    "reading": "ゐる",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "座る"}, 
+      {"no" : 2 , "text" : "じっとしている・（人が）留まる・（鳥が）とまる"}, 
+      {"no" : 3 , "text" : "〈動詞の連用形について〉～ている"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
+        "origin" : "三寸ばかりなる人、いとうつくしうて\"ゐ\"たり。（竹取・かぐや姫の生ひ立ち）",
+        "translation" : "三寸（=約九センチ）くらいの人が、とてもかわいらしく\"座っ\"ている。",
+        "help" : "ご存じ、かぐや姫を竹取の翁が見つけたところです。"
       },
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "物の隠れよりしばし見\"ゐ\"たるに、（徒然・三段）",
+        "translation" : "物の陰からしばらく見\"てい\"たところ、",
         "help" : ""
       }
     ],
@@ -1021,28 +1122,17 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
-    "reading": "",
+    "id" : 310001,
+    "word": "ゐる（率る）",
+    "reading": "ゐる",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "連れる・伴う"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "やうやう夜も明けゆくに、見れば\"率て\"来し女もなし。（伊勢・六段）",
+        "translation" : "しだいに夜も明けていくので、見ると\"連れ\"て来た女もいない。",
         "help" : ""
       }
     ],
@@ -1050,28 +1140,65 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 32,
+    "word": "具す（ぐす）",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "伴う・連れる・添える"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "坏なども\"具せ\"ざりければ、手にむすびて食はす。（伊勢・異二段）",
+        "translation" : "（男は）器なども\"伴っ\"（=持っ）ていなかったので、（水を）手ですくって（女に）飲ませる。",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "《故中務の宮は北の方がお亡くなりになって後、》ちひさき君たちをひき\"ぐし\"て、三条右大臣殿にすみたまひけり。（大和・九四段）",
+        "translation" : "幼いお子様たちを引き\"連れ\"て（=お子様たちと一緒に）、三条の右大臣のお屋敷に住んでいらっしゃった。",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "かの奉る不死の薬壺に文\"具し\"て、御側に賜はす。（竹取・富士の煙）",
+        "translation" : "（帝は）あの（かぐや姫が）差し上げた不死の薬の壺に、手紙を\"添え\"て、お使いにお与えになる。",
+        "help" : ""
+      }
+    ],
+    "tips": "",
+    "related_words": [32001]
+  },
+  {
+    "id" : 32001,
+    "word": "たぐふ",
+    "part_of_speech" : "動詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "〔四段〕添う・伴う"}, 
+      {"no" : 2 , "text" : "〔下二段〕添わせる・伴わせる・比べる"}
+    ],
+    "example_sentences" : [],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 33,
+    "word": "経（ふ）",
+    "reading": "",
+    "Conjugation": "八行下二段",
+    "meaning": [
+      {"no" : 1 , "text" : "（時間が）たつ 〔経過する〕"}, 
+      {"no" : 2 , "text" : "（場所を）通る〔経由する〕"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "日ごろ\"経\"て、宮に帰りたまうけり。（伊勢・八三段）",
+        "translation" : "数日が\"たつ\"て、御所にお帰りになった。",
+        "help" : ""
+      },
+      {
+        "origin" : "黒崎の松原を\"へ\"て行く。（土佐・二月一日）",
+        "translation" : "黒崎の松原を\"通っ\"て行く。",
         "help" : ""
       }
     ],
@@ -1079,8 +1206,8 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 34,
+    "word": "さる（避る）〔動詞〕",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
@@ -1089,18 +1216,88 @@
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "え\"さら\"ぬことのみいとど重なりて、（徒然・五九段）",
+        "translation" : "\"避ける\"ことのできないことばかりがますます重なって、",
+        "help" : ""
+      }
+    ],
+    "tips": "",
+    "related_words": [34001]
+  },
+  {
+    "id" : 340001,
+    "word": "さる（去る）",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "（時節が）来る・（その時代に）なる"}, 
+      {"no" : 2 , "text" : "立ち去る・過ぎ去る〔現代語と同じ〕"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "夕\"され\"ば野辺の秋風身にしみて鳴くなり深草の里(千載・二五九)",
+        "translation" : "夕方に\"なる\"と野辺の秋風が身にしみて、奥が鳴く声が聞こえてくる。深草の里で。",
+        "help" : "「千載和歌集』の撰者、藤原俊成が詠んだ歌で、彼はこの歌を自分の代表歌であると考えていたようです。"
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 34001,
+    "word": "さる(然る)〔連体詞〕",
+    "part_of_speech" : "連体詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "しかるべき・立派な"}
+    ],
+    "example_sentences" : [],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 35,
+    "word": "物す（ものす）",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "（ものごとを）する"}, 
+      {"no" : 2 , "text" : "〈「ものし給ふ」の形で〉いらっしゃる"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "さる御文をだに\"ものせ\"させ給へ。（落窪・巻一）",
+        "translation" : "せめてそのようなお手紙だけでもお\"書き\"ください。",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "《光源氏はお尋ねになった。》中将はいづこより\"ものし\"つるぞ。（源氏・野分）",
+        "translation" : "中将（=夕霧）はどこから\"来\"たのか。",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "かく世を離るるさまに\"ものし\"たまへば、（源氏・夕顔）",
+        "translation" : "（あなたは）このように俗世を離れた（=出家した）様子で\"いらっしゃる\"ので、",
+        "help" : ""
+      }
+    ],
+    "tips": "",
+    "related_words": [35001,35002]
+  },
+  {
+    "id" : 35001,
+    "word": "ものし",
+    "part_of_speech" : "形容詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "不快だ・見苦しい"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "宮はいとどしき御心なれば、いとものしき御気色にて、（源氏,賢木）",
+        "translation" : "宮はいっそう激しいご性格であるので、実に〔不快なご様子で、",
         "help" : ""
       }
     ],
@@ -1108,28 +1305,24 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 35002,
+    "word": "あり",
     "reading": "",
+    "part_of_speech" : "動詞",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "ある・いる"}, 
+      {"no" : 2 , "text" : "（ものごとを）する"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "（夫が）「見むと思はば」と\"ある\"を、（乗蛤・上巻）",
+        "translation" : "（夫が）「見たいと思うならば」と\"言う\"のを、",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "（宮はお手紙に）「あさましく」と\"あり\"。（和泉式部）",
+        "translation" : "（宮はお手紙に）「あきれたことです」と\"お書きになっている\"。",
         "help" : ""
       }
     ],
@@ -1137,28 +1330,60 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 36,
+    "word": "慣らふ・馴らふ（ならふ）",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "慣れる"}, 
+      {"no" : 2 , "text" : "親しくなる・なじむ"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "さすが\"ならは\"ぬ道なれば、（とはずがたり・巻四）",
+        "translation" : "それでもやはり\"慣れ\"ない道であるので、",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "《山の桜はまだ盛りで、霞の様子も美しく見えるので、》（光源氏は）かかる有様も\"ならひ\"給はず、ところせき御身にて、珍しう思されけり。（源氏・若紫）",
+        "translation" : "（光源氏は）このような（山の）様子にも\"なじみ\"なさっていなくて、（簡単には外出できない）窮屈なご身分で、（山の景色を）すばらしいとお思いになった。",
+        "help" : ""
+      }
+    ],
+    "tips": "",
+    "related_words": [36001]
+  },
+  {
+    "id" : 36001,
+    "word": "慣らひ（ならひ）",
+    "part_of_speech" : "名詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "習慣・ならわし"}
+    ],
+    "example_sentences" : [],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 37,
+    "word": "忍ぶ（しのぶ）",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "我慢する・こらえる〔耐え忍ぶ〕"}, 
+      {"no" : 2 , "text" : "人目につかないようにする〔人目を忍ぶ〕"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "《ほかの女のもとに夫が通うようになった妻は平気を装っていたが、》心地にはかぎりなく妬く心憂く思ふを、\"しのぶる\"になむありける。（大和・一四九段）",
+        "translation" : "（妻は）心ではこの上なく妬ましくつらく思っているのを、\"我慢する\"のであった。",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "寺、社などに\"しのび\"てこもりたるもをかし。(徒然・十五段)",
+        "translation" : "寺や、神社などに\"人目を忍ん\"で籠もっているのもすばらしい。",
         "help" : ""
       }
     ],
@@ -1166,28 +1391,17 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 370001,
+    "word": "偲ぶ（しのぶ）",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "思い出す・恋い慕う〔過去、人を偲ぶ〕"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "なき人を\"しのぶる\"宵のむら雨に濡れてや来つる山時鳥（源氏・幻）",
+        "translation" : "亡き人を\"思い出す\"夜の俄雨（にわか雨）に濡れてやってきたのか。山の時鳥は。",
         "help" : ""
       }
     ],
@@ -1195,8 +1409,8 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 38,
+    "word": "詫ぶ（わぶ）",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
@@ -1205,18 +1419,18 @@
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "《光源氏は酔ったふりをして宴を退出し、寝殿の女房に話しかけた、》いといたう強ひられて、\"わび\"にて侍り。（源氏・花宴）",
+        "translation" : "実にひどく（酒を）強制されて、\"困っ\"てしまっております。",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "限りなく遠くも来にけるかな、と\"わび\"合へるに、（伊勢・九段）",
+        "translation" : "（男たちは）この上なく遠くまで来てしまったものだなあと、\"嘆き\"合っていると、",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "《人々は飢饉に苦しんで、》念じ\"わび\"つつ、様々の財物かたはしより捨つるが如くすれども、（方丈）",
+        "translation" : "我慢し\"かね\"て、様々な宝物を片っ端から捨てるようにする（=安く売り払う）が、",
         "help" : ""
       }
     ],
@@ -1224,28 +1438,240 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 39,
+    "word": "をかし",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "すばらしい〔美しい・かわいい・おもしろい・風流だなど肯定的に評価する様子や心情を表す〕"}, 
+      {"no" : 2 , "text" : "おかしい・滑稽だ"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "《夏は夜がいい。闇夜でもたくさんの蛍が飛び交っている。》また、ただひとつふたつなど、ほのかにうちひかりて行くも\"をかし\"。（枕・春は曙）",
+        "translation" : "また、一匹か二匹ほど、ほのかに光って（飛んで）行くのも、\"すばらしい（すてきだ・美しい・風情がある）\"。",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "笛をいと\"をかしく\"吹き澄まして、過ぎぬなり。（更級）",
+        "translation" : "笛をとても\"すばらしく（うまく）\"澄んだ音色で吹いて、通り過ぎて行ってしまったようだ。",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "妻、「\"をかし\"」と思ひて、笑ひてやみにけり。（今昔・二八巻・四二話）",
+        "translation" : "妻は、「\"滑稽だ（おかしい）\"」と思って、笑って終わった。",
+        "help" : ""
+      },
+      {
+        "origin" : "童の\"をかしげなる\"、出で来てうち招く。（源氏・夕顧）",
+        "translation" : "女の童（=召し使いの少女）で\"かわいい様子の\"童が、出てきて手招きをする。",
+        "help" : "「げなり」は「様子である・らしい」という意を添える接尾語で形容動詞をつくります。"
+      }
+    ],
+    "tips": "",
+    "related_words": [39001,39002]
+  },
+  {
+    "id" : 39001,
+    "word": "おもしろし",
+    "part_of_speech" : "形容詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "すばらしい・ 楽しい・風流だ"}
+    ],
+    "example_sentences" : [],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 39002,
+    "word": "たのし",
+    "part_of_speech" : "形容詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "裕福だ"}
+    ],
+    "example_sentences" : [],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 40,
+    "word": "よろし",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "悪くはない・まあよい"}, 
+      {"no" : 2 , "text" : "普通だ"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "《静縁法師が鴨長明に自作の歌についての評価を聞いた。》「\"よろしく\"侍り。」（無名抄）",
+        "translation" : "「\"悪くはない\"です（=\"悪くはありません\"）。」",
+        "help" : "長明はこの返答にさらに次のように言葉を継ぎました。「ただし、『泣かれぬる』という詞があまりに浅はかすぎて、どうかと思われます」。このことからも「よろし」は絶対的な肯定評価を表す語ではないことが分かるでしょう。"
+      },
+      {
+        "origin" : "《光源氏が三歳のとき、母である桐壷の更衣が亡くなった。》\"よろしき\"事にだに、かかる別れの悲しからぬはなきわざなるを、ましてあはれに言ふかひなし。（源氏・桐壺）",
+        "translation" : "\"普通の\"状況でさえ、このような（母子の）別れが悲しくないことはないことだが、まして（源氏の幼さを考えると）かわいそうでどうしようもない。",
+        "help" : ""
+      }
+    ],
+    "tips": "",
+    "related_words": [40001,40002,40003]
+  },
+  {
+    "id" : 40001,
+    "word": "よし",
+    "part_of_speech" : "形容詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "身分が高い・教養がある"}, 
+      {"no" : 2 , "text" : "よい"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "\"よき人\"はあやしきことを語らず。（徒然・七三段）",
+        "translation" : "\"身分が高く教養がある人\"は不思議な（=妙な）ことを語らない。",
+        "help" : "「徒然草」の作者、兼好法師のあこがれていた平安時代の貴族、彼らの知的なセンス、教養はその身分の高さに支えられていたのです。"
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 40002,
+    "word": "あし",
+    "part_of_speech" : "形容詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "悪い"}
+    ],
+    "example_sentences" : [],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 40003,
+    "word": "わろし",
+    "part_of_speech" : "形容詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "よくはない"}
+    ],
+    "example_sentences" : [],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 41,
+    "word": "ありがたし",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "めったにない・珍しい"}, 
+      {"no" : 2 , "text" : "（めったにないほど）すばらしい"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "\"ありがたき\"もの。舅（しうと）にほめらるる婿。（枕・ありがたき物）",
+        "translation" : "\"めったにない\"もの。男（=妻の父）にほめられる婿。",
+        "help" : ""
+      },
+      {
+        "origin" : "「さ候へばこそ、世に\"有り難き\"ものには侍りけれ」とていよいよ秘蔵しけり。（徒然・八八段）",
+        "translation" : "「そうでございますから、実に\"すばらしい\"ものなのでございますよ」と言ってますます大切にしまっていた。",
+        "help" : "ある人が、書家の小野道風の書いた『和漢朗詠集』を持っていると言っていましたが、小野道風は九六六年没、「和漢朗詠集」は一〇一二年ごろに成立。その矛盾を指摘されて言った言葉です。"
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" :42,
+    "word": "付き付きし（つきづきし）",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "似つかわしい・ふさわしい"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "家居の\"つきづきしく\"、あらまほしきこそ、仮の宿りとは思へど、興あるものなれ。（徒然・十段）",
+        "translation" : "住居が（住んでいる人に）\"似つかわしく\"、理想的であるのは、（現世における）仮の宿だとは思っても、興味をそそられるものである。",
+        "help" : "何に対して似つかわしいのかは、書かれていないことが多いので補って訳すように心がけてください。"
+      }
+    ],
+    "tips": "漢字をあてて覚えましょう。「付き」を二つ重ねて、ぴったり付いている、つまり、その場の雰囲気と調和している様子を表します。",
+    "related_words": [42001]
+  },
+  {
+    "id" : 42001,
+    "word": "つきなし",
+    "part_of_speech" : "形容詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "似つかわしくない"}
+    ],
+    "example_sentences" : [],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 43,
+    "word": "なまめかし",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "優美だ・上品だ"}, 
+      {"no" : 2 , "text" : "若々しい・みずみずしい"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "（春宮は）あてに\"なまめかしく\"おはします。（源氏・若葉下）",
+        "translation" : "（皇太子は）高貴で\"上品で（優美で）\"いらっしゃる。",
+        "help" : ""
+      },
+      {
+        "origin" : "《光源氏は四十歳のお祝いをお迎えになるが、》",
+        "translation" : "\"なまめかしく\"、人の親げなくおはしますを、（源氏・若菜上）",
+        "help" : "\"若々しく\"、人の親という様子ではなくていらっしゃるので、"
+      }
+    ],
+    "tips": "",
+    "related_words": [43001]
+  },
+  {
+    "id" : 43001,
+    "word": "なまめく",
+    "part_of_speech" : "動詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "落ち着いて上品だ"}, 
+      {"no" : 2 , "text" : "若くみずみずしい"}
+    ],
+    "example_sentences" : [],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 44,
+    "word": "めでたし",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "すばらしい"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "藤の花は、しなひ長く、色濃く咲きたる、いと\"めでたし\"。（枕・木の花は）",
+        "translation" : "藤の花は、花房のしだれが長く、色が濃く咲いているのが、とても\"すばらしい\"。",
         "help" : ""
       }
     ],
@@ -1253,28 +1679,23 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 45,
+    "word": "うるはし",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "きちんとしている・整っている・端正だ"}, 
+      {"no" : 2 , "text" : "立派だ・美しい・見事だ"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
+        "origin" : "日の装束\"うるはしく\"したる人の、太刀 帯（は）きて笏（しやく）取り、（今昔・二七巻・二話）",
+        "translation" : "晴れの装束を\"きちんと\"着た人が、太刀を身につけて笏を（手に）取り、",
+        "help" : "「日」は「晴れ」と同じで、「公・公式」の意。「髪」の反対語です。"
       },
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "（枇杷殿は）あまり御心\"うるはしく\"すなほにて、へつらひ飾りたる小国には負はぬ御相なり。（大鏡・雑々物語）",
+        "translation" : "（枇杷殿は）あまりにお気持ちが\"美しく\"素直で、へつらい飾った小国（=この国）には似合わないご人相である。",
         "help" : ""
       }
     ],
@@ -1282,28 +1703,53 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 46,
+    "word": "やむごとなし・やんごとなし・やごとなし",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "高貴だ・尊い"}, 
+      {"no" : 2 , "text" : "格別だ・並々でない・優れている"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "\"やむごとなき\"人のかくれ給へるもあまた聞こゆ。（方丈）",
+        "translation" : "\"高貴な\"人がお亡くなりになったということもたくさん聞こえる （=耳にした）",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "この大臣（おとど）の御おぼえいと\"やむごとなき\"に、（源氏・桐壺）",
+        "translation" : "この大臣のご評判（=人望）は実に\"並々でない\"ので、",
+        "help" : "「この大臣」とは左大臣のことで、光源氏はその姫君、葵の上を最初の正妻としました。"
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 47,
+    "word": "大人し（おとなし）",
+    "reading": "",
+    "Conjugation": "シク活用",
+    "meaning": [
+      {"no" : 1 , "text" : "大人らしい・大人びている・ませている"}, 
+      {"no" : 2 , "text" : "思慮分別がある・落ち着いている"}, 
+      {"no" : 3 , "text" : "主だっている・年配で中心的な立場の者である"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "（春宮（とうぐう）は）十一になりたまへど、ほどより大きに\"大人しう\"きよらにて、（源氏・澪標）",
+        "translation" : "（皇太子は）十一歳におなりになるが、年齢よりも大いに\"大人びていて\"美しく、",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "上人なほゆかしがりて、\"おとなしく\"物知りぬべき顔したる神官を呼びて、（徒然・二三六段）",
+        "translation" : "上人はやはり知りたがって、\"思慮分別があり\"物を（よく）知っていそうな神官を呼んで、",
+        "help" : ""
+      },
+      {
+        "origin" : "\"おとなしく\"、もどきぬべくもあらぬ人のいひ聞かするを、（徒然・一六八段）",
+        "translation" : "\"主だっていて\"、逆らって非難することができそうもない人が言い聞かせるのを、",
         "help" : ""
       }
     ],
@@ -1311,28 +1757,23 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 48,
+    "word": "ゆかし",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "見たい・聞きたい・知りたい"}, 
+      {"no" : 2 , "text" : "心ひかれる・慕わしい"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "（天香具山は）年ごろ\"ゆかしう\"思ひわたりし所なりければ、（菅笠・下巻）",
+        "translation" : "（天香具山は）長年\"見たいと\"（=登りたく）思い続けていた所であったので、",
         "help" : ""
       },
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "山路来て何やらゆかしすみれ草（野ざらし）",
+        "translation" : "（さびしい）山道をやってきて何やら\"心ひかれる\"。すみれ草よ。",
         "help" : ""
       }
     ],
@@ -1340,28 +1781,86 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 49,
+    "word": "なつかし",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "親しみ深い・心ひかれる・好ましい"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
+        "origin" : "（村上天皇は）\"なつかしう\"なまめきたる方は、延喜にまさり申させたまへり。（大鏡・雑々物語）",
+        "translation" : "（村上天皇は）\"親しみ深く\"優美な点では、醍醐天皇にまさり申し上げなさっている。",
+        "help" : "古文では年号がその時代の天皇を表すことがあります。特に「延喜」が「醍醐天皇」、「天暦（てんりゃく）」が「村上天皇」のことをいうのは覚えておいてください。"
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 50,
+    "word": "恥づかし（はづかし）",
+    "reading": "はづかし",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "恥ずかしい・きまりが悪い〔現代語と同じ〕"}, 
+      {"no" : 2 , "text" : "（こちらが恥ずかしくなるほど相手が）立派だ"}
+    ],
+    "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
+        "origin" : "\"はづかしき\"人の、歌の本末間ひたるに、ふとおぼえたる、我ながらうれし。（枕・うれしき物）",
+        "translation" : "\"（こちらが恥ずかしくなるほど）立派な\"方が、歌の上の旬や下の句を尋ねたときに、ふと思い出したのは、我ながらうれしい。",
+        "help" : "勝ち気な清少納言も立派な相手にはしおらしいところもあったようです。\n歌の「本」=「上の句」と「末」=「下の句」は必ず覚えてほしい語です。"
+      }
+    ],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 51,
+    "word": "こころにくし",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "奥ゆかしい・上品だ・心ひかれる"}
+    ],
+    "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "《身分が高く教養がある人の住まいというものは、》うちある調度も昔覚えてやすらかなるこそ、\"心にくし\"と見ゆれ。（徒然・十段）",
+        "translation" : "ちょっと（置いて）ある調度も昔が思い出されて（=古風で）落ち着いているのが、\"奥ゆかしい\"と思われる。",
+        "help" : ""
+      }
+    ],
+    "tips": "",
+    "related_words": [51001]
+  },
+  {
+    "id" : 51001,
+    "word": "にくし",
+    "part_of_speech" : "形容詞",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "気にくわない・いやだ"}
+    ],
+    "example_sentences" : [],
+    "tips": "",
+    "related_words": []
+  },
+  {
+    "id" : 52,
+    "word": "美し（うつくし）",
+    "reading": "",
+    "Conjugation": "行段",
+    "meaning": [
+      {"no" : 1 , "text" : "かわいい・いとしい"}, 
+      {"no" : 2 , "text" : "美しい〔現代語と同じ〕"}
+    ],
+    "example_sentences" : [
+      {
+        "origin" : "\"うつくしき\"もの。瓜にかきたるちごの顔。（枕・うつくしき物）",
+        "translation" : "\"かわいい\"もの。瓜に描いた幼児の顔。",
         "help" : ""
       }
     ],
@@ -1369,1133 +1868,34 @@
     "related_words": []
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 53,
+    "word": "かなし",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "いとしい・かわいい"}, 
+      {"no" : 2 , "text" : "悲しい〔現代語と同じ〕"}
     ],
     "example_sentences" : [
       {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
+        "origin" : "《男は新しい妻を河内に持った。もとからの妻は河内に出かける男をこころよく送り出す。疑念を抱いた男は出かけるふりをして庭の植え込みに身を隠す。妻は男の向かったであろう遠く険しい山の方を見つめ、男の身を案じる歌を詠んだのだった。》（男は）限りなく\"かなし\"とおもひて、河内へも行かずなりにけり。（伊勢・三三段）",
+        "translation" : "（男はもとからの妻を）この上なく\"いとしい\"と思って、河内へも行かなくなってしまった。",
         "help" : ""
       }
     ],
     "tips": "",
-    "related_words": []
+    "related_words": [53001]
   },
   {
-    "id" : 0,
-    "word": "",
+    "id" : 53001,
+    "word": "かなしうす",
+    "part_of_speech" : "動詞",
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
+      {"no" : 1 , "text" : "かわいがる"}
     ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
-    "tips": "",
-    "related_words": []
-  },
-  {
-    "id" : 0,
-    "word": "",
-    "reading": "",
-    "Conjugation": "行段",
-    "meaning": [
-      {"no" : 1 , "text" : ""}, 
-      {"no" : 2 , "text" : ""}
-    ],
-    "example_sentences" : [
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      },
-      {
-        "origin" : "",
-        "translation" : "",
-        "help" : ""
-      }
-    ],
+    "example_sentences" : [],
     "tips": "",
     "related_words": []
   },
@@ -8359,7 +7759,7 @@
   },
   {
     "id" : 290,
-    "word": "宣ふ・宣はす",
+    "word": "宣ふ・宣はす（のたまふ・のたまはす）",
     "reading": "のたまふ・のたまはす",
     "Conjugation": "行段",
     "meaning": [
@@ -8382,7 +7782,7 @@
   },
   {
     "id" : 291,
-    "word": "仰す",
+    "word": "仰す（おほす）",
     "reading": "おほす",
     "Conjugation": "行段",
     "meaning": [
@@ -9737,7 +9137,7 @@
     "reading": "",
     "Conjugation": "行段",
     "meaning": [
-      {"no" : 1 , "text" : "たいした（～ない）"}
+      {"no" : 1 , "text" : "たいした〔～ない〕"}
     ],
     "example_sentences" : [
       {
@@ -10042,7 +9442,7 @@
   },
   {
     "id" : 360,
-    "word": "所得",
+    "word": "所得（ところう）",
     "reading": "ところう",
     "Conjugation": "行段",
     "meaning": [
