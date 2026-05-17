@@ -522,7 +522,12 @@
             fillHighlight : true,
             GendaigoKogo : false
         }*/
-
+        const QUIZ_TYPE = Object.freeze({
+        fourOption : "四択問題",
+        Typing : "一問一答",
+        fillFourOption : "例文穴埋め四択問題",
+        fillTyping : "例文穴埋め問題"
+        })
         const quizState = {
             mode : appState.optionBuilder.GendaigoKogo,
             includeRelation : appState.optionBuilder.includeRelation,
@@ -548,7 +553,7 @@
                 numOfexamples : 0,
                 numOfWords : 0
             },
-            type : "",
+            type : QUIZ_TYPE.fillFourOption,
             fourOptionForFill : [],
             fourOptionNoNormalized : [],
             quizMeaningPool : [],
@@ -950,12 +955,7 @@
         }
         return 'Unknown';
         }
-        const QUIZ_TYPE = Object.freeze({
-        fourOption : "四択問題",
-        Typing : "一問一答",
-        fillFourOption : "例文穴埋め四択問題",
-        fillTyping : "例文穴埋め問題"
-        })
+        
         function getType(){
         if(appState.optionBuilder.fourOption) return QUIZ_TYPE.fourOption;
         if(appState.optionBuilder.typing) return QUIZ_TYPE.Typing;
