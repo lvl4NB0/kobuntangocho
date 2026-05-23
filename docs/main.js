@@ -1,4 +1,4 @@
-//TODO : タイピング問題でも正しくできるように四択の選択肢や答えを意味全てで一つにする
+//TODO : クイズ出題ロジックを"リライト"。それに伴って赤文字のみの出題に対応するためデータ構造の見直し。（posも追加する）
 
 //function main(){
     /**
@@ -31,7 +31,11 @@
         isHighlighted : true,
         history : [],
         phase : phaseList.initialize,
-        optionBuilder : {}
+        optionBuilder : {},
+        QuizSession : undefined,
+        fourOptionForFill : [],
+        fourOptionForFillRegacyLang : [],
+        quizMeaningPool : []
     }
     const DOM = Object.freeze({
         translation : document.getElementById("translation"),
@@ -64,7 +68,8 @@
     
     const PAGES_ID = {
         HOME : "home",
-        QUIZ : "quiz"
+        QUIZ : "quiz",
+        FLASHCARD : "flashCard"
     }
     function showPage(id){
         const sections = [PAGES_ID.HOME, PAGES_ID.QUIZ]
@@ -74,7 +79,7 @@
                 home();
                 break;
             case PAGES_ID.QUIZ : 
-                quiz();
+                //quiz(range);
                 break;
         }
         sections.forEach( name => {
@@ -208,14 +213,9 @@
                 errorMsg.scrollIntoView({behavior: "smooth", block: "center"});
                 return;
             }
-        //入力を正規化してから返却する関数
-        function errorCheckRange(){
-            let min = parseInt(normalizeStringForInput(inputRangeElements.inputRangeMin.value));
-            let max = parseInt(normalizeStringForInput(inputRangeElements.inputRangeMax.value));
-            if(min === 1630) return [1,630];
-            if(min === 11111){
-                    const usrAns = prompt("単語帳データをjsonでインストールしますか？（y/n）");
-                    if(usrAns === "y"){
+        function installJson(){
+            const usrAns = prompt("単語帳データをjsonでインストールしますか？（y/n）");
+                if(usrAns === "y"){
                     const blob = new Blob([JSON.stringify(appState.words, null, 2)], { type: 'application/json' });
                     const url = (window.URL || window.webkitURL).createObjectURL(blob);
                     const a = document.createElement('a');
@@ -225,7 +225,12 @@
                     a.remove();
                     window.URL.revokeObjectURL(url);
                 }
-            }
+        }
+
+        //入力を正規化してから返却する関数
+        function errorCheckRange(min,max){
+            if(min === 1630) return [1,630];
+            if(min === 11111) installJson();
             if(isNaN(min) || isNaN(max)) return [null, null];
             if(min > max) [min, max] = [max , min];
             if(min < 1) min = 1;
@@ -340,9 +345,15 @@
             }
             return ranges;
         }
+        function getInputValue(){
+            const min = parseInt(normalizeStringForInput(inputRangeElements.inputRangeMin.value));
+            const max = parseInt(normalizeStringForInput(inputRangeElements.inputRangeMax.value));
+            return [min,max]
+        }
         //input入力からrangesを返却する関数
         function rangeBuilderFromInput(){
-            const [min, max] = errorCheckRange();
+            const [inputMin, inputMax] = getInputValue();
+            const [min, max] = errorCheckRange(inputMin, inputMax);
             if(min === null || max === null) return null;
             changeRangeUI(min,max);
             return [{min : min, max : max}];
@@ -374,80 +385,13 @@
                 stdErrorout("unknown error #DEBUG:unexpected argument");
                 return;
             }
-            console.log(ranges);
 
             if(!ranges) return
             if(ranges.length === 0) return; //空配列用の予約
 
             changeRangeWords(ranges);
             appState.committedRange = ranges;
-            console.log("range has changed to",appState.committedRange);
         }
-
-        
-        //チェックボックス関連の要素
-        const cbElements = {
-        //クイズとフラッシュカード両方のオプション周りの要素
-            cbShuffle : document.getElementById("cb-shuffle"),
-            cbIncludeRelation : document.getElementById("cb-include-relation"),
-            //フラッシュカードのオプション周りの要素
-            cbExceptKnown : document.getElementById("cb-except-known"),
-            cbShowMeaningFirst : document.getElementById("cb-show-meaning-first"),
-            //クイズのオプション周りの要素
-            cbFourOption : document.getElementById("cb-four-option"),
-            cbTyping : document.getElementById("cb-typing"),
-            cbFillFourOption : document.getElementById("cb-fill-four-option"),
-            cbFillTyping : document.getElementById("cb-fill-typing"),
-            cbFillHighlight : document.getElementById("cb-fill-highlight"),
-            cbKobunToGendaibun : document.getElementById("cb-gendaigo-to-kogo"),
-            cbHideOption : document.getElementById("cb-hide-option")
-        }
-
-        //オプションの値をまとめて取得し返却する関数
-        //booleanにするのは過剰設計やったかもやけど一応変更に対応できるように書いておく
-        function createOptionBuilder(isFlashcard){
-            let optionBuilder = {
-                shuffle : Boolean(cbElements.cbShuffle.checked),
-                includeRelation : Boolean(cbElements.cbIncludeRelation.checked),
-                GendaigoKogo : Boolean(cbElements.cbKobunToGendaibun.checked)
-            }
-            if(isFlashcard){
-                optionBuilder.exceptKnown = Boolean(cbElements.cbExceptKnown.checked);
-                optionBuilder.showMeaningFirst = Boolean(cbElements.cbShowMeaningFirst.checked);
-            }else{
-                optionBuilder.fourOption = Boolean(cbElements.cbFourOption.checked);
-                optionBuilder.typing = Boolean(cbElements.cbTyping.checked);
-                optionBuilder.fillFourOption = Boolean(cbElements.cbFillFourOption.checked);
-                optionBuilder.fillTyping = Boolean(cbElements.cbFillTyping.checked);
-                optionBuilder.fillHighlight = Boolean(cbElements.cbFillHighlight.checked);
-                optionBuilder.hideOption = Boolean(cbElements.cbHideOption.checked);
-            }
-            return optionBuilder;
-        }
-        //クイズのオプションの選択に不備があるときのエラーメッセージを表示する関数
-        function missedCheckQuizOption(optionBuilder){
-            if(!optionBuilder.fourOption && !optionBuilder.typing && !optionBuilder.fillFourOption && !optionBuilder.fillTyping) {
-                stdErrorout("出題形式を少なくとも１つ選択してください")
-                return false;
-            }
-            return true;
-        }
-        //クイズとフラッシュカード両方のオプションの値を取得して、オプションの選択に不備がないかチェックする関数
-        function checkCb(isFlashcard){
-            errorMsgs.textContent = "";
-            if(!appState.committedRange || appState.committedRange.length === 0 || !appState.committedRange[0]) {
-            stdErrorout("出題範囲の入力が不正です");
-            return;
-            }
-            let optionBuilder = createOptionBuilder(isFlashcard);
-            if(!isFlashcard) {
-                const isValid = missedCheckQuizOption(optionBuilder);
-                if(!isValid) return;
-            }
-            appState.optionBuilder = optionBuilder;
-            showPage(PAGES_ID.QUIZ);
-            console.log("start with options : ",optionBuilder," and appState.commintedrange : ", appState.committedRange);
-        }       
 
         const angles = {
         //ユーザーの進捗に応じて、円グラフの角度を計算する
@@ -522,87 +466,625 @@
             fillHighlight : true,
             GendaigoKogo : false
         }*/
-        const QUIZ_TYPE = Object.freeze({
+        export const QUIZ_TYPE = Object.freeze({
         fourOption : "四択問題",
-        Typing : "一問一答",
+        typing : "一問一答",
         fillFourOption : "例文穴埋め四択問題",
         fillTyping : "例文穴埋め問題"
         })
-        const quizState = {
-            mode : appState.optionBuilder.GendaigoKogo,
-            includeRelation : appState.optionBuilder.includeRelation,
-            shuffle : appState.optionBuilder.shuffle,
-            hideOption : appState.optionBuilder.hideOption,
-            originalMap : [],
-            quizList : {
-                origin: [],
-                translation: []
-            },
-            words : [],
-            translationMap : [],
-            currentIndex : 0,
-            currentIndexInOneSet : 0,
-            answer : "",
-            question : "",
-            correct  : "",
-            correctWordID : 0,
-            questionSentence :"",
-            hintSentence : "",
-            numOfQuestion : 0,
-            oneSet : {
-                numOfexamples : 0,
-                numOfWords : 0
-            },
-            type : QUIZ_TYPE.fillFourOption,
-            fourOptionForFill : [],
-            fourOptionNoNormalized : [],
-            quizMeaningPool : [],
-            fourOptionForFillRegacyLang : []
+        //チェックボックス関連の要素
+        const cbElements = {
+        //クイズとフラッシュカード両方のオプション周りの要素
+            cbShuffle : document.getElementById("cb-shuffle"),
+            cbIncludeRelation : document.getElementById("cb-include-relation"),
+            //フラッシュカードのオプション周りの要素
+            cbExceptKnown : document.getElementById("cb-except-known"),
+            cbShowMeaningFirst : document.getElementById("cb-show-meaning-first"),
+            //クイズのオプション周りの要素
+            cbFourOption : document.getElementById("cb-four-option"),
+            cbTyping : document.getElementById("cb-typing"),
+            cbFillFourOption : document.getElementById("cb-fill-four-option"),
+            cbFillTyping : document.getElementById("cb-fill-typing"),
+            cbFillHighlight : document.getElementById("cb-fill-highlight"),
+            cbKobunToGendaibun : document.getElementById("cb-gendaigo-to-kogo"),
+            cbHideOption : document.getElementById("cb-hide-option")
         }
+
+        //オプションの値をまとめて取得し返却する関数
+        //booleanにするのは過剰設計やったかもやけど一応変更に対応できるように書いておく
+        function readOption(){
+            const data = {
+                range : appState.committedRange,
+                shuffle : cbElements.cbShuffle.checked,
+                includeRelation : cbElements.cbIncludeRelation.checked,
+                GendaigoKogo : cbElements.cbKobunToGendaibun.checked,
+                exceptKnown : cbElements.cbExceptKnown.checked,
+                showMeaningFirst : cbElements.cbShowMeaningFirst.checked,
+                fourOption : cbElements.cbFourOption.checked,
+                typing : cbElements.cbTyping.checked,
+                fillFourOption : cbElements.cbFillFourOption.checked,
+                fillTyping : cbElements.cbFillTyping.checked,
+                fillHighlight : cbElements.cbFillHighlight.checked,
+                hideOption : cbElements.cbHideOption.checked
+            }
+            return data;
+            
+        }
+                //クイズのオプションの選択に不備があるときのエラーメッセージを表示する関数
+                function missedCheckQuizOption(optionBuilder){
+                    if(!optionBuilder.fourOption && !optionBuilder.typing && !optionBuilder.fillFourOption && !optionBuilder.fillTyping) {
+                        stdErrorout("出題形式を少なくとも１つ選択してください")
+                        return false;
+                    }
+                    return true;
+                }
+
+                export class QuestionOption{
+                    constructor(data){
+                        this.range = data.range;
+                        this.shuffle = data.shuffle;
+                        this.includeRelation = data.includeRelation;
+                        this.GendaigoKogo = data.GendaigoKogo;
+                    }
+                    
+                }
+                export class QuizOption extends QuestionOption{
+                    constructor(data){
+                        super(data);
+                        this.fourOption = data.fourOption;
+                        this.typing = data.typing;
+                        this.fillFourOption = data.fillFourOption;
+                        this.fillTyping = data.fillTyping;
+                        this.fillHighlight = data.fillHighlight;
+                        this.hideOption = data.hideOption;
+                    }
+
+                    validate(){
+                        return (
+                            this.fourOption ||
+                            this.typing ||
+                            this.fillFourOption ||
+                            this.fillTyping
+                        )
+                    }
+                    getType(){
+                        if(this.fourOption) return QUIZ_TYPE.fourOption;
+                        if(this.typing) return QUIZ_TYPE.typing;
+                        if(this.fillFourOption) return QUIZ_TYPE.fillFourOption;
+                        if(this.fillTyping) return QUIZ_TYPE.fillTyping;
+                        return false;
+                    }
+                }
+
+                export class FlashCardOption extends QuestionOption{
+                    constructor(data){
+                        super(data);
+                        this.exceptKnown = data.exceptKnown;
+                        this.showMeaningFirst = data.showMeaningFirst;
+                    }
+                }
+                const QuizRenderer = {
+
+                    initializeField(type, shouldHide){
+                        console.log(getCaller())
+                        console.log("init field")
+                        const isFourOptionType = (
+                            type === QUIZ_TYPE.fourOption || 
+                            type === QUIZ_TYPE.fillFourOption
+                        )
+                        const isTypingType = !isFourOptionType;
+                        //表示設定
+                        DOM.fourOption.classList.toggle("hidden", isTypingType); //四択
+                        DOM.answerBox.classList.toggle("hidden", isFourOptionType); //回答ボックス
+                        DOM.check.classList.toggle("hidden", isFourOptionType); //回答提出ボタン
+                        DOM.hideOption.classList.toggle("hidden", isTypingType); //黒で四択を隠すやつの設定切り替えボタン
+                        this.hideOption(shouldHide) //黒で四択隠すやつ
+                        //下側の問題文
+                        DOM.translation.classList.toggle(
+                            "hidden",
+                            !(type === QUIZ_TYPE.fillFourOption || type === QUIZ_TYPE.fillTyping)
+                        )
+                        DOM.isHighlighted.classList.toggle(
+                            "hidden",
+                            !(type === QUIZ_TYPE.fillFourOption || type === QUIZ_TYPE.fillTyping)
+                        )
+                    },
+                    
+                    setAnswerFieldState(type, frozen){
+                    switch(type){
+                        case QUIZ_TYPE.fourOption:
+                        case QUIZ_TYPE.fillFourOption: //FallThrough
+                            DOM.fourOption.disabled = frozen;
+                            DOM.check.classList.toggle("hidden", !frozen);
+
+                            break;
+
+                        case QUIZ_TYPE.typing:
+                        case QUIZ_TYPE.fillTyping: //FallThrough
+                            DOM.answerBox.disabled = frozen;
+                            
+                            if(!frozen){
+                                DOM.answerBox.value = "";
+                            }
+                            break;
+                        }
+                    },
+
+                    changeAnswerButtonText(phase){
+                        DOM.check.textContent = answerButtonMessage[phase];
+                    },
+
+                    showQuestionProgress(numOfQuestion,currentIndex){
+                        DOM.progressBar.style.width = `${(currentIndex/numOfQuestion)*100}%`;
+                        DOM.progressBarNum.textContent = `${currentIndex}/${numOfQuestion}`;
+                    },
+
+                    showResult(s){
+                        if(s === undefined) s = "ERROR";
+                        DOM.result.textContent = s;
+                    },
+
+                    readAnswer(){
+                        return DOM.answerBox.value;
+                    },
+
+                    resetAnswerBox(){
+                        DOM.answerBox.value = "";
+                    },
+
+                    hideOption(shouldHide){
+                        DOM.hider.classList.toggle("hidden", !shouldHide);
+                    },
+
+                    showQuestion(question,hintSentence,fontSize = "4em", shouldHighlight){
+                        DOM.translation.textContent = question;
+                        DOM.question.textContent = shouldHighlight ? hintSentence : hintSentence.replace(/"/g,"");
+                        DOM.question.style.fontSize = fontSize;
+                    },
+
+                    applyFourOptionContents(choices){
+                        for(let i = 0; i < 4; i++){
+                            DOM.option[i].textContent = choices[i]
+                        }
+                    },
+
+                    renderHistory : (history) => {
+                        console.log("from renderHistory")
+                        DOM.overlay.classList.toggle("overlay_on");
+                        DOM.overlayInner.innerHTML = "";
+                        let n = 0; //正答数用
+                        let ccan = 0; //連続正解数用
+                        let id = 1; //カード番号
+                        history.forEach(item => {
+                            const card = document.createElement("div");
+                            card.classList.add("history-card");
+
+                            const number = document.createElement("div");
+                            number.classList.add("H");
+                            number.textContent = `${id}問目：`;
+                            id++;
+
+                            const hint = document.createElement("div");
+                            hint.classList.add("history-question");
+                            hint.textContent = item.hintSentence;
+
+                            const answer = document.createElement("div");
+                            answer.classList.add("history-answer");
+                            answer.textContent = `あなた: ${item.userInput}`;
+
+                            const correct = document.createElement("div");
+                            correct.classList.add("history-correct");
+                            correct.textContent = `正解: ${item.correct}`;
+
+                            const result = document.createElement("div");
+                            result.classList.add("history-result");
+                            result.textContent = item.isCorrect ? "正解" : "不正解";
+                            result.classList.add(item.isCorrect ? "ok" : "ng");
+                            if(item.isCorrect){
+                                n++;
+                                ccan++;
+                            }else{
+                                ccan = 0;
+                            }
+
+                            if(item.type === QUIZ_TYPE.fillTyping || item.type === QUIZ_TYPE.fillFourOption){
+                                const question = document.createElement("div");
+                                question.classList.add("history-question");
+                                question.textContent = item.question;
+
+                                card.append(number, hint, question, answer, correct, result);
+                            }
+                            else card.append(number, hint, answer, correct, result);
+
+                            DOM.overlayInner.appendChild(card);
+                        });
+                        const length = appState.history ? appState.history.length : 0;
+                        DOM.answersNum.textContent = length
+                        DOM.correctAnswersNum.textContent = n;
+                        DOM.consecutiveCorrectAnswersNum.textContent = ccan;
+
+                    },
+
+                    renderHighlight(shouldHighlight, hintSentence){
+                        DOM.question.textContent = shouldHighlight ? hintSentence : hintSentence.replace(/"/g,"");
+                    }
+                }
+
+        class QuizSession extends QuizOption{
+            constructor(option){
+                /**
+                 * @param {QuizOption} option 
+                 */
+                super(option) 
+                this.phase = phaseList.initialize
+                this.currentIndex = 0;
+                this.currentIndexInOneSet = 0;
+                this.mode = option.GendaigoKogo;
+                this.history = [];
+                this.type = this.getType();
+                console.log(`now type is ${this.type}`)
+                const requestModes = {
+                    fourOption : this.fourOption,
+                    typing : this.typing,
+                    fillFourOption : this.fillFourOption,
+                    fillTyping : this.fillTyping
+                }
+                console.log(requestModes)
+                this.oneSet = {
+                    numOfexamples : 0,
+                    numOfQuestion : 0
+                }
+                this.quizList = {
+                    origin : [],
+                    translation : []
+                }
+                
+                const {
+                    sum,
+                    numOfexamples,
+                    numOfWords,
+                    originSentences,
+                    translatedSentences,
+                    originWords       
+                } = quizListBuilder(this.range, this.shuffle, this.includeRelation, requestModes);
+                this.numOfQuestion = sum
+                this.oneSet.numOfexamples = numOfexamples
+                this.oneSet.numOfWords = numOfWords
+                this.quizList.origin = originSentences
+                this.quizList.translation = translatedSentences
+                this.words = originWords
+
+                this.correct;
+                this.question;
+                this.hintSentence;
+
+                this.nextQuestion();
+                QuizRenderer.showQuestionProgress(this.numOfQuestion, this.currentIndex);
+                QuizRenderer.showResult("")
+                QuizRenderer.setAnswerFieldState(this.type, false)
+                QuizRenderer.initializeField(this.type, this.hideOption)
+                QuizRenderer.changeAnswerButtonText(phaseList.question)
+                this.phase = phaseList.question;
+                this.register();
+                console.log(this)
+
+            }
+
+            register(){
+                DOM.check.addEventListener("click", this.next);
+                document.getElementById("homebutton").addEventListener(
+                    "click", 
+                    this.Unregister, 
+                    {once : true}
+                );
+                
+                document.getElementById("quiz-highlight").addEventListener("click",this.switchHighlight);
+                document.getElementById("quiz-hide-option").addEventListener("click",this.switchHider);
+                
+                document.getElementById("four-option").addEventListener('click', this.selectFourOption)
+
+                document.getElementById("quiz-history").addEventListener("click", this.historyHandler);
+                DOM.overlay.addEventListener("click", this.historyHandler);
+            }
+            historyHandler = () => {
+                QuizRenderer.renderHistory(this.history);
+            }
+            switchHighlight = () => {
+                this.fillHighlight = !this.fillHighlight;
+                QuizRenderer.renderHighlight(this.fillHighlight, this.hintSentence);
+            }
+            switchHider = () => {
+                this.hideOption = !this.hideOption;
+                if(this.phase === phaseList.wait){
+                    this.next();
+                }
+                QuizRenderer.hideOption(this.hideOption);
+            }
+            selectFourOption = (e) => {
+                const FourOptionID = {
+                    option1 : "opt1",
+                    option2 : "opt2",
+                    option3 : "opt3",
+                    option4 : "opt4",
+                    option5 : "optIDK"
+                }
+                const button = e.target.closest(".four-option");
+                if (!button) return;
+                if(button.id === FourOptionID.option5) DOM.answerBox.value = "";
+                else{
+                    try{
+                        DOM.answerBox.value = button.textContent;
+                    }
+                    catch(e){
+                        alert("エラーが発生しました。ページを再読み込みしてください。")
+                        console.error(e)
+                    }
+                }
+                this.next();
+            };
+
+            Unregister = () => {
+                DOM.check.removeEventListener("click", this.next);
+                document.getElementById("four-option").removeEventListener("click", this.selectFourOption);
+                document.getElementById("quiz-highlight").removeEventListener("click", this.switchHighlight);
+                document.getElementById("quiz-hide-option").removeEventListener("click", this.switchHider);
+                document.getElementById("quiz-history").removeEventListener("click", this.historyHandler);
+                DOM.overlay.removeEventListener("click", this.historyHandler);
+            }
+
+            next = () => {
+                console.log(this.phase)
+                //try{
+                    switch(this.phase){
+                        case phaseList.initialize:
+                            console.error("didn't complete initializing")
+                            break;
+                        case phaseList.question:
+                            this.phase = phaseList.answerCheck;
+                            const input = QuizRenderer.readAnswer();
+                            const {sentence , isCorrect} = answerCheck(input,this.correct);
+                            QuizRenderer.showResult(sentence);
+                            QuizRenderer.setAnswerFieldState(this.type, true)
+                            QuizRenderer.changeAnswerButtonText(phaseList.wait)
+                            this.history.push({
+                                userInput : input,
+                                correct : this.correct,
+                                question : this.question,
+                                hintSentence : this.hintSentence,
+                                isCorrect : isCorrect,
+                                type : this.type
+                            })
+                            this.phase = phaseList.wait;
+                            this.increaseIndex()
+                            const oneSet = (
+                                (this.type === QUIZ_TYPE.typing || 
+                                this.type === QUIZ_TYPE.fourOption) ? 
+                                this.oneSet.numOfWords : 
+                                this.oneSet.numOfexamples)
+                            if(this.currentIndexInOneSet >= oneSet){
+                                this.phase = phaseList.nextQuestionRange;
+                                this.next();
+                            }
+                            break;
+                        case phaseList.wait:
+                            QuizRenderer.showQuestionProgress(
+                                this.numOfQuestion, 
+                                this.currentIndex
+                            )
+                            QuizRenderer.changeAnswerButtonText(this.phase);
+                            QuizRenderer.setAnswerFieldState(this.type, false);
+                            QuizRenderer.showResult("");
+                            QuizRenderer.resetAnswerBox();
+                            QuizRenderer.hideOption(this.hideOption);
+                            this.nextQuestion();
+                            this.phase = phaseList.question
+                            break;
+                        case phaseList.nextQuestionRange:
+                            this.currentIndexInOneSet = 0;
+                            if(this.currentIndex >= this.numOfQuestion){
+                                this.phase = phaseList.finished;
+                                QuizRenderer.changeAnswerButtonText(this.phase);
+                                QuizRenderer.showQuestionProgress(
+                                    this.currentIndex,
+                                    this.numOfQuestion
+                                );
+                                break;
+                            }
+                            this.phase = phaseList.waitForNextQuestionRange
+                            break;
+                        case phaseList.waitForNextQuestionRange:
+                            QuizRenderer.showResult("");
+                            switch(this.type){
+                                case QUIZ_TYPE.fourOption: 
+                                    this.fourOption = false;
+                                    break;
+                                case QUIZ_TYPE.typing : 
+                                    this.typing = false;
+                                    break;
+                                case QUIZ_TYPE.fillFourOption : 
+                                    this.fillFourOption = false;
+                                    break;
+                                case QUIZ_TYPE.fillTyping : 
+                                    this.fillTyping = false;
+                                    break;
+                                default : 
+                                    return false;
+                            }
+                            QuizRenderer.setAnswerFieldState(this.type, false);
+                            this.type = this.getType();
+                            this.nextQuestion();
+                            QuizRenderer.initializeField(this.type, this.hideOption);
+                            QuizRenderer.resetAnswerBox()
+                            QuizRenderer.showQuestionProgress(
+                                this.numOfQuestion,
+                                this.currentIndex
+                            );
+                            this.phase = phaseList.question;
+                            break;
+                        case phaseList.answerCheck:
+                            appState
+                            break;
+                        case phaseList.finished:
+                            this.phase = phaseList.initialize;
+                            QuizRenderer.showResult("");
+                            this.Unregister();
+                            showPage(PAGES_ID.HOME);
+                            break;
+                        default:
+                        console.error("Unknown phase", this.phase);
+                    //}catch(e){
+                    //    alert("エラーが発生しました。ページを再読み込みしてください。")
+                    //    console.error(e);
+                        //tryの範囲がでかすぎるからそのうち細分化してエラーコードをDBに送信できるようにした方がデバッグしやすいかも？ (2026/3/25)
+                    //}
+                }
+            }
+            increaseIndex(){
+                this.currentIndex++;
+                this.currentIndexInOneSet++;
+            }
+            nextQuestion(){
+                switch(this.type){
+                        case QUIZ_TYPE.fourOption: {
+                            this.generateWordQuestion();
+                            const {choices} = this.generateChoices(true)
+                            QuizRenderer.applyFourOptionContents(choices)
+                            break;
+                        }
+                        case QUIZ_TYPE.typing: {
+                            this.generateWordQuestion();
+                            break;
+                        }
+                        case QUIZ_TYPE.fillFourOption: {
+                            this.generateExampleSentence();
+                            const {choices} = this.generateChoices()
+                            QuizRenderer.applyFourOptionContents(choices)
+                            break;
+                        }
+                        case QUIZ_TYPE.fillTyping: {
+                            this.generateExampleSentence();
+                            break;
+                        }
+                        default:
+                        console.error("unexpected type");
+                }
+            }
+            generateExampleSentence(){
+                const [original,translated] = [
+                    this.quizList.origin[this.currentIndexInOneSet],
+                    this.quizList.translation[this.currentIndexInOneSet]
+                ];
+                const questionSentence = this.mode ? original : translated;
+                const hintSentence = !this.mode ? original : translated;
+                [this.correct,this.question] = extractBlank(questionSentence);
+                QuizRenderer.showQuestion(this.question,hintSentence,"4em",this.fillHighlight);
+                this.questionSentence = questionSentence;
+                this.hintSentence = hintSentence;
+            }
+            generateWordQuestion(){
+                const thisWord = this.words[this.currentIndexInOneSet]
+                this.question = thisWord.word;
+                this.questionSentence = this.question;
+                this.hintSentence = this.question
+                const mean = thisWord.meaning;
+                const idx = Math.floor(Math.random() * mean.length)
+                this.correct = this.type === QUIZ_TYPE.fourOption ? 
+                    mean[idx].text : 
+                    mean.map(m => m.text).join("・");
+                this.correctWordID = thisWord.id;
+                if(this.mode) [this.correct,this.question] = [this.question,this.correct]
+                QuizRenderer.showQuestion(this.hintSentence,this.question,"7em",this.fillHighlight);
+            }
+            generateChoices(shouldNormalize=false){
+                const seen = new Set();
+                let pool
+                if(this.mode) 
+                    pool = shouldNormalize 
+                        ? appState.quizMeaningPool
+                            .filter(m => {
+                                if (
+                                m.wordId === this.correctWordID || // 正解IDは除外
+                                m.word === this.correct ||         // 正解テキストは除外
+                                seen.has(m.word)                        // すでに出たものは除外
+                                ) {
+                                return false;
+                                }
+                                seen.add(m.word); // 初めて出たテキストを記録
+                                return true;
+                            })
+                            .map(m => m.word)
+                        : appState.fourOptionForFillRegacyLang
+                            .filter(m => !m.includes(this.correct));
+                else pool = shouldNormalize 
+                        ? appState.quizMeaningPool
+                            .filter(m => {
+                                if (
+                                m.wordId === this.correctWordID || // 正解IDは除外
+                                m.text === this.correct ||         // 正解テキストは除外
+                                seen.has(m.text)                        // すでに出たものは除外
+                                ) {
+                                return false;
+                                }
+                                seen.add(m.text); // 初めて出たテキストを記録
+                                return true;
+                            })
+                            .map(m => m.text)
+                        : appState.fourOptionForFill
+                            .filter(m => !m.includes(this.correct));
+
+                const correctNormalized = normalizeForAnswer(this.correct, this.type);
+                this.correct = correctNormalized?.[Math.floor(Math.random() * correctNormalized.length)] ?? null;
+                const dummies = shuffle(pool).slice(0, 3);
+                const choices = shuffle([this.correct, ...dummies]);
+                console.log(choices)
+                return {
+                    choices,
+                    correctIndex: choices.indexOf(this.correct)
+                };
+            }
+        }
+        //クイズとフラッシュカード両方のオプションの値を取得して、オプションの選択に不備がないかチェックする関数
+        function checkQuizCb(){
+            errorMsgs.textContent = "";
+            if(!appState.committedRange || appState.committedRange.length === 0 || !appState.committedRange[0]) {
+            stdErrorout("出題範囲の入力が不正です");
+            return;
+            }
+            const data = readOption();
+            const option = new QuizOption(data);
+            const isValid = option.validate();
+            if(!isValid) return;
+            quiz(option);
+            showPage(PAGES_ID.QUIZ);
+            console.log("start with options : ",option," and appState.commintedrange : ", option.range);
+        }
+        function checkFlashCardCb(){
+            errorMsgs.textContent = "";
+            if(!appState.committedRange || appState.committedRange.length === 0 || !appState.committedRange[0]) {
+            stdErrorout("出題範囲の入力が不正です");
+            return;
+            }
+            const data = readOption();
+            const option = new QuizOption(data);
+            showPage(PAGES_ID.FLASHCARD);
+            console.log("start with options : ",option," and appState.commintedrange : ", option.range);
+        }       
+        
         function extractBlank(s){
             const match = s.match(/"(.*?)"/g);
             if (!match) return "";
             const correct = match.join("/").replace(/"/g,"");
             return [correct,s.replace(/".*?"/g, "____"/*.repeat(match[1].length)*/)];//[answer,quiestionSentence]
         }
-        function showQuestion(question,hintSentence,fontSize = "4em"){
-        DOM.translation.textContent = question;
-        DOM.question.textContent = appState.isHighlighted ? hintSentence : hintSentence.replace(/"/g,"");
-        DOM.question.style.fontSize = fontSize;
-        }
         
-        function showQuestionProgress(numOfQuestion,currentIndex){
-            DOM.progressBar.style.width = `${(currentIndex/numOfQuestion)*100}%`
-            DOM.progressBarNum.textContent = `${currentIndex}/${numOfQuestion}`;
-        }
-
-        function restoreHistory(input,correct,question,hint,isCorrect,type){
-        appState.history.push({
-            userInput : input, 
-            correct : correct, 
-            question : question, 
-            hintSentence : hint,
-            isCorrect : isCorrect,
-            type : type
-        });
-        console.log(`restored user history : `,appState.history);
-        }
-
         const answerButtonMessage = {
         [phaseList.question] : "答え合わせ",
         [phaseList.wait] : "次の問題へ",
         [phaseList.finished] : "終了"
         }
-        function showResult(s){
-        if(s === undefined) s = "ERROR"
-        DOM.result.textContent = s;
-        }
-        function ChangeAnswerButtonText(condition){
-        DOM.check.textContent = answerButtonMessage[condition];
-        }
 
-        function normalizeForAnswer(s, type=quizState.type){
-        return type === QUIZ_TYPE.fourOption || quizState.type === QUIZ_TYPE.fillFourOption ? s?.split(/・/)?.filter(n => n.trim() !== "") : s?.replace(/[)）～]/g, "")?.split(/・|\(|（|〔|〈|〉|〕/)?.filter(n => n.trim() !== "");
+        function normalizeForAnswer(s, type){
+        return type === QUIZ_TYPE.fourOption || type === QUIZ_TYPE.fillFourOption ? s?.split(/・/)?.filter(n => n.trim() !== "") : s?.replace(/[)）～]/g, "")?.split(/・|\(|（|〔|〈|〉|〕/)?.filter(n => n.trim() !== "");
         }
         function normalizeForCheck(s){
         return s?.replace(/[(（～]/g, "")?.split(/・|\)|）|〔|〈|〉|〕/)?.filter(n => n.trim() !== "");
@@ -613,182 +1095,30 @@
         const normalizedInput = normalizeForCheck(input);
         if(judge?.every(m => normalizedInput.includes(m))){
             return {sentence : "正解！", isCorrect : true};
-            }else if(judge?.some(m => normalizedInput.includes(m) || normalizeForAnswer(correct,QUIZ_TYPE.Typing)?.some(m => normalizedInput.includes(m)))){
+            }else if(judge?.some(m => normalizedInput.includes(m) || normalizeForAnswer(correct,QUIZ_TYPE.typing)?.some(m => normalizedInput.includes(m)))){
             return {sentence : "正解", isCorrect : true}
             }else{
             return {sentence : `不正解。正解：${correct}`, isCorrect : false};
             }
         }
-        function generateExampleSentence(){
-            const [original,translated] = [quizState.quizList.origin[quizState.currentIndexInOneSet],quizState.quizList.translation[quizState.currentIndexInOneSet]];
-            const questionSentence = quizState.mode ? original : translated;
-            const hintSentence = !quizState.mode ? original : translated;
-            [quizState.correct,quizState.question] = extractBlank(questionSentence);
-            console.log(`correct : ${quizState.correct}, mode : ${quizState.mode}, :: ${questionSentence},${hintSentence}`)
-            showQuestion(quizState.question,hintSentence);
-            quizState.questionSentence = questionSentence;
-            quizState.hintSentence = hintSentence;
-        }
-        function generateWordQuestion(){
-            const thisWord = quizState.words[quizState.currentIndexInOneSet]
-            quizState.question = thisWord.word;
-            quizState.questionSentence = quizState.question;
-            quizState.hintSentence = quizState.question
-            const mean = thisWord.meaning;
-            const idx = Math.floor(Math.random() * mean.length)
-            quizState.correct = quizState.type === QUIZ_TYPE.fourOption ? mean[idx].text : mean.map(m => m.text).join("・");
-            quizState.correctWordID = thisWord.id;
-            if(quizState.mode) [quizState.correct,quizState.question] = [quizState.question,quizState.correct]
-            showQuestion(quizState.hintSentence,quizState.question,"7em");
-        }
-        function nextQuestion(type){
-            switch(type){
-                case QUIZ_TYPE.fourOption:
-                    generateWordQuestion();
-                    applyFourOptionText(true);
-                break;
-                case QUIZ_TYPE.Typing:
-                    generateWordQuestion();
-                break;
-                case QUIZ_TYPE.fillFourOption:
-                    generateExampleSentence();
-                    applyFourOptionText();
-                break;
-                case QUIZ_TYPE.fillTyping:
-                    generateExampleSentence();
-                break;
-                default:
-                console.error("unexpected type");
-        }
-        }
-        function initializeQuestionField(type){
-            function forFourOption(){
-                    DOM.fourOption.classList.remove("hidden");
-                    DOM.answerBox.classList.add("hidden");
-                    DOM.check.classList.add("hidden");
-                }
-            function forTyping(){
-                    DOM.answerBox.classList.remove("hidden");
-                    DOM.check.classList.remove("hidden");
-                    DOM.fourOption.classList.add("hidden");
-                }
-            switch(type){
-                case QUIZ_TYPE.fourOption:
-                    forFourOption();
-                    DOM.translation.classList.add("hidden");
-                break;
-                case QUIZ_TYPE.Typing:
-                    forTyping();
-                    DOM.translation.classList.add("hidden");
-                break;
-                case QUIZ_TYPE.fillFourOption:
-                    forFourOption();
-                    DOM.translation.classList.remove("hidden");
-                break;
-                case QUIZ_TYPE.fillTyping:
-                    forTyping();
-                    DOM.translation.classList.remove("hidden");
-                break;
-                default:
-                console.error("unexpected type");
-        }
-        }
-        function renderHistory() {
-            DOM.overlayInner.innerHTML = "";
-            let n = 0; //正答数用
-            let ccan = 0; //連続正解数用
-            let id = 1; //カード番号
-            appState.history.forEach(item => {
-                const card = document.createElement("div");
-                card.classList.add("history-card");
-
-                const number = document.createElement("div");
-                number.classList.add("H");
-                number.textContent = `${id}問目：`;
-                id++;
-
-                const hint = document.createElement("div");
-                hint.classList.add("history-question");
-                hint.textContent = item.hintSentence;
-
-                const answer = document.createElement("div");
-                answer.classList.add("history-answer");
-                answer.textContent = `あなた: ${item.userInput}`;
-
-                const correct = document.createElement("div");
-                correct.classList.add("history-correct");
-                correct.textContent = `正解: ${item.correct}`;
-
-                const result = document.createElement("div");
-                result.classList.add("history-result");
-                result.textContent = item.isCorrect ? "正解" : "不正解";
-                result.classList.add(item.isCorrect ? "ok" : "ng");
-                if(item.isCorrect){
-                    n++;
-                    ccan++;
-                }else{
-                    ccan = 0;
-                }
-
-                if(item.type === QUIZ_TYPE.fillTyping || item.type === QUIZ_TYPE.fillFourOption){
-                    const question = document.createElement("div");
-                    question.classList.add("history-question");
-                    question.textContent = item.question;
-
-                    card.append(number, hint, question, answer, correct, result);
-                }
-                else card.append(number, hint, answer, correct, result);
-
-                DOM.overlayInner.appendChild(card);
-            });
-            const length = appState.history ? appState.history.length : 0;
-            DOM.answersNum.textContent = length
-            DOM.correctAnswersNum.textContent = n;
-            DOM.consecutiveCorrectAnswersNum.textContent = ccan;
-
-        }
-
-        const FourOptionID = {
-            option1 : "opt1",
-            option2 : "opt2",
-            option3 : "opt3",
-            option4 : "opt4",
-            option5 : "optIDK"
-        }
-
-        function selectFourOption(text,id){
-        if(id === FourOptionID.option5) DOM.answerBox.value = "";
-        else{
-            try{
-            DOM.answerBox.value = text;
-            }
-            catch(e){
-            alert("エラーが発生しました。ページを再読み込みしてください。")
-            console.error(e)
-            }
-        }
-        majorHandler();
-        }
-
-        const parent = document.getElementById('four-option');
-        parent.addEventListener('click', (e) => {
-            const button = e.target.closest('.four-option');
-            if (!button) return;
-            selectFourOption(button.textContent,button.id);
-        });
-        function quizListBuilder(){
+        
+        /**
+         * 
+         * @param {Map} range 
+         * @param {boolean} shouldShuffle 
+         * @param {Map} requestedModes 
+         * @returns 
+         */
+        function quizListBuilder(range, shouldShuffle, shouldIncludeRelation, requestedModes){
+        
             /**
              * @param {number} i (単語id)
              * 
              */
             function addThisList(i, wordIndex = appState.wordIndex){
-                console.log(wordIndex)
                 const word = wordIndex.get(i)
-                console.log(word ? word : null)
                 numOfWords++;
                 originWords.push(word);
-                console.log(word)
-                console.log(i)
                 try{
                     for(const examples of word.example_sentences){
                             originSentences.push(examples.origin);
@@ -807,13 +1137,13 @@
 
             const buffer = 10000;
             let wordIndex;
-            if(quizState.shuffle) {
-                appState.committedRange = shuffle(appState.committedRange);
+            if(shouldShuffle) {
+                range = shuffle(range);
                 const shuffledWordIndex = shuffle(Array.from(appState.wordIndex.entries()));
                 wordIndex = new Map(shuffledWordIndex);
                 console.error(wordIndex);
             }else{wordIndex = appState.wordIndex}
-            appState.committedRange.forEach( aRange => {
+                range.forEach( aRange => {
                 for(let i = aRange.min; i <= aRange.max; i++){
                     //addThisListの返り値は、関連語のIDの配列（存在しない場合はnull）で、関連語が存在する場合はさらにその関連語の例文も追加するために使う
                     //この関数きもすぎるからリファクタリングしたい（risk:0, 2026-5-16）
@@ -825,16 +1155,17 @@
                     //とはいえO(1)で取得するためには仕方なかったんだけど、もうちょっとマシな方法なかったんかと今更ながら思う
                     //バグ見つけたわ、見すと悩むの関連語で被ってるわ。今は時間がないからあとでbufferとid書き直す。(risk2:2026-05-17)
                     // && i >9の部分は臨時パッチ
-                    const seccondRelatedWords = wordIndex.get(i*buffer + 1) && i >9 ? addThisList(i*buffer + 1) : null;
+                    const secondRelatedWords = wordIndex.get(i*buffer + 1) && i >9 ? addThisList(i*buffer + 1) : null;
 
-                    if(quizState.includeRelation){
+                    if(shouldIncludeRelation){
                         if(relatedWords){
-                            for(wordID of relatedWords){
+                            console.log(relatedWords)
+                            for(var wordID of relatedWords){
                                 addThisList(wordID);
                             }
                         }
-                        if(seccondRelatedWords){
-                            for(wordID of seccondRelatedWords){
+                        if(secondRelatedWords){
+                            for(var wordID of secondRelatedWords){
                                 addThisList(wordID);
                             }
                         }
@@ -843,47 +1174,49 @@
             });
             let m = 0
             let n = 0;
-            if(appState.optionBuilder.fourOption) m++;
-            if(appState.optionBuilder.typing) m++;
-            if(appState.optionBuilder.fillFourOption) n++;
-            if(appState.optionBuilder.fillTyping) n++;
+            if(requestedModes.fourOption) m++;
+            if(requestedModes.typing) m++;
+            if(requestedModes.fillFourOption) n++;
+            if(requestedModes.fillTyping) n++;
             const sum = originSentences.length * n + numOfWords * m;
             //console.clear()
-            if(quizState.shuffle) {
+            if(shouldShuffle) {
                 const shuffledPair = shuffle(originSentences.map((v, i) => ({ org: v, tral: translatedSentences[i] })));
-                console.log(shuffledPair)
                 originSentences = shuffledPair.map(m => m.org);
                 translatedSentences = shuffledPair.map(m => m.tral);
                 originWords = shuffle(originWords);
-                console.log(originWords)
             }
-            console.log(originSentences)
-            console.log(translatedSentences)
-            return [sum,[originSentences.length,numOfWords],originSentences,translatedSentences,originWords];
+            const numOfexamples = originSentences.length
+            return {
+                sum,
+                numOfexamples,
+                numOfWords,
+                originSentences,
+                translatedSentences,
+                originWords
+            };
         }
         function poolBuilder(){
             appState.wordIndex = new Map(
                 appState.words.map(w => [w.id, w])
             );
-            console.log(appState.wordIndex)
-            quizState.fourOptionForFill.push(
+            appState.fourOptionForFill.push(
                 ...appState.words.flatMap(w => 
                 w.example_sentences.flatMap(e => {
                     const [match,_] = extractBlank(e.translation);
                     return match ? match : null;
                 }).filter(s => s !== null)
             ));
-            quizState.fourOptionForFillRegacyLang.push(
+            appState.fourOptionForFillRegacyLang.push(
                 ...appState.words.flatMap(w => 
                 w.example_sentences.flatMap(e => {
                     const [match,_] = extractBlank(e.origin);
                     return match ? match : null;
                 }).filter(s => s !== null)
             ));
-            console.log(quizState.fourOptionForFill)
-            quizState.quizMeaningPool = appState.words.flatMap(word =>
+            appState.quizMeaningPool = appState.words.flatMap(word =>
                 word.meaning.flatMap(m =>
-                    normalizeForAnswer(m.text).map(text => ({
+                    normalizeForAnswer(m.text, QUIZ_TYPE.fourOption).map(text => ({
                         wordId: word.id,
                         word: word.word,
                         reading: word.reading,
@@ -903,229 +1236,16 @@
         
         return result;
         }
-        function generateChoices(isNormalized){
-        const seen = new Set();
-        let pool
-        if(quizState.mode) 
-            pool = isNormalized 
-                ? quizState.quizMeaningPool
-                    .filter(m => {
-                        if (
-                        m.wordId === quizState.correctWordID || // 正解IDは除外
-                        m.word === quizState.correct ||         // 正解テキストは除外
-                        seen.has(m.word)                        // すでに出たものは除外
-                        ) {
-                        return false;
-                        }
-                        seen.add(m.word); // 初めて出たテキストを記録
-                        return true;
-                    })
-                    .map(m => m.word)
-                : quizState.fourOptionForFillRegacyLang
-                    .filter(m => !m.includes(quizState.correct));
-        else pool = isNormalized 
-                ? quizState.quizMeaningPool
-                    .filter(m => {
-                        if (
-                        m.wordId === quizState.correctWordID || // 正解IDは除外
-                        m.text === quizState.correct ||         // 正解テキストは除外
-                        seen.has(m.text)                        // すでに出たものは除外
-                        ) {
-                        return false;
-                        }
-                        seen.add(m.text); // 初めて出たテキストを記録
-                        return true;
-                    })
-                    .map(m => m.text)
-                : quizState.fourOptionForFill
-                    .filter(m => !m.includes(quizState.correct));
-
-        const correctNormalized = normalizeForAnswer(quizState.correct);
-        quizState.correct = correctNormalized?.[Math.floor(Math.random() * correctNormalized.length)] ?? null;
-        const dummies = shuffle(pool).slice(0, 3);
-        const choices = shuffle([quizState.correct, ...dummies]);
-        return {
-            choices,
-            correctIndex: choices.indexOf(quizState.correct)
-        };
-        }
-        function getCaller(){
-        const error = new Error();
-        const stack = error.stack || '';
-        const stackLines = stack.split('\n');
-        const callerIndex = stackLines.findIndex(line => line.includes('getCaller')) + 2;
-        if (stackLines[callerIndex]) {
-            return stackLines[callerIndex].trim();
-        }
-        return 'Unknown';
-        }
-        
         function getType(){
         if(appState.optionBuilder.fourOption) return QUIZ_TYPE.fourOption;
-        if(appState.optionBuilder.typing) return QUIZ_TYPE.Typing;
+        if(appState.optionBuilder.typing) return QUIZ_TYPE.typing;
         if(appState.optionBuilder.fillFourOption) return QUIZ_TYPE.fillFourOption;
         if(appState.optionBuilder.fillTyping) return QUIZ_TYPE.fillTyping;
         return false;
         }
-        function completeOptionBuilder(){
-        switch(quizState.type){
-        case QUIZ_TYPE.fourOption: 
-            appState.optionBuilder.fourOption = false;
-            break;
-        case QUIZ_TYPE.Typing : 
-            appState.optionBuilder.typing = false;
-            break;
-        case QUIZ_TYPE.fillFourOption : 
-            appState.optionBuilder.fillFourOption = false;
-            break;
-        case QUIZ_TYPE.fillTyping : 
-            appState.optionBuilder.fillTyping = false;
-            break;
-        default : 
-            return false;
-        }
-        }
-        function ControlAnswerButtonAtribute(bool){
-        if(quizState.type === QUIZ_TYPE.fillFourOption || quizState.type === QUIZ_TYPE.fourOption){
-            if(!bool) DOM.check.classList.add("hidden");
-            else DOM.check.classList.remove("hidden");
-            DOM.fourOption.disabled = bool;
-        }
-        else if(quizState.type === QUIZ_TYPE.Typing || quizState.type === QUIZ_TYPE.fillTyping){
-            DOM.answerBox.disabled = bool;
-            if(!bool) DOM.answerBox.value = "";
-        }
-        }
-        function applyFourOptionText(isNormalized = false){
-            const {choices,_} = generateChoices(isNormalized);
-            for(let i = 0; i < 4; i++){
-                DOM.option[i].textContent = choices[i]
-            }
-        }
-        function switchHide(element, shouldHide){
-            if(shouldHide){
-                element.classList.remove("hidden");
-            } else {
-                element.classList.add("hidden");
-            }
-        }
-        function switchOpitonUI(){
-            switchHide(DOM.hideOption, (quizState.type === QUIZ_TYPE.fourOption || quizState.type === QUIZ_TYPE.fillFourOption));
-            switchHide(DOM.isHighlighted, (quizState.type === QUIZ_TYPE.fillFourOption || quizState.type === QUIZ_TYPE.fillTyping));
-        }
-        function majorHandler(){
-        console.log(quizState.currentIndex)
-        try{
-        switch(appState.phase){
-            case phaseList.initialize :
-                quizState.currentIndex = 0;
-                quizState.currentIndexInOneSet = 0;
-                appState.history = [];
-                DOM.answerBox.value = "";
-                quizState.mode = appState.optionBuilder.GendaigoKogo;
-                quizState.includeRelation = appState.optionBuilder.includeRelation;
-                quizState.shuffle = appState.optionBuilder.shuffle;
-                quizState.hideOption = appState.optionBuilder.hideOption;
-                switchHide(DOM.hider, quizState.hideOption);
-                quizState.type = getType();
-                console.log(quizState.type)
-                switchOpitonUI();
-                initializeQuestionField(quizState.type);
-                ControlAnswerButtonAtribute(false);
-                ChangeAnswerButtonText(phaseList.question);
-                [
-                    quizState.numOfQuestion,
-                    [quizState.oneSet.numOfexamples,quizState.oneSet.numOfWords],
-                    quizState.quizList.origin,
-                    quizState.quizList.translation,
-                    quizState.words
-                ] = quizListBuilder();
-                nextQuestion(quizState.type);
-                appState.phase = phaseList.question;
-                showQuestionProgress(quizState.numOfQuestion,quizState.currentIndex);
-                showResult("");
-                break;
-            case phaseList.wait :  
-                appState.phase = phaseList.question;
-                ChangeAnswerButtonText(appState.phase);
-                showQuestionProgress(quizState.numOfQuestion,quizState.currentIndex);
-                ControlAnswerButtonAtribute(false);
-                showResult("");
-                nextQuestion(quizState.type);
-                DOM.answerBox.value = "";
-                switchHide(DOM.hider, quizState.hideOption);
-                break;
-            case phaseList.question :
-                const input = DOM.answerBox.value;
-                appState.phase = phaseList.answerCheck;
-                const {sentence , isCorrect} = answerCheck(input,quizState.correct);
-                showResult(sentence);
-                appState.phase = phaseList.wait;
-                ChangeAnswerButtonText(appState.phase);
-                ControlAnswerButtonAtribute(true);
-                restoreHistory(
-                    input,
-                    quizState.correct,
-                    quizState.question,
-                    quizState.hintSentence,
-                    isCorrect,
-                    quizState.type
-                );
-                quizState.currentIndex++;
-                quizState.currentIndexInOneSet++;
-                const oneSet = quizState.type === QUIZ_TYPE.Typing || quizState.type === QUIZ_TYPE.fourOption ? quizState.oneSet.numOfWords : quizState.oneSet.numOfexamples
-                if(quizState.currentIndexInOneSet >= oneSet){
-                appState.phase = phaseList.nextQuestionRange;
-                console.log("DEBUG : " + `phase is ${appState.phase} currentIndexInOneSet(${quizState.currentIndexInOneSet + 1})>oneSet(${oneSet})` + getCaller())
-                majorHandler();
-                return;
-                }
-                break;
-            case phaseList.answerCheck : 
-            
-                break;
-            case phaseList.nextQuestionRange : 
-                quizState.currentIndexInOneSet = 0;
-                if(quizState.currentIndex >= quizState.numOfQuestion){
-                    appState.phase = phaseList.finished;
-                    ChangeAnswerButtonText(appState.phase);
-                    showQuestionProgress(quizState.currentIndex,quizState.numOfQuestion);
-                    console.log("DEBUG : " + `phase is ${appState.phase} currentIndex(${quizState.currentIndex + 1})>numOfquestion(${quizState.numOfQuestion})` + getCaller())
-                    return;
-                }
-                appState.phase = phaseList.waitForNextQuestionRange
-                break;
-            case phaseList.waitForNextQuestionRange : 
-                showResult("");
-                completeOptionBuilder();
-                ControlAnswerButtonAtribute(false);
-                quizState.type = getType();
-                console.log(quizState.type)
-                nextQuestion(quizState.type);
-                switchOpitonUI();
-                initializeQuestionField(quizState.type);
-                DOM.answerBox.value = "";
-                appState.phase = phaseList.question;
-                showQuestionProgress(quizState.numOfQuestion,quizState.currentIndex);
-            break;
-            case phaseList.finished :
-                console.log("finished!!!")
-                appState.phase = phaseList.initialize;
-                showResult("");
-                showPage(PAGES_ID.HOME);
-                break;
-            default:
-            console.error("Unknown phase", appState.phase);
-        }
-        }catch(e){
-            alert("エラーが発生しました。ページを再読み込みしてください。")
-            console.error(e);
-            //tryの範囲がでかすぎるからそのうち細分化してエラーコードをDBに送信できるようにした方がデバッグしやすいかも？ (2026/3/25)
-        }
-        }
         
-    function quiz(){
-        majorHandler();
+    function quiz(option){
+        const quizSession = new QuizSession(option);
     }
     
     //jsonファイルから単語データを読み込む
@@ -1141,7 +1261,7 @@
             inputRangeElements.inputRangeMax.value = 53;
             updateRange(RANGE_SOURCE.INPUT);
         }).catch((e) =>  {
-            alert("単語データが読み込めませんでした。ページを更新してください。")
+            //alert("単語データが読み込めませんでした。ページを更新してください。")
             console.error(e);
     });
     //イベントリスナー
@@ -1157,7 +1277,7 @@
     addEventListenerByEvent("range-max", "change", () => {updateRange(RANGE_SOURCE.INPUT)});
     //スタートボタン
     addEventListenerByEvent("start-btn-flashcard", "click", () =>{
-        checkCb(true);
+        checkFlashCardCb();
     }, "mouseover", () => {
         document.getElementById("start-btn-flashcard").classList.add("anim-box","zoomin","is-animated");
     },"mouseout",() => {
@@ -1165,7 +1285,7 @@
     });
 
     addEventListenerByEvent("start-btn-quiz", "click", () =>{
-        checkCb(false);
+        checkQuizCb();
     }, "mouseover", () => {
         document.getElementById("start-btn-quiz").classList.add("anim-box","zoomin","is-animated");
     },"mouseout",() => {
@@ -1184,36 +1304,15 @@
     addEventListenerByEvent("cb-fill-four-option", "change", () => {checkboxToggle(cbElements.cbFillHighlight, (cbElements.cbFillFourOption.checked || cbElements.cbFillTyping.checked))});
     addEventListenerByEvent("cb-four-option", "change", () => {checkboxToggle(cbElements.cbHideOption, (cbElements.cbFourOption.checked || cbElements.cbFillFourOption.checked))});
     addEventListenerByEvent("cb-fill-four-option", "change", () => {checkboxToggle(cbElements.cbHideOption, (cbElements.cbFourOption.checked || cbElements.cbFillFourOption.checked))});
+    
+    addEventListenerByEvent("hider","click",() => {DOM.hider.classList.add("hidden");})
 
-    function overlayToggle(){
-        DOM.overlay.classList.toggle("overlay_on");
-        renderHistory();
-    }
-    document.addEventListener('DOMContentLoaded', () => {
-    addEventListenerByEvent("quiz-history","click",overlayToggle);
-    DOM.overlay.addEventListener("click",overlayToggle);
+    
     function stopbub(event){
         event.stopPropagation();
     }
-    DOM.overlayInner.addEventListener('click', stopbub, false);
-    }, false);
-    function switchHighlight(){
-        appState.isHighlighted = !appState.isHighlighted;
-        DOM.question.textContent = appState.isHighlighted ? quizState.hintSentence : quizState.hintSentence.replace(/"/g,"");
-    }
-    function switchHider(){
-        quizState.hideOption = !quizState.hideOption;
-        if(appState.phase === phaseList.wait){
-            majorHandler();
-        }
-        switchHide(DOM.hider, quizState.hideOption);
-    }
-    addEventListenerByEvent("quiz-highlight","click",switchHighlight)
-    addEventListenerByEvent("check","click",majorHandler);
-    addEventListenerByEvent("hider","click",() => {DOM.hider.classList.add("hidden");})
-    addEventListenerByEvent("quiz-hide-option","click",switchHider)
+    DOM.overlayInner.addEventListener('click', stopbub);
 //}
 
 //main();
-
 
