@@ -70,13 +70,7 @@ export class QuizOption extends BasisOption{
     }
 }
 
-export class FlashCardOption extends BasisOption{
-    constructor(data){
-        super(data);
-        this.exceptKnown = data.exceptKnown;
-        this.showMeaningFirst = data.showMeaningFirst;
-    }
-}
+
 const QuizRenderer = {
 
     initializeField(type, shouldHide){

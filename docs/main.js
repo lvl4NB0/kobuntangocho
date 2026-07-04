@@ -3,7 +3,7 @@ import { poolBuilder } from "./quiz.js";
 import { showPage, updateRange } from "./ui.js";
 import { DOM, appState, inputRangeElements, cbElements } from "./state.js";
 import { PAGES_ID, RANGE_SOURCE } from "./const.js";
-import { BasisOption, QuizOption, FlashCardOption } from "./quiz.js";
+import { BasisOption, QuizOption } from "./quiz.js";
 //function main(){
     /**
      * @typedef {Object} Range : 
@@ -146,6 +146,7 @@ function stdErrorout(s){
         event.stopPropagation();
     }
     DOM.overlayInner.addEventListener('click', stopbub);
+    
 //}
 
 //main();

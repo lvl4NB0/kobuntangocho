@@ -97,8 +97,9 @@ function updateRange(src){
         resetInputValue();
         const c = COLORS[src]
         changeInputBackgroundColor(c);
-        const selectInfo = getFromSelect();
-        const [sctValue] = selectInfo;
+        const sctValue = inputRangeElements.rangeSelectSection.value;
+        const posValue = inputRangeElements.rangeSelectPoS.value;
+        const selectInfo = getFromSelect(sctValue, posValue);
         disableOption(sctValue === "c3" || sctValue === "idiom");
         ranges = rangeBuilderFromSelect(selectInfo);
     }

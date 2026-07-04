@@ -49,14 +49,12 @@ function parseRange(min,max){
  * select入力から出題範囲を構築する関数
  * @returns {Range[] | null}
  */
-function getFromSelect(){
-    const sctValue = inputRangeElements.rangeSelectSection.value;
-    const posValue = inputRangeElements.rangeSelectPoS.value;
-    const key = `${sctValue}${posValue}`;
+function getFromSelect(section, pos){
+    const key = `${section}${pos}`;
     if(RANGE_PARSE_DICTIONARY[key]){
         const range = RANGE_PARSE_DICTIONARY[key];
-        return [sctValue,posValue,range];
-    }else if(sctValue) return [sctValue,null,null];
+        return [section,pos,range];
+    }else if(section) return [section,null,null];
     else return [null,null,null];
 }
 

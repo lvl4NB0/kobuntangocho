@@ -1,5 +1,5 @@
-import {FlashCardOption} from "../main.js";
-
+import { BasisOption } from "../quiz.js";
+import { appState } from "../state.js";
 function readOption(){
     const data = {
         range : [{min : 2, max:2}],//appState.committedRange,
@@ -18,22 +18,21 @@ function readOption(){
     return data;
     
 }
-
-class flashCardSession{
+export class FlashCardOption extends BasisOption{
+    constructor(data){
+        super(data);
+        this.exceptKnown = data.exceptKnown;
+        this.showMeaningFirst = data.showMeaningFirst;
+    }
+}
+export class flashCardSession{
     constructor(data){
         this.option = data;
         
     }
 }
 
-fetch("./words.json")
-    .then(res => res.json())
-    .then(data => {
-        appState.words = data;
-        appState.NUM_OF_Words = appState.words.length;
-    }
-)
 
 function start(){
-    const 
+    
 }
